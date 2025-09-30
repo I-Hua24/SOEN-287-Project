@@ -1,0 +1,16 @@
+Demos:
+ - pick slot on moodle scheduler
+ - on zoom
+
+Deliverable 2 (D2) sunday nov 23 
+ total marks:15
+  - completeness 5
+  - look and feel 5
+  - navigation 5
+ goal: 
+  In this deliverable, data received 
+  from users, generated, or sent to users is stored in a data store residing behind a web server. 
+  There will be no hard-coded data as of deliverable #2 as data will go to/come from the data 
+  store. Also, you might need to revisit some of the features you implemented in deliverable #1. 
+
+
