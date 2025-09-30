@@ -1,2 +1,2 @@
 FEATURES IMPLEMENTED 
- 
+- sign up page for new users
