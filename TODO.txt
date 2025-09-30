@@ -1,0 +1,36 @@
+Task Progress
+
+how:
+ - If you can break down the features you may add them into the TODO: list
+ - please only reserve max 3 tasks at the time before taking another tasks 
+    so there's no conflict and that other team members can continue the task 
+ - for fairness back up a copy of your own DONE list 
+ - if you finished implementing a feature add it to FeaturesImplemented.txt cause we need to submit it at demo
+
+
+notes:
+ - for simplicity im thinking of mirroring the look of concordia's main website
+
+Doing:
+ IH - setting up github codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/working-collaboratively-in-a-codespace
+ - set up home page (html)
+
+
+
+TODO:
+- An installation guide stating how to deploy your website 
+- A user guide showing how to use your website. 
+- host a poll and reserve demo time accordingly
+- host teamwork discussion meeting (ensure the fairness of the work) (not IH, im already tired)
+   please be fair so that the meeting can be quick and short (i dont want no drama)
+
+
+
+DONE:
+ IH - setting up the goals and system to effectively do the project
+
+
+
+
+
+

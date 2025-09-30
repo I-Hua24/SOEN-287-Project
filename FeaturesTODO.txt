@@ -1,0 +1,28 @@
+Minimum Required Features 
+ End Users (students/faculty) should be able to: 
+  - Create and manage their account (profile info, contact email, etc.). 
+  - Browse a list of available resources (rooms, labs, equipment…). 
+  - View real-time availability calendars/schedules of resources. 
+  - Make a booking/reservation for a resource (with date, time, purpose, etc.). 
+  - Modify or cancel their bookings. 
+  - View their past and upcoming bookings in one place. 
+ Administrators (resource managers) should be able to: 
+  - Create, edit, and remove resources (names, descriptions, locations, capacities, images). 
+  - Set availability schedules (working hours, exceptions, blackout dates). 
+  - Approve or reject booking requests (if necessary). 
+  - Block or unblock resources temporarily (e.g., for maintenance). 
+  - See statistics/reports about resource usage (popular resources, peak times). 
+
+Technical/Implementation Notes 
+ - The system should be web-based, responsive, and accessible from modern browsers. 
+ - It should have authentication and authorization, with different roles (User/Admin). 
+ - Data must be persisted. 
+ - Booking conflicts must be handled gracefully (no double-booking). 
+ - The design should be modular enough to allow future additions (like payment for premium resources or integration with campus card systems). 
+ - You can use any library you want. 
+ - The backend is based on Node.js. 
+
+Bonus 
+ - End Users (students/faculty) should be able to receive notifications (email or in-app) for booking confirmations, changes, or cancellations. 
+ - Administrator should be able to send announcements or notifications to users (e.g., maintenance downtime). 
+
