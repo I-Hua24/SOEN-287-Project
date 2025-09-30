@@ -14,3 +14,8 @@ Deliverable 2 (D2) sunday nov 23
   store. Also, you might need to revisit some of the features you implemented in deliverable #1. 
 
 
+
+TODO:
+- An installation guide stating how to deploy your website 
+- A user guide showing how to use your website. 
+- host a poll and reserve demo time accordingly
