@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>ConcoHub</title>
-    <link rel="stylesheet" href="style.css">
+
+]    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <header class="NavBarContainer">
-        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <div class="logo">ConcoHub</div>
 
         <div class="search-bar">
@@ -25,8 +30,8 @@
             <label class="switch">
                 <input type="checkbox" id="theme-toggle">
                 <span class="slider">
-                    <span class="icon moon">🌙</span>
-                    <span class="icon sun">☀️</span>
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
                 </span>
             </label>
         </nav>
@@ -47,53 +52,128 @@
             <h1>What If Managing Your Resources Was One Click Away?</h1>
             <p>Comprehensive resource management for students, faculty, and administrators</p>
             <div class="hero-buttons">
-                <button id="Browse-Btn">📅 Browse Resources</button>
-                <button id="Admin-btn">Admin Dashboard</button>
+                <button id="Browse-Btn"><i class="fa-solid fa-calendar-check"></i> Browse Resources</button>
+                <button id="Admin-btn"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</button>
             </div>
         </div>
     </main>
 
     <section class="features">
-        <div class="divFeature ">
-         <h1>Everything You Need</h1>
-        </div><br>
-
-        <div class="card">
-            <span class="icon">📅</span>
-            <h3>Real-Time Booking</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem laboriosam est assumenda dolor dignissimos eius! Odit ullam delectus ratione qui earum! Praesentium eveniet sunt ipsa consequuntur voluptates nisi recusandae.</p>
+        <div class="features-header">
+            <h1>Everything You Need</h1>
+            <p>Powerful tools to manage resources for students, faculty, and administrators.</p>
         </div>
 
-        <div class="card">
-            <span class="icon">📍</span>
-            <h3>Campus-Wide Access</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem laboriosam est assumenda dolor dignissimos eius! Odit ullam delectus ratione qui earum! Praesentium eveniet sunt ipsa consequuntur voluptates nisi recusandae.</p>
-        </div>
+        <div class="features-grid">
+            <div class="card">
+                <div class="icon-wrapper blue"><i class="fa-solid fa-calendar-days"></i></div>
+                <h3>Real-Time Booking</h3>
+                <p>See live availability and book instantly with our intuitive calendar interface.</p>
+            </div>
 
-        <div class="card">
-            <span class="icon">🔒</span>
-            <h3>Secure & Reliable</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem laboriosam est assumenda dolor dignissimos eius! Odit ullam delectus ratione qui earum! Praesentium eveniet sunt ipsa consequuntur voluptates nisi recusandae.</p>
-        </div>
+            <div class="card">
+                <div class="icon-wrapper pink"><i class="fa-solid fa-building-columns"></i></div>
+                <h3>Campus-Wide Access</h3>
+                <p>Book study rooms, labs, equipment, and facilities across all campuses seamlessly.</p>
+            </div>
 
-        <div class="card">
-            <span class="icon">⏰</span>
-            <h3>Smart Scheduling</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem laboriosam est assumenda dolor dignissimos eius! Odit ullam delectus ratione qui earum! Praesentium eveniet sunt ipsa consequuntur voluptates nisi recusandae.</p>
-        </div>
+            <div class="card">
+                <div class="icon-wrapper green"><i class="fa-solid fa-lock"></i></div>
+                <h3>Secure & Reliable</h3>
+                <p>Role-based authentication with secure access for students, staff, and faculty.</p>
+            </div>
 
-        <div class="card">
-            <span class="icon">📊</span>
-            <h3>Analytics</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem 
-        </div>
+            <div class="card">
+                <div class="icon-wrapper orange"><i class="fa-solid fa-clock"></i></div>
+                <h3>Smart Scheduling</h3>
+                <p>Prevent conflicts, set reminders, and modify bookings with ease.</p>
+            </div>
 
-        <div class="card">
-            <span class="icon">👥</span>
-            <h3>Multi-Role Support</h3>
-            <p>CLorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rem laboriosam est assumenda dolor dignissimos eius! Odit ullam delectus ratione qui earum! Praesentium eveniet sunt ipsa consequuntur voluptates nisi recusandae.</p>
+            <div class="card">
+                <div class="icon-wrapper purple"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Analytics</h3>
+                <p>Track resource usage with insights for administrators to optimize allocation.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-wrapper teal"><i class="fa-solid fa-users"></i></div>
+                <h3>Multi-Role Support</h3>
+                <p>Tailored experiences for students, faculty, and managers with permissions.</p>
+            </div>
         </div>
     </section>
+
+    <section class="Available-resources">
+        <div class="Available-resources-header">
+            <h1>Available Resources</h1>
+            <p>We Have Everything You Need To Succeed</p>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resources-card">
+                <div class="icon-wrapper blue"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h3>Study Rooms</h3>
+                <p>Rooms available for individual and group study sessions</p>
+            </div>
+            <div class="resources-card">
+                <div class="icon-wrapper pink"><i class="fa-solid fa-flask"></i></div>
+                <h3>Laboratory Room Access</h3>
+                <p>Labs for All Programs Projects</p>
+            </div>
+
+            <div class="resources-card">
+                <div class="icon-wrapper green"><i class="fa-solid fa-laptop"></i></div>
+                <h3>Equipment</h3>
+                <p>Laptops, lab equipment and specialized tools</p>
+            </div>
+
+            <div class="resources-card">
+                <div class="icon-wrapper orange"><i class="fa-solid fa-dumbbell"></i></div>
+                <h3>Sport Facilities</h3>
+                <p>Gyms, courts and recreational spaces for fitness activities</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <h2>Ready To Start?</h2>
+            <p>Created by students. Designed for students. Perfected at Concordia.</p>
+            <button class="cta-btn">Create Account</button>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="#">Browse Resources</a></li>
+                    <li><a href="#">My Bookings</a></li>
+                    <li><a href="#">Account Settings</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>For Administrators</h4>
+                <ul>
+                    <li><a href="#">Admin Dashboard</a></li>
+                    <li><a href="#">Manage Resources</a></li>
+                    <li><a href="#">Usage Reports</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        </div>
+    </footer>
+
 
     <script src="script.js"></script>
 </body>

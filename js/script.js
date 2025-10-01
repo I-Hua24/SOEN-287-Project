@@ -5,10 +5,6 @@ const darkModeTgl=document.getElementById("theme-toggle");
 
 
 
-darkModeTgl.addEventListener("click",()=>{
-  document.body.classList.toggle("dark-mode")  
-})
-
 
 
 menuToggle.addEventListener("click", () => {
