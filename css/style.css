@@ -493,83 +493,45 @@ input:checked+.slider::before {
   border-top: 1px solid #ddd;
   padding: 20px 0;
 }
-/* ================== DARK MODE ================== */
 
+/* =========================
+   DARK MODE STYLES
+   ========================= */
 body.darkmode {
   background-color: #121212;
-  color: #e4e6eb;
+  color: #eaeaea;
 }
 
-/* Navbar */
 body.darkmode .NavBarContainer {
-  background-color: #1e1e1e;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1f1f1f;
+  border-bottom: 1px solid #333;
+  color: #fff;
 }
 
 body.darkmode .logo {
-  color: #f5f5f5;
+  color: #fff;
 }
 
-/* Search bar */
 body.darkmode .search-bar input {
   background-color: #2a2a2a;
   border: 1px solid #444;
-  color: #f5f5f5;
+  color: #eaeaea;
 }
 
-body.darkmode .search-bar input:focus {
-  border: 1px solid #00d4ff;
-  box-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
-}
-
-/* Sidebar */
 body.darkmode .sidebar {
-  background-color: #181818;
-  color: #e4e6eb;
+  background-color: #1f1f1f;
+  color: #fff;
 }
 
 body.darkmode .sidebar ul li a {
   color: #ccc;
 }
-
 body.darkmode .sidebar ul li a:hover {
-  color: #00d4ff;
+  color: #66b2ff;
 }
 
-body.darkmode .close-btn {
-  color: #f5f5f5;
-}
-
-/* Buttons */
-body.darkmode .SignIn-btn {
-  background-color: #2a2a2a;
-  color: #f5f5f5;
-  border: 1px solid #444;
-}
-
-body.darkmode .GetStarted-btn {
-  background-color: #00d4ff;
-  color: #000;
-}
-
-body.darkmode #Browse-Btn {
-  background: linear-gradient(90deg, #00d4ff, #007bff);
-  color: #fff;
-}
-
-body.darkmode #Admin-btn {
-  background: #2a2a2a;
-  color: #f5f5f5;
-  border: 2px solid #444;
-}
-
-body.darkmode #Admin-btn:hover {
-  background: #333;
-}
-
-/* Hero section */
 body.darkmode .hero {
-  background: linear-gradient(90deg, #0d0d0d, #1f1f1f);
+  background: linear-gradient(90deg, #1a1a1a, #333);
   color: #fff;
 }
 
@@ -577,38 +539,56 @@ body.darkmode .hero p {
   color: #bbb;
 }
 
-/* Features & Resources Cards */
-body.darkmode .card,
+body.darkmode .card {
+  background: #1e1e1e;
+  color: #eaeaea;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+}
+body.darkmode .card p {
+  color: #bbb;
+}
+
 body.darkmode .resources-card {
-  background-color: #1e1e1e;
-  color: #e4e6eb;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background: #1e1e1e;
+  color: #eaeaea;
 }
-
-body.darkmode .card p,
 body.darkmode .resources-card p {
-  color: #aaa;
+  color: #bbb;
 }
 
-/* Footer */
 body.darkmode .footer {
   background: #1a1a1a;
-  color: #ccc;
-}
-
-body.darkmode .footer-links ul li a {
   color: #aaa;
-}
-
-body.darkmode .footer-links ul li a:hover {
-  color: #00d4ff;
 }
 
 body.darkmode .footer-top {
   background: #000;
-  color: #f5f5f5;
+  color: #fff;
 }
 
-body.darkmode .footer-top p {
-  color: #bbb;
+body.darkmode .footer-links h4 {
+  color: #ddd;
+}
+body.darkmode .footer-links ul li a {
+  color: #aaa;
+}
+body.darkmode .footer-links ul li a:hover {
+  color: #66b2ff;
+}
+
+body.darkmode #Browse-Btn {
+  background: linear-gradient(90deg, #0056b3, #009ac2);
+}
+
+body.darkmode #Admin-btn {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  color: #fff;
+}
+body.darkmode #Admin-btn:hover {
+  background: #333;
+}
+
+body.darkmode .cta-btn {
+  background: linear-gradient(90deg, #0056b3, #009ac2);
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Settings | ConcoHub</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Correct file paths for CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/settings.css">
+</head>
+
+
+<body>
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search settings...">
+        </div>
+
+        <nav class="NavButton">
+            <button class="SignIn-btn" id="sign-in">Sign In</button>
+            <button class="GetStarted-btn" id="sign-up">Get Started</button>
+
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+            </label>
+        </nav>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul>
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li><a href="adminDashboard.html"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+            <li><a href="settings.html" class="active"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <main class="settings-container">
+        <h1><i class="fa-solid fa-user-gear"></i> User Settings</h1>
+        <p class="subtitle">Manage your profile and personalize your ConcoHub experience</p>
+
+        <form class="settings-form">
+            <div class="setting-item">
+                <label for="username"><i class="fa-solid fa-user"></i> Username</label>
+                <input type="text" id="username" placeholder="Enter new username">
+            </div>
+
+            <div class="setting-item">
+                <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+                <input type="email" id="email" placeholder="Enter new email">
+            </div>
+
+            <div class="setting-item">
+                <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+                <input type="password" id="password" placeholder="Enter new password">
+            </div>
+
+            <div class="setting-item">
+                <label for="language"><i class="fa-solid fa-language"></i> Language</label>
+                <select id="language">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <label for="notifications"><i class="fa-solid fa-bell"></i> Notifications</label>
+                <input type="checkbox" id="notifications">
+            </div>
+
+            <button type="submit" id="save-settings">
+                <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+        </form>
+    </main>
+
+<script src="../js/script.js"></script></body>
+
+</html>
