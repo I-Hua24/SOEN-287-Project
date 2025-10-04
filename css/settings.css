@@ -1,0 +1,124 @@
+.settings-container {
+    max-width: 650px;
+    margin: 120px auto;
+    background-color: var(--card-bg, #ffffff);
+    color: var(--text-color, #222);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.settings-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-item label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item input[type="password"],
+.setting-item select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.setting-item input[type="text"]:focus,
+.setting-item input[type="email"]:focus,
+.setting-item input[type="password"]:focus,
+.setting-item select:focus {
+    border-color: #0078ff;
+}
+
+.setting-item input [type="checkbox"] {
+margin-right: 0%;
+    width: 20px;
+    height: 20px;
+    accent-color: #0078ff;
+}
+
+#save-settings {
+    background-color: #0078ff;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#save-settings:hover {
+    background-color: #005fcc;
+    transform: translateY(-2px);
+}
+
+body.darkmode .settings-container {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+}
+
+body.darkmode .setting-item label {
+    color: #ddd;
+}
+
+body.darkmode input,
+body.darkmode select {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border: 1px solid #444;
+}
+
+body.darkmode input:focus,
+body.darkmode select:focus {
+    border-color: #3399ff;
+}
+
+body.darkmode #save-settings {
+    background-color: #3399ff;
+}
+
+body.darkmode #save-settings:hover {
+    background-color: #0078ff;
+}
