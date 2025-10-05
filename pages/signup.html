@@ -3,23 +3,56 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ConcoHub</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-  <header>
-    Concordia Hub
-  </header>
-  <nav>
+  <header class="NavBarContainer">
+    <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    <div class="logo">ConcoHub</div>
 
-  </nav>
-  <main>
-    Create Your Account
-    <br><br>
+    <div class="search-bar">
+      <input type="text" placeholder="Search settings...">
+    </div>
+
+    <nav class="NavButton">
+      <button class="SignIn-btn" id="sign-in">Sign In</button>
+      <button class="GetStarted-btn" id="sign-up">Get Started</button>
+
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </span>
+      </label>
+    </nav>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="close-btn">×</button>
+    <ul>
+      <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="../pages/resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+      <li><a href="../pages/adminDashboard.html"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+      <li><a href="../pages/settings.html" class="active"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+    </ul>
+  </aside>
+  <main class="hero">
+
+
+    <h2>Sign up</h2>
+
     <form>
-      
+
       <input type="email" id="email" name="email" placeholder="email@live.concordia.ca" required>
 
       <br><br>
@@ -34,13 +67,49 @@
 
       <button type="submit">Submit</button>
     </form>
-
+    <p>Already have an account?<br>
+      <a href="signin.html">Sign in here</a>
+    </p>
   </main>
 
-  <footer>
 
+
+
+  <footer class="footer">
+
+    <div class="footer-links">
+      <div>
+        <h4>For Students</h4>
+        <ul>
+          <li><a href="#">Browse Resources</a></li>
+          <li><a href="#">My Bookings</a></li>
+          <li><a href="#">Account Settings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For Administrators</h4>
+        <ul>
+          <li><a href="adminDashboard.html">Admin Dashboard</a></li>
+          <li><a href="#">Manage Resources</a></li>
+          <li><a href="#">Set Availability</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+    </div>
   </footer>
-<script src="js/script.js"></script>
+
+
+  <script src="../js/script.js"></script>
 </body>
 
 </html>
