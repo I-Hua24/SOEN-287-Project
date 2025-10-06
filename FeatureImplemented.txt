@@ -2,3 +2,4 @@ FEATURES IMPLEMENTED
 - sign up page for new users
 - Home page
 -Setting Page
+-Added js for sign in,signup and log out 

@@ -71,6 +71,9 @@ if (ctaBtn) {
 }
 
 // SETTINGS PAGE LOGIC
+
+//THIS IS JUST FOR NOW SINCE WE DONT HAVE BACKEND
+// WILL BE REPLACED WITH ACTUAL USER DATA FETCHED FROM DATABASE
 document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.querySelector("#save-settings");
   if (!saveBtn) return; // if not on settings page, stop here
@@ -79,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = document.querySelector("#username");
   const email = document.querySelector("#email");
   const password = document.querySelector("#password");
+  const confirmPassword = document.querySelector("#confirmationPassword");
   const language = document.querySelector("#language");
   const notifications = document.querySelector("#notifications");
 
@@ -86,11 +90,19 @@ document.addEventListener("DOMContentLoaded", () => {
   username.value = localStorage.getItem("username") || "";
   email.value = localStorage.getItem("email") || "";
   password.value = localStorage.getItem("password") || "";
+  confirmPassword.value = localStorage.getItem("confirmationPassword") || "";
   language.value = localStorage.getItem("language") || "en";
   notifications.checked = localStorage.getItem("notifications") === "true";
 
   // Save data on click
+
+  
   saveBtn.addEventListener("click", (event) => {
+    if (!username.value.trim() || !email.value.trim() || !password.value.trim()) {
+  alert("Please fill in all required fields.");
+  return;
+}
+
     event.preventDefault();
 
     const passwordValue = password.value.trim();
@@ -98,6 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const isLongEnough = passwordValue.length >= 8 && passwordValue.length <= 12;
     if (!hasNumber || !isLongEnough) {
       alert("Password must be 8-12 characters long and include at least one number.");
+      return;
+    }
+
+    const confirmPasswordValue = confirmPassword.value.trim();
+    if (passwordValue !== confirmPasswordValue) {
+      alert("Passwords do not match.");
       return;
     }
     
@@ -108,13 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please enter a valid email address.");
       return;
     }
-
+    
     
     localStorage.setItem("username", username.value);
     localStorage.setItem("email", email.value);
     localStorage.setItem("password", password.value);
     localStorage.setItem("language", language.value);
     localStorage.setItem("notifications", notifications.checked);
+
+
+//REPLACE ALERT WITH A <P> TAG THAT SHOWS SUCCESS MESSAGE ONCE SAVED
+
     alert("Settings saved successfully!");
   });
 });
+
