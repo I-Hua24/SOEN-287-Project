@@ -5,9 +5,13 @@ if (signupForm) {
     document.getElementById("signup-form").addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
+        const email = document.getElementById("email").value.trim().toLowerCase();
         const password = document.getElementById("password").value;
         const confirmPassword = document.getElementById("confirm-password").value;
+        const role = document.getElementById("role").value;
+
+
+
 
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
@@ -33,11 +37,12 @@ if (signupForm) {
             return;
         }
 
-        users.push({ email, password });
+        users.push({ email, password, role });
 
         localStorage.setItem("users", JSON.stringify(users));
 
         alert("Sign up successful!");
+        window.location.href = "../pages/signin.html";
         e.target.reset();
     });
 }
@@ -55,21 +60,26 @@ if (signinForm) {
         const user = users.find(user => user.email === email && user.password === password);
         if (user) {
             alert("Sign in successful!");
-            localStorage.setItem("loggedInUser", email); 
+            localStorage.setItem("loggedInUser", email);
+            localStorage.setItem("userRole", user.role);
+            if (user.role === "admin") {
+                window.location.href = "../pages/adminDashboard.html";
+                return;
+            }
             window.location.href = "../index.html";
         }
         else {
             alert("Invalid email or password.");
 
-
-
         }
+
     });
 }
 
-//Keep user logged in after sign in
+//If user is logged in, redirect away from signin/signup pages
 const loggedInUser = localStorage.getItem("loggedInUser");
-if (loggedInUser) {
+const pathname = window.location.pathname;
+if (loggedInUser && (pathname.endsWith("signin.html") || pathname.endsWith("signup.html"))) {
     window.location.href = "../index.html";
 }
 
@@ -81,5 +91,26 @@ if (signOutBtn) {
         alert("You have been signed out.");
         window.location.href = "../pages/signin.html";
     });
+}
+if (!loggedInUser && signOutBtn) {
+    signOutBtn.style.display = "none";
+} else if (loggedInUser && signOutBtn) {
+    signOutBtn.style.display = "block";
+}
+
+
+if (loggedInUser) {
+    document.querySelector(".logo").innerHTML = `ConcoHub | <span style="color:grey; font-weight:200">Welcome, ${loggedInUser.split('@')[0]}</span>`;
+} else {
+    document.querySelector(".logo").innerHTML = "ConcoHub";
+}
+
+//Restrict access to certain pages if not signed in
+if (!loggedInUser &&
+    (pathname.endsWith("resources.html") ||
+        pathname.endsWith("settings.html") ||
+        pathname.endsWith("adminDashboard.html"))) {
+    alert("Please sign in to access this page.");
+    window.location.href = "../pages/signin.html";
 }
 

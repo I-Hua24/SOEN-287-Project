@@ -54,12 +54,24 @@ if (signUpBtn) {
 
 if (browseBtn) {
   browseBtn.addEventListener("click", () => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+      alert("Please sign in to access resources.");
+      window.location.href = "pages/signin.html";
+      return;
+    }
     window.location.href = "pages/resources.html";
   });
 }
 
 if (adminBtn) {
   adminBtn.addEventListener("click", () => {
+
+    const role = localStorage.getItem("userRole");
+    if (role !== "admin") {
+      alert("Access denied. Admins only.");
+      return;
+    }
     window.location.href = "pages/adminDashboard.html";
   });
 }
@@ -96,12 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Save data on click
 
-  
+
   saveBtn.addEventListener("click", (event) => {
     if (!username.value.trim() || !email.value.trim() || !password.value.trim()) {
-  alert("Please fill in all required fields.");
-  return;
-}
+      alert("Please fill in all required fields.");
+      return;
+    }
 
     event.preventDefault();
 
@@ -118,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Passwords do not match.");
       return;
     }
-    
+
     const emailValue = email.value.trim();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailPattern.test(emailValue);
@@ -126,8 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please enter a valid email address.");
       return;
     }
-    
-    
+
+
     localStorage.setItem("username", username.value);
     localStorage.setItem("email", email.value);
     localStorage.setItem("password", password.value);
@@ -135,9 +147,32 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("notifications", notifications.checked);
 
 
-//REPLACE ALERT WITH A <P> TAG THAT SHOWS SUCCESS MESSAGE ONCE SAVED
+    //REPLACE ALERT WITH A <P> TAG THAT SHOWS SUCCESS MESSAGE ONCE SAVED
 
     alert("Settings saved successfully!");
   });
 });
 
+//Updating setting info when user sign in
+
+document.addEventListener("DOMContentLoaded", () => {
+const loggedInUser = localStorage.getItem("loggedInUser");
+const pathname = window.location.pathname;
+const settingsForm = document.getElementById("settings-form");
+
+if (settingsForm && loggedInUser) {
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const currentUser = users.find((user) => user.email === loggedInUser);
+  if (currentUser) {
+    document.getElementById("email").value = currentUser.email;
+    document.getElementById("password").value = currentUser.password;
+    document.getElementById("confirmationPassword").value = currentUser.password;
+  }
+document.getElementById("username").value = currentUser.email.split('@')[0];
+  document.getElementById("language").value = localStorage.getItem("language") || "en";
+  document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
+}
+});
+
+
+//Updating uer sign in when user update settings
