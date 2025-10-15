@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="booking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Booking</title>
+</head>
+<body>
+    
+    <header>
+        <h2><a href="index.html">ConcoHub</a></h2>
+        <h1>Bookings</h1>
+    </header>
+
+    <main>
+        
+        <!--Choose date (Calendar)-->
+        <section>
+            <!--Type of room-->
+            <div class="category-div">
+                <label class="category" for="category">Category</label>
+                <select class="category" name="category">
+                    <option value="study">Study Room</option>
+                    <option value="sports-facilities"> Sports Facilities</option>
+                    <option value="specialized-equipment">Specialized Equipment</option>
+                    <option value="software-seats">Software Seats</option>
+                </select>
+            </div>
+
+            <!--Calender month controls-->
+            <div class="toolbar">
+                <button class="btn" id="prevBtn">Prev month</button>
+                <button class="btn" id="todayBtn">Today</button>
+                <button class="btn" id="nextBtn">Next month</button>
+            </div>
+
+            <!--The actual calendar (data displayed from js)-->
+            <div class="calendar" id="calendar"></div>
+                
+            </div>
+        </section>
+
+        <!--Choose time (Time table)-->
+        <div class="rooms-div">
+            <section>
+                <p><b>Showing times for:</b> <span id="selected-date-top">No date selected</span></p>
+                <div id="time-list"></div>
+            </section>
+        </div>
+
+        <!--Booking form-->
+        <div class="form-div">
+            <form id="form" action="mybookings.html" method="POST">
+                <!--Name-->
+                <div>
+                    <label for="name">Name on room:</label>
+                    <!-- <textarea rows="1" cols="40">Default First Last</textarea> -->
+                    <input id="name" name="name" type="text">
+                </div>
+
+                <br/>
+
+                <!--Purpose-->
+                <label for="purpose">Purpose</label>
+                <select id="purpose" name="purpose">
+                    <option value="none-selected">None selected</option>
+                    <option value="study">Study</option>
+                    <option value="sports-activities">Sports Activities</option>
+                    <option value="technology">Technology</option>
+                    <option value="group-collaboration">Group Collaboration</option>
+                </select>
+
+                <br/><br/>
+
+                <!--Number of people-->
+                <label for="num-of-people">Number of people</label>
+                <select id="num-of-people" name="num-of-people">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+
+                <!--Confirm selected date, room and time-->
+                <p>Selected date: <span id="selected-date">None</span></p>
+                <p>Selected room: <span id="selected-room">None</span> <span id="selected-time"></span></p>
+        
+                <!--Erorr div-->
+                <div id="error"></div>
+
+                <!--Booking confirmation button-->
+                <div class="confirm-booking">
+                    <button id="confirmation-button" type="submit">Confirm Booking</button>
+                </div>
+            </form>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <div>
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="#">Browse Resources</a></li>
+                    <li><a href="#">My Bookings</a></li>
+                    <li><a href="#">Account Settings</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>For Administrators</h4>
+                <ul>
+                    <li><a href="adminDashboard.html">Admin Dashboard</a></li>
+                    <li><a href="#">Manage Resources</a></li>
+                    <li><a href="#">Set Availability</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+        © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        </div>
+    </footer>
+
+    <script src="booking.js"></script>
+</body>
+</html>

@@ -86,6 +86,24 @@ body {
   transform: translateY(2px);
 }
 
+.SignOut-btn {
+  background-color: #b71c1c;      
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.SignOut-btn:hover {
+  background-color: #d32f2f;      
+  transform: scale(1.05);        
+}
+
+
 .switch {
   position: relative;
   display: inline-block;
@@ -524,7 +542,7 @@ body.darkmode .sidebar {
 }
 
 body.darkmode .sidebar ul li a {
-  color: #ccc;
+  color: #cccccc;
 }
 body.darkmode .sidebar ul li a:hover {
   color: #66b2ff;

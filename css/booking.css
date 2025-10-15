@@ -1,0 +1,343 @@
+body 
+{
+    font-family: 'Arial', sans-serif;
+}
+
+header
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width:100%; /* important */
+}
+header h1
+{
+    /* Move all h1's in header to center */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* true page center */
+    text-align:center;
+}
+header a
+{
+    color: black;
+    text-decoration: none;
+}
+
+main
+{
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px #0000004D;
+    border-radius: 20px;
+}
+
+.category-div
+{
+    padding: 10px;
+}
+.category
+{
+    margin: 20px auto;
+    padding: 10px;
+    color: black;
+}
+
+.rooms-div
+{
+    color: #777;
+    background-color: transparent;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-radius: 10px; 
+    overflow: hidden; 
+    max-width: 600px;
+}
+.time-list
+{
+    display: inline-block;
+    margin-right: 10px;
+}
+.pill-btn 
+{
+    background-color: transparent;
+    border: 2px solid #007bff;
+    color: #777;
+    margin-left: 2px; margin-right: 2px;
+    padding: 5px 15px;
+    text-align: center;
+    display: inline-block; /* or block */
+    border-radius: 50px; /* has to be atleast half its height*/
+}
+.pill-btn-active 
+{
+    background: dodgerblue;
+    color: white;
+    font-weight: 700;
+}
+.pill-btn:hover 
+{
+    background: dodgerblue;
+    color: white;
+}
+
+ul 
+{ 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+
+/*Calendar styling*/
+.toolbar 
+{
+    padding: 5px;
+    display: flex; 
+    justify-content: center;
+    gap: 10px; /* space between buttons */
+}
+.btn 
+{ 
+    background-color: white;
+    cursor: pointer; 
+    padding: 6px 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    user-select: none; 
+}
+
+.calendar 
+{
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 10px; 
+    overflow: hidden; 
+    /*max-width: 440px;*/
+    max-width: 600px;
+    box-shadow: 1px 1px 5px #0000004D;
+}
+.month 
+{ 
+    padding: 10px 25px;
+    background: black;
+    color: white;
+    text-align: center;
+}
+.title 
+{ 
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.subtitle 
+{ 
+    font-size: 14px;
+    opacity: 0.9;
+}
+.weekdays 
+{ 
+    padding: 10px 0;
+    background: #ddd;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /*make 7 col's with 1 fraction of the width*/
+    text-align: center;
+    
+    color: #666;
+    font-weight: 600;
+}
+.days 
+{
+    padding: 10px;
+    background: #eee;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 6px;
+    min-height: 210px;
+}
+.days li 
+{ 
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+.day 
+{ 
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 6px;
+    user-select: none;
+}
+.day.in-range 
+{ 
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+.day.in-range 
+{ 
+    cursor: pointer;
+}
+.day.in-range:hover 
+{ 
+    color: white;
+    background: dodgerblue;
+}
+.day.active 
+{ 
+    background: dodgerblue;
+    color: white;
+    font-weight: 700; 
+}
+.pad { 
+    /*this hides the spaces when creating the calendar
+    for example if the month begins on thursday sun-wed have
+    spaces before starting with a 1 number on thurs*/
+    visibility: hidden;
+}
+
+/* Confirmation form */
+.form-div 
+{
+    color: #777;
+    margin: 30px auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 10px; 
+    overflow: hidden; 
+    /*max-width: 440px;*/
+    max-width: 600px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05); 
+}
+/* Confirm booking button */
+.confirm-booking 
+{
+    padding: 10px;
+    display: flex; 
+    justify-content: center;
+}
+.confirm-booking button 
+{
+    background: white;
+    color: dodgerblue;
+    border: 2px solid dodgerblue;
+    padding: 10px;
+    border-radius: 5px;
+}
+.confirm-booking button:hover,
+.confirm-booking button:active
+{
+    color: white;
+    background-color: dodgerblue;
+}
+.error
+{
+    color: crimson;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+/* Footer */
+
+footer{
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+.footer {
+  background: #f9fafc;
+  color: #202124;
+  font-family: 'Inter', sans-serif;
+  margin-top: 60px;
+}
+
+.footer-top {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.footer-top h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-top p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.cta-btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #0056b3, #009ac2);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 60px auto;
+  text-align: left;
+}
+
+.footer-links h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin: 10px 0;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #5f6368;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid #ddd;
+  padding: 20px 0;
+}
