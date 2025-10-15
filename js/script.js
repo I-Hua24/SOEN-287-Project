@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-const menuToggle = document.getElementById("menu-toggle");
-const sidebar = document.getElementById("sidebar");
-const closebtn = document.getElementById("close-btn")
-const darkModeTgl = document.getElementById("theme-toggle");
 
-darkModeTgl.addEventListener("click", event => {
-  document.body.classList.toggle("darkmode")  
-})
-
-//Method open side bar
-menuToggle.addEventListener("click", event => {
-  sidebar.classList.toggle("active");
-})
-
-
-//Method to remove side bar
-closebtn.addEventListener("click", event => {
-  sidebar.classList.remove("active")
-})
-=======
 
 const menuToggle = document.getElementById("menu-toggle");
 const sidebar = document.getElementById("sidebar");
@@ -135,15 +115,11 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please fill in all required fields.");
       return;
     }
->>>>>>> 3f8c8424c6e43b787d90798b99b36a6b8c3d9bf2
+
 
     event.preventDefault();
 
-<<<<<<< HEAD
-document.getElementById("sign-in").addEventListener("click", () => {
-  window.location.href = "pages/signin.html";
-})
-=======
+
     const passwordValue = password.value.trim();
     const hasNumber = /\d/.test(passwordValue);
     const isLongEnough = passwordValue.length >= 8 && passwordValue.length <= 12;
@@ -151,7 +127,7 @@ document.getElementById("sign-in").addEventListener("click", () => {
       alert("Password must be 8-12 characters long and include at least one number.");
       return;
     }
->>>>>>> 3f8c8424c6e43b787d90798b99b36a6b8c3d9bf2
+
 
     const confirmPasswordValue = confirmPassword.value.trim();
     if (passwordValue !== confirmPasswordValue) {
