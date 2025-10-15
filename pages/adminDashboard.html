@@ -1,3 +1,5 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
@@ -42,7 +43,347 @@
 </body>
 
 
+-->
 
 
+    <!-- Fonts & IconsK
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>ConcoHub • Admin Dashboard</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Your styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/adminDashboard.css" />
+
+   
+</head>
+<body>
+  <!-- Top Nav -->
+  <header class="NavBarContainer">
+    <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    <div class="logo">ConcoHub</div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search bookings/resources…" id="global-search" />
+    </div>
+
+    <nav class="NavButton">
+      <button class="SignIn-btn" id="sign-in">Sign In</button>
+      <button class="GetStarted-btn" id="sign-up">Get Started</button>
+      <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </span>
+      </label>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="close-btn">×</button>
+    <ul>
+      <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+      <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+      <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+    </ul>
+  </aside>
+
+  <!-- Page Content -->
+  <div class="page-wrap">
+    <div class="page-title">
+      <i class="fa-solid fa-chart-line"></i>
+      <h1>Admin Dashboard</h1>
+    </div>
+    <p class="muted">Monitor usage, approve requests, and manage campus resources.</p>
+
+    <!-- Stats -->
+    <section class="grid cols-4" aria-label="Key metrics">
+      <div class="card">
+        <div class="stat">
+          <div class="icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <div class="muted">Total Bookings</div>
+            <div class="value" id="stat-total-bookings">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat">
+          <div class="icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div>
+            <div class="muted">Pending Approvals</div>
+            <div class="value" id="stat-pending">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat">
+          <div class="icon green"><i class="fa-solid fa-building-columns"></i></div>
+          <div>
+            <div class="muted">Active Resources</div>
+            <div class="value" id="stat-resources">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat">
+          <div class="icon pink"><i class="fa-solid fa-percent"></i></div>
+          <div>
+            <div class="muted">Utilization Rate</div>
+            <div class="value" id="stat-utilization">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="card" style="margin-top:1rem;">
+      <div class="section-header">
+        <h2 style="margin:0;">Filters</h2>
+        <div class="actions">
+          <button class="btn ghost" id="reset-filters"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+          <button class="btn primary" id="apply-filters"><i class="fa-solid fa-filter"></i> Apply</button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="field">
+          <label for="filter-from">From</label>
+          <input type="date" id="filter-from" />
+        </div>
+        <div class="field">
+          <label for="filter-to">To</label>
+          <input type="date" id="filter-to" />
+        </div>
+        <div class="field">
+          <label for="filter-type">Resource Type</label>
+          <select id="filter-type">
+            <option value="">All</option>
+            <option>Study Room</option>
+            <option>Lab</option>
+            <option>Equipment</option>
+            <option>Sport Facility</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-status">Status</label>
+          <select id="filter-status">
+            <option value="">Any</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="field" style="flex:1;">
+          <label for="filter-search">Search</label>
+          <input type="text" id="filter-search" placeholder="Search by user, resource, purpose…" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts Placeholders -->
+    <section class="grid cols-2" style="margin-top:1rem;">
+      <div class="card">
+        <h3>Bookings Over Time</h3>
+        <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
+          <canvas id="chart-bookings" width="520" height="240" aria-label="Bookings over time"></canvas>
+        </div>
+        <p class="muted" style="margin-top:.5rem;">(Optional) Render with Chart.js later.</p>
+      </div>
+      <div class="card">
+        <h3>Resource Utilization</h3>
+        <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
+          <canvas id="chart-utilization" width="520" height="240" aria-label="Resource utilization"></canvas>
+        </div>
+        <p class="muted" style="margin-top:.5rem;">(Optional) Render with Chart.js later.</p>
+      </div>
+    </section>
+
+    <!-- Bookings Management -->
+    <section class="card" style="margin-top:1rem;">
+      <div class="section-header">
+        <h2 style="margin:0;">Bookings</h2>
+        <div class="actions">
+          <button class="btn ghost" id="export-bookings"><i class="fa-solid fa-file-arrow-down"></i> Export</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="table" id="bookings-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>User</th>
+              <th>Resource</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Purpose</th>
+              <th>Status</th>
+              <th style="width:220px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example rows (replace with JS-rendered rows) -->
+            <tr>
+              <td>1024</td>
+              <td>jane.doe@uni.ca</td>
+              <td>Study Room A-204</td>
+              <td>2025-10-22</td>
+              <td>13:00–15:00</td>
+              <td>Group study</td>
+              <td><span class="badge pending">Pending</span></td>
+              <td class="actions">
+                <button class="btn ghost" data-action="approve"><i class="fa-solid fa-check"></i> Approve</button>
+                <button class="btn ghost" data-action="reject"><i class="fa-solid fa-xmark"></i> Reject</button>
+                <button class="btn ghost" data-action="cancel"><i class="fa-solid fa-ban"></i> Cancel</button>
+              </td>
+            </tr>
+            <tr>
+              <td>1025</td>
+              <td>alex.nguyen@uni.ca</td>
+              <td>Lab E-112</td>
+              <td>2025-10-23</td>
+              <td>09:00–12:00</td>
+              <td>Chem project</td>
+              <td><span class="badge approved">Approved</span></td>
+              <td class="actions">
+                <button class="btn ghost" data-action="details"><i class="fa-solid fa-eye"></i> Details</button>
+                <button class="btn ghost" data-action="cancel"><i class="fa-solid fa-ban"></i> Cancel</button>
+              </td>
+            </tr>
+            <!-- /Example rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Resource Management -->
+    <section class="card" style="margin-top:1rem;">
+      <div class="section-header">
+        <h2 style="margin:0;">Resources</h2>
+        <div class="actions">
+          <button class="btn primary" id="add-resource"><i class="fa-solid fa-plus"></i> Add Resource</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="table" id="resources-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Capacity</th>
+              <th>Availability</th>
+              <th style="width:180px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example rows (replace with JS-rendered rows) -->
+            <tr>
+              <td>Study Room A-204</td>
+              <td>Study Room</td>
+              <td>Library, 2nd Floor</td>
+              <td>6</td>
+              <td>Mon–Fri 08:00–20:00</td>
+              <td class="actions">
+                <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
+                <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Gym Court 1</td>
+              <td>Sport Facility</td>
+              <td>Complexe Sportif</td>
+              <td>—</td>
+              <td>Daily 07:00–22:00</td>
+              <td class="actions">
+                <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
+                <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <!-- /Example rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add Resource Modal -->
+  <div class="modal" id="modal-add-resource" role="dialog" aria-modal="true" aria-labelledby="modal-add-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-add-title">Add Resource</h3>
+        <button class="btn ghost" id="close-add-modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="grid cols-2">
+        <div class="field">
+          <label for="res-name">Name</label>
+          <input id="res-name" type="text" placeholder="e.g., Study Room A-204" />
+        </div>
+        <div class="field">
+          <label for="res-type">Type</label>
+          <select id="res-type">
+            <option>Study Room</option>
+            <option>Lab</option>
+            <option>Equipment</option>
+            <option>Sport Facility</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="res-location">Location</label>
+          <input id="res-location" type="text" placeholder="e.g., Library, 2nd Floor" />
+        </div>
+        <div class="field">
+          <label for="res-capacity">Capacity</label>
+          <input id="res-capacity" type="number" min="0" step="1" placeholder="e.g., 6" />
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="res-availability">Availability</label>
+          <input id="res-availability" type="text" placeholder="e.g., Mon–Fri 08:00–20:00" />
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn ghost" id="cancel-add">Cancel</button>
+        <button class="btn primary" id="save-add">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Confirm Modal -->
+  <div class="modal" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-confirm-title">Confirm Action</h3>
+        <button class="btn ghost" id="close-confirm-modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p id="confirm-message">Are you sure?</p>
+      <div class="modal-actions">
+        <button class="btn ghost" id="confirm-cancel">Cancel</button>
+        <button class="btn primary" id="confirm-ok">Yes, proceed</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/script.js"></script>
+  <script src="../js/adminDashboard.js"></script>
+  <!-- Optional: your admin-specific logic -->
+
+    // Gate: allow only admins (relies on your existing localStorage scheme)
 
 
+</body>
+</html>

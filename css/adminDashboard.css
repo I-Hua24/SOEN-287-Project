@@ -1,0 +1,42 @@
+ /* Minimal page-specific polish (optional; move to your CSS later) */
+    .page-wrap { max-width: 1200px; margin: 0 auto; padding: 1.25rem; }
+    .page-title { display:flex; align-items:center; gap:.75rem; margin:1rem 0 1.25rem; }
+    .grid { display:grid; gap:1rem; }
+    .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 1024px){ .grid.cols-4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 640px){ .grid.cols-4,.grid.cols-2{grid-template-columns:1fr} }
+
+    .card { background: var(--card-bg, #fff); border-radius: 16px; padding: 1rem; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+    .card h3 { margin: .25rem 0 .5rem; font-size: 1rem; }
+    .stat { display:flex; align-items:center; gap:.75rem; }
+    .stat .icon { width:40px; height:40px; display:grid; place-items:center; border-radius:12px; }
+    .icon.blue{ background:#e7f0ff; color:#2962ff; } .icon.green{ background:#e8f7ef; color:#1b8c5a; }
+    .icon.pink{ background:#fde7f3; color:#c2185b; } .icon.orange{ background:#fff1e6; color:#ef6c00; }
+    .stat .value { font-size:1.4rem; font-weight:700; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:.75rem; align-items:end; }
+    .toolbar .field { display:flex; flex-direction:column; gap:.25rem; }
+    .toolbar input, .toolbar select { padding:.55rem .65rem; border-radius:10px; border:1px solid #e5e7eb; background:var(--input-bg,#fff); }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem .9rem; border-radius:12px; border:1px solid transparent; cursor:pointer; font-weight:600; }
+    .btn.primary{ background:#111827; color:#fff; } .btn.ghost{ background:transparent; border-color:#e5e7eb; }
+    .section-header{ display:flex; align-items:center; justify-content:space-between; margin:.5rem 0 .75rem; }
+    .table { width:100%; border-collapse: collapse; }
+    .table th,.table td{ padding:.75rem; border-bottom:1px solid #e5e7eb; text-align:left; }
+    .badge { padding:.25rem .5rem; border-radius:999px; font-size:.75rem; font-weight:700; }
+    .badge.pending{ background:#fff8e1; color:#8a6d00; } .badge.approved{ background:#e6f7ef; color:#0f7a4f; }
+    .badge.rejected{ background:#fdecec; color:#b71c1c; }
+    .actions { display:flex; gap:.5rem; }
+    .actions .btn { padding:.4rem .6rem; border-radius:10px; font-size:.9rem; }
+    .muted { color:#6b7280; font-size:.9rem; }
+
+    /* Simple modal shell */
+    .modal { position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.5); padding:1rem; }
+    .modal.active{ display:grid; }
+    .modal-content{ background:var(--card-bg,#fff); width:100%; max-width:560px; border-radius:16px; padding:1rem; }
+    .modal-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+    .modal-actions{ display:flex; justify-content:flex-end; gap:.5rem; margin-top:.75rem; }
+
+    /* Dark mode helpers (if your global CSS adds .darkmode on body) */
+    body.darkmode { --card-bg:#111315; --input-bg:#0d0f11; }
+    body.darkmode .table th, body.darkmode .table td { border-color:#1f2937; }
+    body.darkmode .btn.ghost { border-color:#1f2937; }
