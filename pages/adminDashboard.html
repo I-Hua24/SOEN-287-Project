@@ -5,17 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Admin Dashboard</title>
-
-        In progress(Admin)
-
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search settings...">
+        </div>
+
+        <nav class="NavButton">
+            <button class="SignIn-btn" id="sign-in">Sign In</button>
+            <button class="GetStarted-btn" id="sign-up">Get Started</button>
+
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+            </label>
+        </nav>
+    </header>
 
 
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
+
+  
 </body>
 
 
