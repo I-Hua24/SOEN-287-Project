@@ -60,15 +60,17 @@ if (browseBtn) {
       window.location.href = "pages/signin.html";
       return;
     }
-    window.location.href = "pages/resources.html";
+    window.location.href = "pages/booking.html";
   });
 }
 
 if (adminBtn) {
   adminBtn.addEventListener("click", () => {
 
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
     const role = localStorage.getItem("userRole");
-    if (role !== "admin") {
+    if (role !== "admin" || !loggedInUser) {
       alert("Access denied. Admins only.");
       return;
     }
@@ -76,11 +78,25 @@ if (adminBtn) {
   });
 }
 
+
+
 if (ctaBtn) {
   ctaBtn.addEventListener("click", () => {
     window.location.href = "pages/signup.html";
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.endsWith("settings.html")) {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+      alert("Please sign in to access settings.");
+      window.location.href = "signin.html";
+    }
+  }
+});
+
+
+
 
 // SETTINGS PAGE LOGIC
 
@@ -156,23 +172,24 @@ document.addEventListener("DOMContentLoaded", () => {
 //Updating setting info when user sign in
 
 document.addEventListener("DOMContentLoaded", () => {
-const loggedInUser = localStorage.getItem("loggedInUser");
-const pathname = window.location.pathname;
-const settingsForm = document.getElementById("settings-form");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const settingsForm = document.getElementById("settings-form");
 
-if (settingsForm && loggedInUser) {
-  const users = JSON.parse(localStorage.getItem("users") || "[]");
-  const currentUser = users.find((user) => user.email === loggedInUser);
-  if (currentUser) {
-    document.getElementById("email").value = currentUser.email;
-    document.getElementById("password").value = currentUser.password;
-    document.getElementById("confirmationPassword").value = currentUser.password;
+  if (settingsForm && loggedInUser) {
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const currentUser = users.find((user) => user.email === loggedInUser);
+    if (currentUser) {
+      document.getElementById("email").value = currentUser.email;
+      document.getElementById("password").value = currentUser.password;
+      document.getElementById("confirmationPassword").value = currentUser.password;
+
+      document.getElementById("username").value = currentUser.email.split('@')[0];
+      document.getElementById("language").value = localStorage.getItem("language") || "en";
+      document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
+    }
+
   }
-document.getElementById("username").value = currentUser.email.split('@')[0];
-  document.getElementById("language").value = localStorage.getItem("language") || "en";
-  document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
-}
 });
 
 
-//Updating uer sign in when user update settings
+//User changes password
