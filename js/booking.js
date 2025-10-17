@@ -1,5 +1,6 @@
-const maxBookingInFuture = 14; // how many days in advance
 
+
+let selectedCategory = 0;
 let selectedDate = null;
 let selectedRoom = null;
 let selectedTime = null;
@@ -38,6 +39,37 @@ todayBtn.addEventListener("click", () => {
     offsetMonths = 0; renderCalendar(); 
 });
 
+// Get the category value
+const categorySelect = document.getElementById("category");
+categorySelect.addEventListener("change", () => {
+
+    if (categorySelect.value === "study")
+    {
+        selectedCategory = 0;
+        renderCalendar();
+        renderTimes();
+    }
+    else if (categorySelect.value === "sportsFacilities")
+    {
+        selectedCategory = 1;
+        renderCalendar();
+        renderTimes();
+    }
+    else if (categorySelect.value === "specializedEquipment")
+    {
+        selectedCategory = 2;
+        renderCalendar();
+        renderTimes();
+    }
+    else
+    {
+        selectedCategory = 3;
+        renderCalendar();
+        renderTimes();
+    }
+
+  console.log("Selected category changed to:", selectedCategory);
+});
 
 // Display the calendar
 renderCalendar();
@@ -47,8 +79,8 @@ function renderCalendar()
 {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const calEl = document.getElementById("calendar");
-    const outputDateTop = document.getElementById("selected-date-top");
-    const outputDate = document.getElementById("selected-date");
+    const outputDateTop = document.getElementById("selected-date-top"); // Display the date above selections
+    const outputDate = document.getElementById("selected-date"); // Display the date in the confirmation div
 
     // Work out current month to show
     const base = new Date(minDate.getFullYear(), minDate.getMonth() + offsetMonths, 1);
@@ -59,8 +91,9 @@ function renderCalendar()
 
     // Header
     calEl.innerHTML += `<div class="month">
-                        <div class="title">${base.toLocaleString(undefined, {month:"long"})}</div>
-                        <div class="subtitle">${year}</div></div>`;
+        <div class="title">${base.toLocaleString(undefined, {month:"long"})}</div>
+        <div class="subtitle">${year}</div>
+    </div>`;
 
     // Weekdays
     calEl.innerHTML += `<div class="weekdays">${weekdays.map(d => `<div>${d}</div>`).join("")}</div>`;
@@ -104,12 +137,9 @@ function renderCalendar()
             selectedDate = new Date(span.dataset.y, span.dataset.m, span.dataset.d);
             console.log("Selected date: " + selectedDate.toString());
             outputDateTop.textContent = selectedDate.toString().slice(0, 10); // use slice to keep only the first 10 chars to remove gmt stuff
-            outputDateTop.style.color = "dodgerblue";
-            outputDateTop.style.fontWeight = "bold";
             
             outputDate.textContent = selectedDate.toString().slice(0, 10);
-            outputDate.style.color = "dodgerblue";
-            outputDate.style.fontWeight = "bold";
+            outputDate.style.color = "dodgerblue"; outputDate.style.fontWeight = "bold"; // last min css
 
             renderCalendar(); // Re render so the highlights update
             renderTimes(); // Render the room times below calender
@@ -123,77 +153,80 @@ function daysInMonth(year, month)
     return new Date(year, month + 1, 0).getDate();
 }
 
+function sameYmd(d, y, m, day)
+{ 
+  return d.getFullYear() === y && (d.getMonth() + 1) === m && d.getDate() === day; 
+}
+
 function renderTimes()
 {
-    // Room Values
-    const rooms = [
-        ["8:00", "9:00", "10:00", "11:00"],
-        ["8:00", "9:00", "10:00", "11:00"],
-        ["8:00", "9:00", "10:00", "11:00"]
-    ];
-
-    const roomAvailability = [
-        [1, 1, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1]
-    ]
-
-    // Check to see if there are any rooms left available
-    let available = false;
-    for (let i = 0; i < roomAvailability.length; i++)
-    {
-        for (let j = 0; j < roomAvailability[i].length; j++)
-        {
-            if (roomAvailability[i][j] === 0)
-            {
-                available = true;
-                break;
-            }
-        }
-    }
-    if (!available)
-    {
-        console.log("No rooms available.");
-    }
-
     const list = document.getElementById("time-list");
     const outputRoom = document.getElementById("selected-room");
     const outputTime = document.getElementById("selected-time");
 
-    // Remove previous room content
-    // Otherwise it will just add the new clicked date rooms below old.
     list.replaceChildren();
 
-    // Loop through and create <div> for each pill
-    for (let i = 0; i < rooms.length; i++)
+    // Find the index of the selected date in days[]
+    let indexDatePos = -1;
+    for (let i = 0; i < days.length; i++) 
     {
-        // Display room name
+        if (sameYmd(selectedDate, days[i].year, days[i].month, days[i].day)) 
+        {
+            indexDatePos = i;
+            break;
+        }
+    }
+    if (indexDatePos === -1) 
+    {
+        console.log("No matching day in `days` for", selectedDate);
+        return;
+    }
+
+    const cat = days[indexDatePos].category[selectedCategory];
+    if (!Array.isArray(cat)) // make sure its an array
+    {
+        console.log("Invalid category index:", selectedCategory);
+        return;
+    }
+
+    // Outer loop: per room header
+    for (let i = 0; i < maxRoomNum; i++)
+    {
+        // header for room i+1
         const roomName = document.createElement("p");
-        roomName.textContent = `Room ${i+1}`;
+        roomName.textContent = "Room " + (i + 1);
         roomName.classList.add("time-list");
         list.appendChild(roomName);
 
-        for (let j = 0; j < rooms[i].length; j++)
+        // Inner loop: times, but only those for this room number
+        let allRoomsTaken = true;
+        for (let j = 0; j < cat.length; j++)
         {
-            // Dont show time button if taken
-            if (roomAvailability[i][j] === 1)
-            {
-                continue;
-            }
+            const slot = cat[j];
 
-            // Buttons (times for the room)
+            // Only show times belonging to this room header
+            if (slot.roomNum !== i) continue;
+
+            // Only show rooms that are between minRoomTime and maxRoomTime
+            if (slot.time < minRoomTime || slot.time > maxRoomTime) continue;
+
+            // skip if taken (roomOpen === false)
+            if (!slot.roomOpen) continue;
+            else allRoomsTaken = false;
+
+            // Create time button
             const button = document.createElement("button");
-            button.classList.add("pill-btn"); // add styling
-            button.textContent = rooms[i][j];
-            list.appendChild(button); // add to the page
+            button.classList.add("pill-btn");
+            button.textContent = slot.time + ":00";
+            list.appendChild(button);
 
-            // Listen and track button click
             button.addEventListener("click", () => {
                 selectedRoom = "Room " + (i + 1);
-                selectedTime = rooms[i][j];
-                console.log("Currently selected:", selectedTime);
-
-                // Output selected time onto page
+                selectedTime = slot.time + ":00";;
+                console.log("Currently selected:", selectedRoom, selectedTime);
+                console.log("seleced room: " +selectedRoom);
+                
+                // Output selection
                 outputRoom.textContent = selectedRoom + " at ";
                 outputRoom.style.color = "dodgerblue";
                 outputRoom.style.fontWeight = "bold";
@@ -202,20 +235,19 @@ function renderTimes()
                 outputTime.style.color = "dodgerblue";
                 outputTime.style.fontWeight = "bold";
 
-                // reset all other buttons to not active
-                const buttons = document.querySelectorAll(".pill-btn");
-                for (let k = 0; k < buttons.length; k++) 
-                {
-                    buttons[k].classList.remove("pill-btn-active");
-                }
-
-                // Make button active (green) when clicked
+                // Toggle active state
+                document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("pill-btn-active"));
                 button.classList.add("pill-btn-active");
             });
         }
-        list.appendChild(document.createElement("br")); // make new line after each
-    }
 
+        if (allRoomsTaken)
+        {
+            roomName.textContent += " No times available for this room.";
+        }
+
+        list.appendChild(document.createElement("br"));
+    }
 }
 
 // Error form handler
@@ -238,10 +270,26 @@ form.addEventListener("submit", (e) => {
         messages.push("A purpose for the booking is required!");
     }
 
+    //e.preventDefault() // Prevents form from submitting
+
+    // Book selected rooms/time
+    if (bookRoom(selectedCategory, selectedDate, selectedRoom, selectedTime, username))
+    {
+        let bookings = getBookings(username);
+        console.log("Booked: ");
+        logARoom(selectedCategory, selectedDate, selectedRoom, selectedTime);
+        console.log(bookings);
+        // cancelABooking(selectedCategory, selectedDate, selectedRoom, selectedTime);
+
+        saveDays(); // saves updated state
+    }    
+
     if (messages.length > 0)
     {
         e.preventDefault() // Prevents form from submitting
         errorElement.innerText = messages.join("\n"); // add the html to "error" div
         errorElement.classList.add("error"); // add styling
     }
+
+    //renderTimes(); // here for debugging
 })
