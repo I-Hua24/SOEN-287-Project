@@ -236,8 +236,8 @@ input:checked+.slider::before {
 
 #Browse-Btn {
   background: linear-gradient(90deg, #007bff, #00d4ff);
-  color: #fff;
-  border: none;
+  Color: #Fff;
+  Border: none;
   border-radius: 50px;
   padding: 14px 28px;
   font-size: 16px;

@@ -1,4 +1,5 @@
 
+
 const menuToggle = document.getElementById("menu-toggle");
 const sidebar = document.getElementById("sidebar");
 const closebtn = document.getElementById("close-btn");
@@ -131,7 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     event.preventDefault();
+
 
     const passwordValue = password.value.trim();
     const hasNumber = /\d/.test(passwordValue);
@@ -140,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Password must be 8-12 characters long and include at least one number.");
       return;
     }
+
 
     const confirmPasswordValue = confirmPassword.value.trim();
     if (passwordValue !== confirmPasswordValue) {

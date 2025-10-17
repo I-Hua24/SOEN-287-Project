@@ -29,10 +29,11 @@ main
     height: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    margin-top: 100px;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 5px #0000004D;
-    border-radius: 20px;
+    border-radius: 0px;
 }
 
 .category-div
@@ -52,9 +53,12 @@ main
     background-color: transparent;
     margin: 0 auto;
     padding-top: 30px;
+    /* border: 1px solid #eee; */
     border-radius: 10px; 
     overflow: hidden; 
-    max-width: 600px;
+    /*max-width: 440px;*/
+    max-width: 600px; /*think this ones nicer?*/
+    /* box-shadow: 0 2px 8px rgba(0,0,0,.05);  */
 }
 .time-list
 {
@@ -117,13 +121,13 @@ ul
     border-radius: 10px; 
     overflow: hidden; 
     /*max-width: 440px;*/
-    max-width: 600px;
+    max-width: 600px; /*think this ones nicer?*/
     box-shadow: 1px 1px 5px #0000004D;
 }
 .month 
 { 
     padding: 10px 25px;
-    background: black;
+    background: dodgerblue;
     color: white;
     text-align: center;
 }
@@ -200,6 +204,11 @@ ul
     spaces before starting with a 1 number on thurs*/
     visibility: hidden;
 }
+.output-date-text
+{
+    font-weight: bold;
+    color: dodgerblue;
+}
 
 /* Confirmation form */
 .form-div 
@@ -211,7 +220,7 @@ ul
     border-radius: 10px; 
     overflow: hidden; 
     /*max-width: 440px;*/
-    max-width: 600px;
+    max-width: 600px; /*think this ones nicer?*/
     box-shadow: 0 2px 8px rgba(0,0,0,.05); 
 }
 /* Confirm booking button */
@@ -247,7 +256,7 @@ ul
 
 
 
-/* Footer */
+/* Footer stuff */
 
 footer{
   justify-content: center;
