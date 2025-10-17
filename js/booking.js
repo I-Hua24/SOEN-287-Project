@@ -270,7 +270,12 @@ form.addEventListener("submit", (e) => {
         messages.push("A purpose for the booking is required!");
     }
 
-    //e.preventDefault() // Prevents form from submitting
+    if (messages.length > 0)
+    {
+        e.preventDefault() // Prevents form from submitting
+        errorElement.innerText = messages.join("\n"); // add the html to "error" div
+        errorElement.classList.add("error"); // add styling
+    }
 
     // Book selected rooms/time
     if (bookRoom(selectedCategory, selectedDate, selectedRoom, selectedTime, username))
@@ -282,14 +287,5 @@ form.addEventListener("submit", (e) => {
         // cancelABooking(selectedCategory, selectedDate, selectedRoom, selectedTime);
 
         saveDays(); // saves updated state
-    }    
-
-    if (messages.length > 0)
-    {
-        e.preventDefault() // Prevents form from submitting
-        errorElement.innerText = messages.join("\n"); // add the html to "error" div
-        errorElement.classList.add("error"); // add styling
     }
-
-    //renderTimes(); // here for debugging
 })
