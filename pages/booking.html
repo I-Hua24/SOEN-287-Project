@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/booking.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
     <title>Booking</title>
 </head>
 <body>
     
-    <header>
-        <h2><a href="index.html">ConcoHub</a></h2>
-        <h1>Bookings</h1>
-    </header>
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+        <input type="text" placeholder="Search bookings/resources…" id="global-search" />
+        </div>
+
+        <nav class="NavButton">
+        <button class="SignIn-btn" id="sign-in">Sign In</button>
+        <button class="GetStarted-btn" id="sign-up">Get Started</button>
+        <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+            </span>
+        </label>
+        </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="close-btn">×</button>
+    <ul>
+      <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+      <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+      <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+    </ul>
+  </aside>
 
     <main>
         
@@ -21,11 +54,11 @@
             <!--Type of room-->
             <div class="category-div">
                 <label class="category" for="category">Category</label>
-                <select class="category" name="category">
+                <select id="category" class="category" name="category">
                     <option value="study">Study Room</option>
-                    <option value="sports-facilities"> Sports Facilities</option>
-                    <option value="specialized-equipment">Specialized Equipment</option>
-                    <option value="software-seats">Software Seats</option>
+                    <option value="sportsFacilities"> Sports Facilities</option>
+                    <option value="specializedEquipment">Specialized Equipment</option>
+                    <option value="softwareSeats">Software Seats</option>
                 </select>
             </div>
 
@@ -38,30 +71,19 @@
 
             <!--The actual calendar (data displayed from js)-->
             <div class="calendar" id="calendar"></div>
-                
-            </div>
         </section>
 
         <!--Choose time (Time table)-->
         <div class="rooms-div">
             <section>
-                <p><b>Showing times for:</b> <span id="selected-date-top">No date selected</span></p>
+                <p><b>Showing times for:</b> <span class="output-date-text" id="selected-date-top">No date selected</span></p>
                 <div id="time-list"></div>
             </section>
         </div>
 
         <!--Booking form-->
         <div class="form-div">
-            <form id="form" action="mybookings.html" method="POST">
-                <!--Name-->
-                <div>
-                    <label for="name">Name on room:</label>
-                    <!-- <textarea rows="1" cols="40">Default First Last</textarea> -->
-                    <input id="name" name="name" type="text">
-                </div>
-
-                <br/>
-
+            <form id="form" action="mybookings.html">
                 <!--Purpose-->
                 <label for="purpose">Purpose</label>
                 <select id="purpose" name="purpose">
@@ -132,6 +154,7 @@
         </div>
     </footer>
 
-    <script src="booking.js"></script>
+    <script src="../js/localstorage.js"></script>
+    <script src="../js/booking.js"></script>
 </body>
 </html>
