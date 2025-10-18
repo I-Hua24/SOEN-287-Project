@@ -96,104 +96,80 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-
-
 // SETTINGS PAGE LOGIC
 
 //THIS IS JUST FOR NOW SINCE WE DONT HAVE BACKEND
 // WILL BE REPLACED WITH ACTUAL USER DATA FETCHED FROM DATABASE
 document.addEventListener("DOMContentLoaded", () => {
-  const saveBtn = document.querySelector("#save-settings");
-  if (!saveBtn) return; // if not on settings page, stop here
+  const usernameField = document.getElementById("username");
+  const saveSettingsBtn = document.getElementById("save-settings");
+  const passwordField = document.getElementById("password");
+  const confirmPasswordField = document.getElementById("confirmationPassword");
+  const emailField = document.getElementById("email");
+  const languageField = document.getElementById("language");
+  const notificationsField = document.getElementById("notifications");
 
 
-  const username = document.querySelector("#username");
-  const email = document.querySelector("#email");
-  const password = document.querySelector("#password");
-  const confirmPassword = document.querySelector("#confirmationPassword");
-  const language = document.querySelector("#language");
-  const notifications = document.querySelector("#notifications");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (!loggedInUser) return;
 
-  // Load saved user data
-  username.value = localStorage.getItem("username") || "";
-  email.value = localStorage.getItem("email") || "";
-  password.value = localStorage.getItem("password") || "";
-  confirmPassword.value = localStorage.getItem("confirmationPassword") || "";
-  language.value = localStorage.getItem("language") || "en";
-  notifications.checked = localStorage.getItem("notifications") === "true";
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentUser = users.find((u) => u.email === loggedInUser);
+  if (!currentUser) return;
 
-  // Save data on click
+ 
+  if (usernameField) usernameField.value = currentUser.email.split("@")[0];
+  if (emailField) {
+    emailField.value = currentUser.email;
+    emailField.readOnly = true;
+  }
+  if (languageField) languageField.value = currentUser.language || "en";
+  if (notificationsField)
+    notificationsField.checked = currentUser.notifications || false;
+  if (passwordField) passwordField.value = currentUser.password;
+  if (confirmPasswordField)
+    confirmPasswordField.value = currentUser.password;
 
+  if (!saveSettingsBtn || !passwordField || !confirmPasswordField) return;
 
-  saveBtn.addEventListener("click", (event) => {
-    if (!username.value.trim() || !email.value.trim() || !password.value.trim()) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-
+  saveSettingsBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
+    const newPassword = passwordField.value.trim();
+    const confirmPassword = confirmPasswordField.value.trim();
+    const languageValue = languageField?.value || "en";
+    const notificationsValue = notificationsField?.checked || false;
 
-    const passwordValue = password.value.trim();
-    const hasNumber = /\d/.test(passwordValue);
-    const isLongEnough = passwordValue.length >= 8 && passwordValue.length <= 12;
-    if (!hasNumber || !isLongEnough) {
-      alert("Password must be 8-12 characters long and include at least one number.");
+    if (!newPassword || !confirmPassword) {
+      alert("Please fill in both password fields.");
       return;
     }
 
+    const hasNumber = /\d/.test(newPassword);
+    const isLongEnough = newPassword.length >= 8 && newPassword.length <= 12;
+    if (!hasNumber || !isLongEnough) {
+      alert("Password must be 8–12 characters long and include at least one number.");
+      return;
+    }
 
-    const confirmPasswordValue = confirmPassword.value.trim();
-    if (passwordValue !== confirmPasswordValue) {
+    if (newPassword !== confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
 
-    const emailValue = email.value.trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailPattern.test(emailValue);
-    if (!isValidEmail) {
-      alert("Please enter a valid email address.");
+    const userAtIndex = users.findIndex((u) => u.email === loggedInUser);
+    if (userAtIndex === -1) {
+      alert("User not found.");
       return;
     }
 
+    users[userAtIndex].password = newPassword;
+    users[userAtIndex].language = languageValue;
+    users[userAtIndex].notifications = notificationsValue;
+    localStorage.setItem("users", JSON.stringify(users));
 
-    localStorage.setItem("username", username.value);
-    localStorage.setItem("email", email.value);
-    localStorage.setItem("password", password.value);
-    localStorage.setItem("language", language.value);
-    localStorage.setItem("notifications", notifications.checked);
-
-
-    //REPLACE ALERT WITH A <P> TAG THAT SHOWS SUCCESS MESSAGE ONCE SAVED
-
-    alert("Settings saved successfully!");
+    alert("Password updated successfully! Please sign in again with your new credentials.");
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "signin.html";
   });
 });
-
-//Updating setting info when user sign in
-
-document.addEventListener("DOMContentLoaded", () => {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  const settingsForm = document.getElementById("settings-form");
-
-  if (settingsForm && loggedInUser) {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const currentUser = users.find((user) => user.email === loggedInUser);
-    if (currentUser) {
-      document.getElementById("email").value = currentUser.email;
-      document.getElementById("password").value = currentUser.password;
-      document.getElementById("confirmationPassword").value = currentUser.password;
-
-      document.getElementById("username").value = currentUser.email.split('@')[0];
-      document.getElementById("language").value = localStorage.getItem("language") || "en";
-      document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
-    }
-
-  }
-});
-
-
-//User changes password
