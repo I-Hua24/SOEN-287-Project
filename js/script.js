@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // ✅ Admins only
+      // Admins only
       window.location.href = "pages/adminDashboard.html";
     });
   });
