@@ -46,7 +46,7 @@
 -->
 
 
-    <!-- Fonts & IconsK
+<!-- Fonts & IconsK
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,17 +54,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>ConcoHub • Admin Dashboard</title>
 -->
-  
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Your styles -->
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/adminDashboard.css" />
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-   
+<!-- Your styles -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/adminDashboard.css" />
+
+
 </head>
+
 <body>
   <!-- Top Nav -->
   <header class="NavBarContainer">
@@ -95,7 +96,7 @@
     <button class="close-btn" id="close-btn">×</button>
     <ul>
       <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-      <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+      <li><a href="mybookings.html"><i class="fa-solid fa-book"></i> Bookings</a></li>
       <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
       <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
     </ul>
@@ -319,6 +320,25 @@
           </tbody>
         </table>
       </div>
+      <!-- Notifications / Announcements -->
+      <section class="card" style="margin-top:1rem;">
+        <div class="section-header">
+          <h2 style="margin:0;">Send Announcement / Notification</h2>
+        </div>
+
+        <div class="field" style="margin-top:.5rem;">
+          <label for="adminMessage"></label>
+          <textarea id="adminMessage" rows="3" placeholder="Write an announcement for all users..."></textarea>
+        </div>
+
+        <div class="actions" style="margin-top:1rem;">
+          <button class="btn primary" id="sendNotificationBtn">
+            <i class="fa-solid fa-paper-plane"></i> Send Notification
+          </button>
+        </div>
+      </section>
+
+
     </section>
   </div>
 
@@ -381,10 +401,13 @@
   <!-- Scripts -->
   <script src="../js/script.js"></script>
   <script src="../js/adminDashboard.js"></script>
+  <script src="../js/notifications.js"></script>
+
   <!-- Optional: your admin-specific logic -->
 
-    // Gate: allow only admins (relies on your existing localStorage scheme)
+  // Gate: allow only admins (relies on your existing localStorage scheme)
 
 
 </body>
+
 </html>

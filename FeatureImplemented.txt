@@ -5,3 +5,4 @@ FEATURES IMPLEMENTED
 -Added js for sign in,signup and log out 
 -Added restricted access(To go to Admin DashBoard User should be an admin)
 -Added settings fill up once the user log in
+ -Notifications

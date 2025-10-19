@@ -1,5 +1,3 @@
-
-
 const menuToggle = document.getElementById("menu-toggle");
 const sidebar = document.getElementById("sidebar");
 const closebtn = document.getElementById("close-btn");
@@ -38,7 +36,7 @@ if (closebtn && sidebar) {
 const signInBtn = document.getElementById("sign-in");
 const signUpBtn = document.getElementById("sign-up");
 const browseBtn = document.getElementById("Browse-Btn");
-const adminBtn = document.getElementById("Admin-btn");
+const adminBtn = document.getElementById("admin-btn");
 const ctaBtn = document.getElementById("cta-btn");
 
 if (signInBtn) {
@@ -65,19 +63,35 @@ if (browseBtn) {
   });
 }
 
-if (adminBtn) {
-  adminBtn.addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const adminLinks = document.querySelectorAll(".admin-link");
 
-    const loggedInUser = localStorage.getItem("loggedInUser");
+  adminLinks.forEach(link => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
 
-    const role = localStorage.getItem("userRole");
-    if (role !== "admin" || !loggedInUser) {
-      alert("Access denied. Admins only.");
-      return;
-    }
-    window.location.href = "pages/adminDashboard.html";
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      const userRole = localStorage.getItem("userRole");
+
+      if (!loggedInUser) {
+        alert("Please sign in first.");
+        window.location.href = "signin.html";
+        return;
+      }
+
+      if (userRole !== "admin") {
+        alert("Access denied. Admins only.");
+        return;
+      }
+
+      // ✅ Admins only
+      window.location.href = "pages/adminDashboard.html";
+    });
   });
-}
+});
+
+
+
 
 
 
@@ -117,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentUser = users.find((u) => u.email === loggedInUser);
   if (!currentUser) return;
 
- 
+
   if (usernameField) usernameField.value = currentUser.email.split("@")[0];
   if (emailField) {
     emailField.value = currentUser.email;
