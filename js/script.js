@@ -170,32 +170,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// === NAVBAR SIGN-IN / SIGN-OUT VISIBILITY ===
+
 document.addEventListener("DOMContentLoaded", () => {
   const signInBtn = document.getElementById("sign-in");
-  const signOutBtn = document.getElementById("sign-out");
-  const getStartedBtn = document.getElementById("get-started");
+  const signOutBtn = document.getElementById("sign-out-btn");
+  const getStartedBtn = document.getElementById("sign-up");
 
   const loggedInUser = localStorage.getItem("loggedInUser");
 
   if (loggedInUser) {
-    // Logged in → show Sign Out, hide Sign In / Get Started
     if (signInBtn) signInBtn.style.display = "none";
     if (getStartedBtn) getStartedBtn.style.display = "none";
     if (signOutBtn) signOutBtn.style.display = "inline-block";
-
-    // Add Sign Out click behavior
-    if (signOutBtn) {
-      signOutBtn.addEventListener("click", () => {
-        localStorage.removeItem("loggedInUser");
-        localStorage.removeItem("userRole");
-        window.location.replace("../pages/signin.html");
-      });
-    }
   } else {
-    // Logged out → show Sign In / Get Started, hide Sign Out
     if (signInBtn) signInBtn.style.display = "inline-block";
     if (getStartedBtn) getStartedBtn.style.display = "inline-block";
     if (signOutBtn) signOutBtn.style.display = "none";
+  }
+
+  if (signOutBtn) {
+    signOutBtn.addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("userRole");
+
+      //alert("You have been logged out successfully!");
+
+      const isInPagesFolder = window.location.pathname.includes('/pages/');
+      const signinPath = isInPagesFolder ? 'signin.html' : 'pages/signin.html';
+
+      window.location.replace(signinPath);
+    });
   }
 });

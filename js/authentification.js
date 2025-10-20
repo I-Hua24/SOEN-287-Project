@@ -15,7 +15,7 @@ if (
   window.location.replace("../pages/signin.html");
 }
 
-if (path.endsWith("/pages/adminDashboard.html")) {
+if (path.endsWith("pages/adminDashboard.html")) {
    if(!loggedInUser){
         window.location.replace("../pages/signin.html");
 

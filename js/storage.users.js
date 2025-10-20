@@ -88,7 +88,7 @@ const signOutBtn = document.getElementById("sign-out-btn");
 if (signOutBtn) {
     signOutBtn.addEventListener("click", () => {
         localStorage.removeItem("loggedInUser");
-        alert("You have been signed out.");
+       // alert("You have been signed out.");
         window.location.href = "../pages/signin.html";
     });
 }
