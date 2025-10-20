@@ -6,26 +6,7 @@ body
 {
     padding-left: 20px;
 }
-header
-{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width:100%; /* important */
-}
-header h1
-{
-    /* Move all h1's in header to center */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* true page center */
-    text-align:center;
-}
-header a
-{
-    color: black;
-    text-decoration: none;
-}
+
 
 .hide
 {
@@ -110,4 +91,45 @@ section
 .bottom
 {
     padding-left: 20px
+}
+body.mybookings-page.darkmode {
+  background-color: #121212;
+  color: #eaeaea;
+}
+
+body.mybookings-page.darkmode main {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #333;
+}
+
+body.mybookings-page.darkmode section {
+  background-color: #242424;
+  border: 1px solid #333;
+  color: #ddd;
+}
+
+body.mybookings-page.darkmode .modify-pill-btn {
+  border-color: #ffa726;
+  color: #ffa726;
+}
+body.mybookings-page.darkmode .modify-pill-btn:hover {
+  background: #ffa726;
+  color: white;
+}
+
+body.mybookings-page.darkmode .cancel-pill-btn {
+  border-color: #ef5350;
+  color: #ef5350;
+}
+body.mybookings-page.darkmode .cancel-pill-btn:hover {
+  background: #ef5350;
+  color: white;
+}
+
+body.mybookings-page.darkmode a {
+  color: #66b2ff;
+}
+body.mybookings-page.darkmode a:hover {
+  color: #009dff;
 }

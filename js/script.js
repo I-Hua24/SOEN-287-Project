@@ -1,3 +1,4 @@
+
 const menuToggle = document.getElementById("menu-toggle");
 const sidebar = document.getElementById("sidebar");
 const closebtn = document.getElementById("close-btn");
@@ -41,13 +42,13 @@ const ctaBtn = document.getElementById("cta-btn");
 
 if (signInBtn) {
   signInBtn.addEventListener("click", () => {
-    window.location.href = "pages/signin.html";
+    window.location.href = "../pages/signin.html";
   });
 }
 
 if (signUpBtn) {
   signUpBtn.addEventListener("click", () => {
-    window.location.href = "pages/signup.html";
+    window.location.href = "../pages/signup.html";
   });
 }
 
@@ -55,60 +56,41 @@ if (browseBtn) {
   browseBtn.addEventListener("click", () => {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (!loggedInUser) {
-      alert("Please sign in to access resources.");
-      window.location.href = "pages/signin.html";
+      alert("Please sign in to browse resources.");
+      window.location.href = "../pages/signin.html";
       return;
     }
     window.location.href = "pages/booking.html";
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const adminLinks = document.querySelectorAll(".admin-link");
+if (adminBtn) {
+  adminBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  adminLinks.forEach(link => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    const userRole = localStorage.getItem("userRole");
 
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      const userRole = localStorage.getItem("userRole");
+    if (!loggedInUser || userRole !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "../pages/signin.html";
+      return;
+    }
 
-      if (!loggedInUser) {
-        alert("Please sign in first.");
-        window.location.href = "signin.html";
-        return;
-      }
-
-      if (userRole !== "admin") {
-        alert("Access denied. Admins only.");
-        return;
-      }
-
-      // Admins only
-      window.location.href = "pages/adminDashboard.html";
-    });
+    window.location.href = "../pages/adminDashboard.html";
   });
-});
-
-
-
-
-
+}
 
 if (ctaBtn) {
   ctaBtn.addEventListener("click", () => {
     window.location.href = "pages/signup.html";
   });
+
+
 }
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.location.pathname.endsWith("settings.html")) {
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    if (!loggedInUser) {
-      alert("Please sign in to access settings.");
-      window.location.href = "signin.html";
-    }
-  }
-});
+
+
+
 
 // SETTINGS PAGE LOGIC
 
@@ -186,4 +168,34 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("loggedInUser");
     window.location.href = "signin.html";
   });
+});
+
+// === NAVBAR SIGN-IN / SIGN-OUT VISIBILITY ===
+document.addEventListener("DOMContentLoaded", () => {
+  const signInBtn = document.getElementById("sign-in");
+  const signOutBtn = document.getElementById("sign-out");
+  const getStartedBtn = document.getElementById("get-started");
+
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // Logged in → show Sign Out, hide Sign In / Get Started
+    if (signInBtn) signInBtn.style.display = "none";
+    if (getStartedBtn) getStartedBtn.style.display = "none";
+    if (signOutBtn) signOutBtn.style.display = "inline-block";
+
+    // Add Sign Out click behavior
+    if (signOutBtn) {
+      signOutBtn.addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("userRole");
+        window.location.replace("../pages/signin.html");
+      });
+    }
+  } else {
+    // Logged out → show Sign In / Get Started, hide Sign Out
+    if (signInBtn) signInBtn.style.display = "inline-block";
+    if (getStartedBtn) getStartedBtn.style.display = "inline-block";
+    if (signOutBtn) signOutBtn.style.display = "none";
+  }
 });

@@ -106,11 +106,7 @@ if (loggedInUser) {
 }
 
 //Restrict access to certain pages if not signed in
-if (!loggedInUser &&
-    (pathname.endsWith("resources.html") ||
-        pathname.endsWith("settings.html") ||
-        pathname.endsWith("adminDashboard.html"))) {
-    alert("Please sign in to access this page.");
-    window.location.href = "../pages/signin.html";
-}
+
+
+
 

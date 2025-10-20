@@ -275,3 +275,172 @@
  #sendNotificationBtn:active {
     transform: translateY(0);
  }
+
+ /* 🌙 DARK MODE for Admin Dashboard */
+body.adminDashboard-page.darkmode {
+  background-color: #0d0f11;
+  color: #eaeaea;
+}
+
+/* === Page wrapper and cards === */
+body.adminDashboard-page.darkmode .page-wrap {
+  background-color: transparent;
+  color: #f0f0f0;
+}
+
+body.adminDashboard-page.darkmode .card {
+  background-color: #1a1c1f;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  border: 1px solid #2a2d31;
+}
+
+/* === Section headers, muted text === */
+body.adminDashboard-page.darkmode .section-header h3,
+body.adminDashboard-page.darkmode .page-title,
+body.adminDashboard-page.darkmode h2,
+body.adminDashboard-page.darkmode h3 {
+  color: #f5f5f5;
+}
+
+body.adminDashboard-page.darkmode .muted {
+  color: #9ca3af;
+}
+
+/* === Stats cards icons === */
+body.adminDashboard-page.darkmode .icon.blue {
+  background: rgba(41, 98, 255, 0.15);
+  color: #5c8dff;
+}
+
+body.adminDashboard-page.darkmode .icon.green {
+  background: rgba(27, 140, 90, 0.15);
+  color: #44d89a;
+}
+
+body.adminDashboard-page.darkmode .icon.orange {
+  background: rgba(239, 108, 0, 0.15);
+  color: #ffae5f;
+}
+
+body.adminDashboard-page.darkmode .icon.pink {
+  background: rgba(194, 24, 91, 0.15);
+  color: #ff6da8;
+}
+
+/* === Inputs & selects === */
+body.adminDashboard-page.darkmode .toolbar input,
+body.adminDashboard-page.darkmode .toolbar select {
+  background-color: #1a1c1f;
+  color: #e0e0e0;
+  border: 1px solid #2f343a;
+}
+
+body.adminDashboard-page.darkmode .toolbar input::placeholder {
+  color: #888;
+}
+
+/* === Buttons === */
+body.adminDashboard-page.darkmode .btn.primary {
+  background: linear-gradient(90deg, #007bff, #00b7ff);
+  color: #fff;
+  border: none;
+}
+
+body.adminDashboard-page.darkmode .btn.primary:hover {
+  background: linear-gradient(90deg, #0056b3, #0080ff);
+}
+
+body.adminDashboard-page.darkmode .btn.ghost {
+  border: 1px solid #333;
+  color: #ccc;
+}
+
+body.adminDashboard-page.darkmode .btn.ghost:hover {
+  background: #2a2d31;
+  border-color: #3399ff;
+  color: #fff;
+}
+
+/* === Tables === */
+body.adminDashboard-page.darkmode .table th {
+  background-color: #1b1d20;
+  color: #f0f0f0;
+  border-color: #2a2d31;
+}
+
+body.adminDashboard-page.darkmode .table td {
+  background-color: #151719;
+  color: #ddd;
+  border-color: #2a2d31;
+}
+
+/* Alternate row highlight */
+body.adminDashboard-page.darkmode .table tr:nth-child(even) td {
+  background-color: #181a1c;
+}
+
+/* === Badges === */
+body.adminDashboard-page.darkmode .badge.pending {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffca28;
+}
+
+body.adminDashboard-page.darkmode .badge.approved {
+  background: rgba(40, 167, 69, 0.15);
+  color: #7dffb0;
+}
+
+body.adminDashboard-page.darkmode .badge.rejected {
+  background: rgba(220, 53, 69, 0.15);
+  color: #ff7d7d;
+}
+
+/* === Modal === */
+body.adminDashboard-page.darkmode .modal-content {
+  background-color: #1a1c1f;
+  border: 1px solid #2a2d31;
+  color: #f0f0f0;
+}
+
+/* === Textarea and notification input === */
+body.adminDashboard-page.darkmode #adminMessage {
+  background-color: #1a1c1f;
+  color: #f0f0f0;
+  border: 1px solid #333;
+}
+
+body.adminDashboard-page.darkmode #adminMessage:focus {
+  border-color: #3399ff;
+  box-shadow: 0 0 6px rgba(51, 153, 255, 0.3);
+}
+
+/* === Send notification button === */
+body.adminDashboard-page.darkmode #sendNotificationBtn {
+  background: linear-gradient(90deg, #007bff, #00b7ff);
+  color: white;
+  border: none;
+}
+
+body.adminDashboard-page.darkmode #sendNotificationBtn:hover {
+  background: linear-gradient(90deg, #0056b3, #0080ff);
+  transform: translateY(-2px);
+}
+
+/* === Tables hover effects === */
+body.adminDashboard-page.darkmode .table tr:hover td {
+  background-color: #202226;
+}
+
+/* === Scrollbar (optional aesthetic tweak) === */
+body.adminDashboard-page.darkmode ::-webkit-scrollbar {
+  width: 10px;
+}
+
+body.adminDashboard-page.darkmode ::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 8px;
+}
+
+body.adminDashboard-page.darkmode ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -3,26 +3,8 @@ body
     font-family: 'Arial', sans-serif;
 }
 
-header
-{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width:100%; /* important */
-}
-header h1
-{
-    /* Move all h1's in header to center */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* true page center */
-    text-align:center;
-}
-header a
-{
-    color: black;
-    text-decoration: none;
-}
+
+
 
 main
 {
@@ -349,4 +331,135 @@ footer{
   color: #888;
   border-top: 1px solid #ddd;
   padding: 20px 0;
+}
+
+body.booking-page.darkmode {
+  background-color: #121212;
+  color: #eaeaea;
+}
+
+body.booking-page.darkmode main {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border-color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+body.booking-page.darkmode label,
+body.booking-page.darkmode select {
+  color: #e0e0e0;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+}
+
+body.booking-page.darkmode select:focus {
+  border-color: #3399ff;
+}
+
+body.booking-page.darkmode .calendar {
+  background-color: #222;
+  border-color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+body.booking-page.darkmode .month {
+  background: linear-gradient(90deg, #007bff, #00b7ff);
+  color: #fff;
+  border-bottom: 1px solid #005ecb;
+  text-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+body.booking-page.darkmode .weekdays {
+  background: #2c2c2c;
+  color: #ccc;
+}
+
+body.booking-page.darkmode .days {
+  background: #1f1f1f;
+}
+
+body.booking-page.darkmode .days li {
+  color: #aaa;
+}
+
+body.booking-page.darkmode .day:hover,
+body.booking-page.darkmode .day.active {
+  background: #007bff;
+  color: #fff;
+}
+
+body.booking-page.darkmode .rooms-div {
+  color: #ddd;
+}
+
+body.booking-page.darkmode .pill-btn {
+  border: 2px solid #3399ff;
+  color: #bbb;
+}
+
+body.booking-page.darkmode .pill-btn:hover,
+body.booking-page.darkmode .pill-btn-active {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+body.booking-page.darkmode .form-div {
+  background-color: #222;
+  border: 1px solid #333;
+  color: #eee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+body.booking-page.darkmode input,
+body.booking-page.darkmode select {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+body.booking-page.darkmode input:focus,
+body.booking-page.darkmode select:focus {
+  border-color: #3399ff;
+}
+
+body.booking-page.darkmode .confirm-booking button {
+  background: #1f1f1f;
+  border: 2px solid #3399ff;
+  color: #66b2ff;
+}
+
+body.booking-page.darkmode .confirm-booking button:hover,
+body.booking-page.darkmode .confirm-booking button:active {
+  background: #3399ff;
+  color: #fff;
+}
+
+body.booking-page.darkmode #error {
+  color: #ff6b6b;
+}
+
+body.booking-page.darkmode a {
+  color: #66b2ff;
+}
+
+body.booking-page.darkmode a:hover {
+  color: #009dff;
+}
+
+body.booking-page.darkmode .footer {
+  background-color: #181818;
+  color: #eaeaea;
+}
+
+body.booking-page.darkmode .footer-links ul li a {
+  color: #bbb;
+}
+
+body.booking-page.darkmode .footer-links ul li a:hover {
+  color: #3399ff;
+}
+
+body.booking-page.darkmode .footer-bottom {
+  border-top: 1px solid #333;
+  color: #888;
 }

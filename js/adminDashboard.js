@@ -1,10 +1,12 @@
-    (function(){
-      const role = localStorage.getItem("userRole");
-      if (role !== "admin") {
-        alert("Access denied. Admins only.");
-        //window.location.href = "../index.html";
-      }
-    })();
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userRole = localStorage.getItem("userRole");
+
+  if (!loggedInUser || userRole !== "admin") {
+    alert("Access denied. Admins only.");
+    window.location.href = "signin.html"; 
+}});
+
 
     // Very light demo wiring (replace with real data later)
     document.addEventListener("DOMContentLoaded", () => {
