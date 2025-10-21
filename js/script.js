@@ -202,3 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+//Search bar logic(doing that during the week)

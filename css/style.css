@@ -224,13 +224,13 @@ input:checked+.slider::before {
 }
 
 .notif-panel {
-position: absolute;
-  left: 0px;          
-  top: 300px;          
+  position: absolute;
+  left: 0px;
+  top: 300px;
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   padding: 10px;
   z-index: 2000;
   width: 250px;
@@ -633,8 +633,13 @@ body.darkmode .hero p {
 
 body.darkmode .card {
   background: #1e1e1e;
-  color: #eaeaea;
+  color: #2c1c2f;
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+}
+
+body.darkmode .card h3 {
+  color: #efeded;
+
 }
 
 body.darkmode .card p {
@@ -644,6 +649,11 @@ body.darkmode .card p {
 body.darkmode .resources-card {
   background: #1e1e1e;
   color: #eaeaea;
+}
+
+body.darkmode .resources-card h3 {
+  color: #efeded;
+
 }
 
 body.darkmode .resources-card p {
