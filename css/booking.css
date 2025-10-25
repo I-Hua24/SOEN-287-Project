@@ -463,3 +463,18 @@ body.booking-page.darkmode .footer-bottom {
   border-top: 1px solid #333;
   color: #888;
 }
+
+/* prevBtn, todayBtn and nextBtn */
+body.booking-page.darkmode .btn
+{
+  background-color: #333;
+  border-color: dodgerblue;
+  color: white;
+}
+body.booking-page.darkmode .btn:disabled
+{
+  background-color: #333;
+  border-color: #777;
+  color: #aaa;
+  opacity: 0.6;
+}
