@@ -21,22 +21,64 @@ let offsetMonths = 0;
 const prevBtn = document.getElementById("prevBtn");
 const todayBtn = document.getElementById("todayBtn");
 const nextBtn = document.getElementById("nextBtn");
+
+updateButtons(); // set up buttons
+function updateButtons() // func to change button state from enabled/disabled
+{
+    // prev button
+    if (offsetMonths > 0) // Dont let user move the month backwards if not in future
+    {
+        prevBtn.disabled = false;
+    }
+    else
+    {
+        prevBtn.disabled = true;
+    }
+
+    // next button
+    if (offsetMonths === 0 && (today.getDate() + maxBookingInFuture) > daysInMonth(today.getFullYear(), today.getMonth()))
+    {
+        nextBtn.disabled = false;
+    }
+    else
+    {
+        nextBtn.disabled = true;
+    }
+
+    // today button
+    if (offsetMonths === 0)
+    {
+        todayBtn.disabled = true;
+    }
+    else
+    {
+        todayBtn.disabled = false;
+    }
+}
+
+
 prevBtn.addEventListener("click", () => {
     if (offsetMonths > 0) // Dont let user move the month backwards if not in future
     {
-        offsetMonths--; renderCalendar(); 
+        offsetMonths--; 
+        renderCalendar();    
+        updateButtons();
     }
 });
 nextBtn.addEventListener("click", () => { 
     // Dont let user move to a month past the maxBookingInFuture
-    if (offsetMonths === 0 && (today.getDay() + maxBookingInFuture) > daysInMonth(today.getFullYear(), today.getMonth()))
+    if (offsetMonths === 0 && (today.getDate() + maxBookingInFuture) > daysInMonth(today.getFullYear(), today.getMonth()))
     {
-        offsetMonths++; renderCalendar(); 
+        offsetMonths++; 
+        renderCalendar();
+        updateButtons();
     }
 });
 todayBtn.addEventListener("click", () => {
     // Jump to todays month
-    offsetMonths = 0; renderCalendar(); 
+    offsetMonths = 0; 
+    renderCalendar();
+    updateButtons();
 });
 
 // Get the category value

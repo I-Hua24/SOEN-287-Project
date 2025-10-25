@@ -15,7 +15,7 @@
 
 const username = "Username"; // Rooms will be stored with this name
 
-const maxBookingInFuture = 10; // how many days in advance
+const maxBookingInFuture = 31; // how many days in advance
 
 const maxRoomNum = 5;
 const minRoomTime = 8;
