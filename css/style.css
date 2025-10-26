@@ -288,6 +288,28 @@ input:checked+.slider::before {
   margin: 0 auto;
 }
 
+.signInInput{
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+}
+
+select.signInInput:invalid {
+  color: #888; /* grey placeholder color */
+}
+
+
+select.signInInput {
+  color: #000;
+}
+
+option[hidden] {
+  color: #888;
+}
+
 .hero h1 {
   font-size: 3rem;
   font-weight: 800;
