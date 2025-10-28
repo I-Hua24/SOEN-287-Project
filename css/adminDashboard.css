@@ -1,4 +1,3 @@
- /* Minimal page-specific polish (optional; move to your CSS later) */
  .page-wrap {
     max-width: 1200px;
     margin: 0 auto;
@@ -189,7 +188,7 @@
     font-size: .9rem;
  }
 
- /* Simple modal shell */
+ /* modal shell */
  .modal {
     position: fixed;
     inset: 0;
@@ -225,7 +224,7 @@
     margin-top: .75rem;
  }
 
- /* Dark mode helpers (if your global CSS adds .darkmode on body) */
+
  body.darkmode {
     --card-bg: #111315;
     --input-bg: #0d0f11;
@@ -276,13 +275,13 @@
     transform: translateY(0);
  }
 
- /* 🌙 DARK MODE for Admin Dashboard */
+ 
 body.adminDashboard-page.darkmode {
   background-color: #0d0f11;
   color: #eaeaea;
 }
 
-/* === Page wrapper and cards === */
+
 body.adminDashboard-page.darkmode .page-wrap {
   background-color: transparent;
   color: #f0f0f0;
@@ -294,7 +293,7 @@ body.adminDashboard-page.darkmode .card {
   border: 1px solid #2a2d31;
 }
 
-/* === Section headers, muted text === */
+
 body.adminDashboard-page.darkmode .section-header h3,
 body.adminDashboard-page.darkmode .page-title,
 body.adminDashboard-page.darkmode h2,
@@ -303,7 +302,7 @@ body.adminDashboard-page.darkmode h3 {
 }
 
 body.adminDashboard-page.darkmode .muted {
-  color: #9ca3af;
+  color: #ffffff;
 }
 
 /* === Stats cards icons === */
@@ -327,7 +326,9 @@ body.adminDashboard-page.darkmode .icon.pink {
   color: #ff6da8;
 }
 
-/* === Inputs & selects === */
+
+
+/* Inputs & selects */
 body.adminDashboard-page.darkmode .toolbar input,
 body.adminDashboard-page.darkmode .toolbar select {
   background-color: #1a1c1f;
@@ -339,7 +340,7 @@ body.adminDashboard-page.darkmode .toolbar input::placeholder {
   color: #888;
 }
 
-/* === Buttons === */
+/*  Buttons */
 body.adminDashboard-page.darkmode .btn.primary {
   background: linear-gradient(90deg, #007bff, #00b7ff);
   color: #fff;
@@ -361,7 +362,7 @@ body.adminDashboard-page.darkmode .btn.ghost:hover {
   color: #fff;
 }
 
-/* === Tables === */
+/*  Tables  */
 body.adminDashboard-page.darkmode .table th {
   background-color: #1b1d20;
   color: #f0f0f0;
@@ -374,12 +375,12 @@ body.adminDashboard-page.darkmode .table td {
   border-color: #2a2d31;
 }
 
-/* Alternate row highlight */
+
 body.adminDashboard-page.darkmode .table tr:nth-child(even) td {
   background-color: #181a1c;
 }
 
-/* === Badges === */
+
 body.adminDashboard-page.darkmode .badge.pending {
   background: rgba(255, 193, 7, 0.15);
   color: #ffca28;
@@ -395,14 +396,14 @@ body.adminDashboard-page.darkmode .badge.rejected {
   color: #ff7d7d;
 }
 
-/* === Modal === */
+
 body.adminDashboard-page.darkmode .modal-content {
   background-color: #1a1c1f;
   border: 1px solid #2a2d31;
   color: #f0f0f0;
 }
 
-/* === Textarea and notification input === */
+
 body.adminDashboard-page.darkmode #adminMessage {
   background-color: #1a1c1f;
   color: #f0f0f0;
@@ -414,7 +415,6 @@ body.adminDashboard-page.darkmode #adminMessage:focus {
   box-shadow: 0 0 6px rgba(51, 153, 255, 0.3);
 }
 
-/* === Send notification button === */
 body.adminDashboard-page.darkmode #sendNotificationBtn {
   background: linear-gradient(90deg, #007bff, #00b7ff);
   color: white;
@@ -426,12 +426,12 @@ body.adminDashboard-page.darkmode #sendNotificationBtn:hover {
   transform: translateY(-2px);
 }
 
-/* === Tables hover effects === */
+
 body.adminDashboard-page.darkmode .table tr:hover td {
   background-color: #202226;
 }
 
-/* === Scrollbar (optional aesthetic tweak) === */
+
 body.adminDashboard-page.darkmode ::-webkit-scrollbar {
   width: 10px;
 }

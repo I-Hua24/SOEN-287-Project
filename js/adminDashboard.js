@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 }});
 
 
-    // Very light demo wiring (replace with real data later)
+    // replace with real data later
     document.addEventListener("DOMContentLoaded", () => {
       // Fake stats
       document.getElementById("stat-total-bookings").textContent = "1,284";
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("stat-resources").textContent = "86";
       document.getElementById("stat-utilization").textContent = "62%";
 
-      // Modal open/close
+      // Modal
       const addBtn = document.getElementById("add-resource");
       const addModal = document.getElementById("modal-add-resource");
       const closeAdd = document.getElementById("close-add-modal");
@@ -67,15 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
         closeConfirm.addEventListener("click", onCancel);
       });
 
-      // Filters (demo)
+      // Filters 
       document.getElementById("apply-filters")?.addEventListener("click", ()=> {
         alert("Filters applied (demo).");
       });
       document.getElementById("reset-filters")?.addEventListener("click", ()=> {
         ["filter-from","filter-to","filter-type","filter-status","filter-search"].forEach(id=>{
           const el = document.getElementById(id);
-          if(!el) return;
-          if(el.tagName === "SELECT" || el.type === "text" || el.type === "date") el.value = "";
+          if (!el) return;
+          if (el.tagName === "SELECT" || el.type === "text" || el.type === "date") el.value = "";
         });
       });
     });

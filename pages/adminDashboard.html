@@ -1,65 +1,8 @@
-<!--
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-
-    <header class="NavBarContainer">
-        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-        <div class="logo">ConcoHub</div>
-
-        <div class="search-bar">
-            <input type="text" placeholder="Search settings...">
-        </div>
-
-        <nav class="NavButton">
-            <button class="SignIn-btn" id="sign-in">Sign In</button>
-            <button class="GetStarted-btn" id="sign-up">Get Started</button>
-
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider">
-                    <i class="fa-solid fa-moon"></i>
-                    <i class="fa-solid fa-sun"></i>
-                </span>
-            </label>
-        </nav>
-    </header>
-
-
-  <script src="js/script.js"></script>
-
-  
-</body>
-
-
--->
-
-
-<!-- Fonts & IconsK
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>ConcoHub • Admin Dashboard</title>
--->
-
 <!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-<!-- Your styles -->
+
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="stylesheet" href="../css/adminDashboard.css" />
 <script src="../js/authentification.js"></script>
@@ -67,7 +10,6 @@
 </head>
 
 <body class="adminDashboard-page">
-  <!-- Top Nav -->
   <header class="NavBarContainer">
     <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
     <div class="logo">ConcoHub</div>
@@ -102,7 +44,6 @@
     </ul>
   </aside>
 
-  <!-- Page Content -->
   <div class="page-wrap">
     <div class="page-title">
       <i class="fa-solid fa-chart-line"></i>
@@ -202,19 +143,18 @@
         <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
           <canvas id="chart-bookings" width="520" height="240" aria-label="Bookings over time"></canvas>
         </div>
-        <p class="muted" style="margin-top:.5rem;">(Optional) Render with Chart.js later.</p>
+        <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart later.</p>
       </div>
       <div class="card">
         <h3>Resource Utilization</h3>
         <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
           <canvas id="chart-utilization" width="520" height="240" aria-label="Resource utilization"></canvas>
         </div>
-        <p class="muted" style="margin-top:.5rem;">(Optional) Render with Chart.js later.</p>
+        <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart.>
       </div>
     </section>
 
-    <!-- Bookings Management -->
-    <section class="card" style="margin-top:1rem;">
+       <section class="card" style="margin-top:1rem;">
       <div class="section-header">
         <h2 style="margin:0;">Bookings</h2>
         <div class="actions">
@@ -239,10 +179,10 @@
             <!-- Example rows (replace with JS-rendered rows) -->
             <tr>
               <td>1024</td>
-              <td>jane.doe@uni.ca</td>
+              <td>jane.doe@concordia.ca</td>
               <td>Study Room A-204</td>
               <td>2025-10-22</td>
-              <td>13:00–15:00</td>
+              <td>13:00-15:00</td>
               <td>Group study</td>
               <td><span class="badge pending">Pending</span></td>
               <td class="actions">
@@ -253,7 +193,7 @@
             </tr>
             <tr>
               <td>1025</td>
-              <td>alex.nguyen@uni.ca</td>
+              <td>jhon.doe@concordia.ca</td>
               <td>Lab E-112</td>
               <td>2025-10-23</td>
               <td>09:00–12:00</td>
@@ -291,7 +231,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Example rows (replace with JS-rendered rows) -->
+            <!-- Example rows  -->
             <tr>
               <td>Study Room A-204</td>
               <td>Study Room</td>
@@ -342,7 +282,7 @@
     </section>
   </div>
 
-  <!-- Add Resource Modal -->
+  <!-- `Add Resource` Modal -->
   <div class="modal" id="modal-add-resource" role="dialog" aria-modal="true" aria-labelledby="modal-add-title">
     <div class="modal-content">
       <div class="modal-header">
@@ -398,14 +338,14 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+
   <script src="../js/script.js"></script>
   <script src="../js/adminDashboard.js"></script>
   <script src="../js/notifications.js"></script>
 
-  <!-- Optional: your admin-specific logic -->
 
-  // Gate: allow only admins (relies on your existing localStorage scheme)
+
+
 
 
 </body>

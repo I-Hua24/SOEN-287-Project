@@ -43,7 +43,7 @@ if (signupForm) {
 
         alert("Sign up successful!");
         window.location.href = "../pages/signin.html";
-        e.target.reset();
+        // e.target.reset();
     });
 }
 
