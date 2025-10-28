@@ -13,7 +13,129 @@
 //                                   .time
 
 
-const username = "Username"; // Rooms will be stored with this nam    // normalize inputs
+const username = "Username"; // Rooms will be stored with this name
+
+const maxBookingInFuture = 31; // how many days in advance
+
+const maxRoomNum = 5;
+const minRoomTime = 8;
+const maxRoomTime = 18;
+
+let studyRoom = [], sportsFacilities = [], specializedEquipment = [], softwareSeats = []; // Room types
+let categories = [studyRoom, sportsFacilities, specializedEquipment, softwareSeats]; // Categories (holds room obj)
+const day = { day: 0, month: 0, year: 0, Categegory: categories }; // Day obj
+const room = { roomOpen: true, nameOnRoom: "", roomNum: 0, time: 0 }; // Room obj
+
+// Main data array
+let days = [];
+
+loadDays();
+initRooms(); // Creates the rooms and times
+initToday(); // Creates the days and adds rooms and times
+//logRooms();
+
+// Function to create a new day object
+function createDay(dayNum, month, year, categoriesCopy) 
+{
+    return {
+        day: dayNum,
+        month: month,
+        year: year,
+        category: categoriesCopy
+    };
+}
+function initToday() 
+{
+    const today = new Date();
+
+    // Create the days
+    if (days.length < maxBookingInFuture) 
+    {
+        for (let i = 0; i <= maxBookingInFuture; i++) 
+        {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+
+            const categoriesCopy = JSON.parse(JSON.stringify(categories));
+            days.push(createDay(d.getDate(), d.getMonth() + 1, d.getFullYear(), categoriesCopy));
+        }
+    }
+}
+// Inits all rooms to default values
+function initRooms()
+{
+    // Create/init rooms
+    for (let i = 0; i < categories.length; i++)
+    {
+        // Init room info
+        for (let roomNum = 0; roomNum < 24; roomNum++)
+        {
+            for (let roomTime = 1; roomTime <= 24; roomTime++)
+                categories[i].push(createRoom(true, undefined, roomNum, roomTime));
+        }
+    }
+}
+
+// Helper function for initRooms()
+function createRoom(roomOpen, nameOnRoom, roomNum, time)
+{
+    return {
+        roomOpen: roomOpen, 
+        nameOnRoom: nameOnRoom,
+        roomNum: roomNum,
+        time: time
+    }
+}
+
+// Get a list of the rooms in the console
+function logRooms()
+{
+    if (days.length === 0)
+    {
+        console.log("No days initialized");
+    }
+    else
+    {
+        for (let k = 0; k < days.length; k++)
+        {
+            console.log("date: " + days[k].day);
+            for (let i = 0; i < days[k].category.length; i++)
+            {
+                console.log("ROOM TYPE:" + i + "\n");
+                for (let j = 0; j < days[k].category[i].length; j++)
+                {
+                    console.log("Room: " + days[k].category[i][j].roomNum + ", Room available: " + days[k].category[i][j].roomOpen + ", Name on room: " + days[k].category[i][j].nameOnRoom + ", Room time:" + days[k].category[i][j].time);
+                }
+                console.log("\n\n\n");
+            }
+        }
+    }
+}
+
+// Log a single room to console
+// Args ex: 0-4, new Date(2024, 9, 6), "Room 2", "12:00"
+function logARoom(selectedCategory, selectedDate, selectedRoom, selectedTime)
+{
+    // find the day
+    const dIdx = days.findIndex(d =>
+        d.year === selectedDate.getFullYear() &&
+        d.month === (selectedDate.getMonth() + 1) &&
+        d.day === selectedDate.getDate()
+    );
+    if (dIdx < 0) return false;
+
+    let cat;
+    if (days[dIdx].category !== null && days[dIdx].category !== undefined) 
+    {
+        cat = days[dIdx].category[selectedCategory];
+    } 
+    else 
+    {
+        cat = undefined;
+    }
+    if (!Array.isArray(cat)) return false;
+
+    // normalize inputs
     const roomIdx = parseInt(selectedRoom.replace(/\D/g, ""), 10) - 1; // "Room 3" -> 2
     const hour = parseInt(selectedTime.split(":")[0], 10); // "12:00" -> 12
 
