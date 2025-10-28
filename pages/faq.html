@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ConcoHub</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search ...">
+        </div>
+
+        <nav class="NavButton">
+            <button class="SignIn-btn" id="sign-in">Sign In</button>
+            <button class="GetStarted-btn" id="sign-up">Get Started</button>
+            <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+            </label>
+        </nav>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul>
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="../pages/mybookings.html"><i class="fa-solid fa-book"></i> Bookings</a></li>
+            <li><a href="../pages/adminDashboard.html" class="admin-link"><i class="fa-solid fa-gears"></i> Admin
+                    Dashboard</a></li>
+            <li><a href="../pages/settings.html" class="active"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+            <li><a href="#" id="notif-icon"> <i class="fa-solid fa-bell"></i> Notifications
+                    <span id="notif-count">0</span></a></li>
+        </ul>
+
+    </aside>
+
+    <div id="notif-panel" class="notif-panel hidden">
+        <h3>Notifications</h3>
+        <ul id="notif-list"></ul>
+    </div>
+
+
+
+
+
+    <main style="padding: 80px 40px 20px 40px; margin-top: 0;">
+        <h1 class="features-header">Frequently Asked Questions</h1>
+
+        <details>
+            <summary>How do I sign in?</summary>
+            <p>
+                If this is your first time using ConcoHub, please use your university-provided email and
+                <a href="../pages/signup.html">sign up here.</a>
+                <br><br>
+                <img class="screenshot" src="../img/signup.png" alt="Sign Up Screenshot"><br><br>
+                Otherwise, <a href="../pages/signin.html">sign in here.</a><br><br>
+                <img class="screenshot" src="../img/signin.png" alt="Sign In Screenshot">
+            </p>
+        </details>
+
+        <details>
+            <summary>I cannot see the list of resources available.</summary>
+            <p>
+                Before you can see the resources, you need to
+                <a href="../pages/signin.html">Sign in here.</a><br><br>
+                Once you&apos;re signed in, <br><br>
+                <img src="../img/nav.png" alt="Navigation Bar Screenshot"><br><br>
+                Then, you may click on "<strong>Bookings</strong>" to view the available resources.<br><br>
+                <img class="screenshot" src="../img/booking1.png" alt="Resource Page Screenshot">
+            </p>
+        </details>
+
+        <details>
+            <summary>How do I book a room?</summary>
+            <p>
+                Click on "<strong>Bookings</strong>" in the navigation menu.<br><br>
+                <img src="../img/nav.png" alt="Navigation Bar Screenshot"><br><br>
+                Select your desired room and date.<br>
+                <img class="screenshot" src="../img/booking2.png" alt="Booking Page Screenshot">
+                <br><br>Click on the available time slot you wish to book.<br>
+                <img class="screenshot" src="../img/booking4.png" alt="Booking Time Slot Screenshot">
+                <br><br>Confirm your booking details and submit.<br>
+                <img class="screenshot" src="../img/booking5.png" alt="Booking Confirmation Screenshot">
+            </p>
+        </details>
+
+        <details>
+            <summary>TODO: How do I manage my bookings? </summary>
+            <p>
+                To view and manage your bookings, click on "<strong>My Bookings</strong>" in the navigation
+                menu.<br><br>
+                <img src="../img/nav.png" alt="Navigation Bar Screenshot"><br><br>
+                Here, you can see all your upcoming bookings. You can modify or cancel them as needed.<br><br>
+                <img class="screenshot" src="../img/mybookings.png" alt="My Bookings Screenshot">
+            </p>
+        </details>
+
+        <details>
+            <summary>I have a resource that I would like to share — how do I add that to the resource list?</summary>
+            <p>
+                If you are an administrator, you can add new resources via the Admin Dashboard.<br><br>
+                <img src="../img/nav.png" alt="Navigation Bar Screenshot"><br><br>
+                Click on "<strong>Admin Dashboard</strong>" to access admin features.<br><br>
+                <img class="screenshot" src="../img/admindashboard.png" alt="Admin Dashboard Screenshot"><br><br>
+                You then can navigate to the "<strong>Resources</strong>" section to add new resources.<br><br>
+                <img class="screenshot" src="../img/admindashboard1.png" alt="Manage Resources Screenshot">
+            </p>
+        </details>
+
+        <details>
+            <summary>My student is awaiting for rental approval. How do I approve their request?</summary>
+            <p>
+                To approve a request, go to the "<strong>Admin Dashboard</strong>" page <br><br>
+                <img src="../img/nav.png" alt="Navigation Bar Screenshot"><br><br>
+                navigate to the "<strong>Bookings</strong>" section.<br><br>
+                <img class="screenshot" src="../img/admindashboard1.png" alt="Rental Requests Screenshot"><br><br>
+                Find the request you want to approve and click on the desired actions next to
+                it.
+            </p>
+        </details>
+
+
+        <details>
+            <summary>How do I change my user name or password?</summary>
+            <p>Using the navigation menu, go to "<strong>Settings</strong>". From there, you can change your user name
+                or password.
+                <img class="screenshot" src="../img/settings.png" alt="Account Settings Screenshot">
+            </p>
+
+        </details>
+        <details>
+            <summary>Who do I contact for support?</summary>
+            <p>For support, please use the <a href="../pages/support.html">Help Center</a> link or contact us at
+                support@concohub.com.</p>
+        </details>
+    </main>
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <h2>Ready To Start?</h2>
+            <p>Created by students. Designed for students. Perfected at Concordia.</p>
+            <button class="cta-btn" id="cta-btn">Create Account</button>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="pages/booking.html">Browse Resources</a></li>
+                    <li><a href="pages/mybookings.html">My Bookings</a></li>
+                    <li><a href="pages/settings.html">Account Settings</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>For Administrators</h4>
+                <ul>
+                    <li><a href="pages/adminDashboard.html" class="admin-link">Admin Dashboard</a></li>
+                    <li><a href="pages/adminDashboard.html" class="admin-link">Manage Resources</a></li>
+                    <li><a href="pages/adminDashboard.html" class="admin-link">Set Availability</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../pages/support.html">Help Center</a></li>
+                    <li><a href="../pages/faq.html ">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        </div>
+    </footer>
+
+
+    <script src="../js/script.js"></script>
+    <script src="../js/storage.users.js"></script>
+    <script src="../js/notifications.js"></script>
+
+
+</body>
+
+</html>

@@ -288,7 +288,7 @@ input:checked+.slider::before {
   margin: 0 auto;
 }
 
-.signInInput{
+.Input{
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
@@ -607,6 +607,40 @@ option[hidden] {
   padding: 20px 0;
 }
 
+
+details {
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
+  color: #222;
+}
+
+.screenshot {
+  width: 850px;
+  height: 400px;
+  object-fit: cover;         /* zooms/crops to fill the box */
+  object-position: center bottom; /* focus on top or move focal area */
+
+}
+.form-section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* =========================
    DARK MODE STYLES
    ========================= */
@@ -734,4 +768,41 @@ body.darkmode .notif-panel h3 {
 
 body.darkmode #notif-list li {
   border-bottom: 1px solid #333;
+}
+
+
+
+
+body.darkmode details {
+  border: 1px solid #333;
+  background-color: #1e1e1e;
+  color: #eaeaea;
+}
+
+body.darkmode summary {
+  color: #f0f0f0;
+}
+
+body.darkmode .form-section {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.darkmode .Available-resources-header h1 {
+  color: #f0f0f0;
+}
+body.darkmode .Available-resources-header p {
+  color: #bbb;
+}
+body.darkmode .features-header h1 {
+  color: #f0f0f0;
+}
+body.darkmode .features-header p {
+  color: #bbb;
+}
+body.darkmode .features{
+  background-color: #121212;
+}
+body.darkmode .Available-resources{
+  background-color: #121212;
 }

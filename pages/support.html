@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Support | ConcoHub</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search ...">
+        </div>
+
+        <nav class="NavButton">
+            <button class="SignIn-btn" id="sign-in">Sign In</button>
+            <button class="GetStarted-btn" id="sign-up">Get Started</button>
+            <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+            </label>
+        </nav>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul>
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="../pages/mybookings.html"><i class="fa-solid fa-book"></i> Bookings</a></li>
+            <li><a href="../pages/adminDashboard.html" class="admin-link"><i class="fa-solid fa-gears"></i> Admin
+                    Dashboard</a></li>
+            <li><a href="../pages/settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+            <li><a href="#" id="notif-icon"><i class="fa-solid fa-bell"></i> Notifications <span
+                        id="notif-count">0</span></a></li>
+            <li><a href="../pages/support.html" class="active"><i class="fa-solid fa-headset"></i> Support</a></li>
+        </ul>
+    </aside>
+
+    <div id="notif-panel" class="notif-panel hidden">
+        <h3>Notifications</h3>
+        <ul id="notif-list"></ul>
+    </div>
+
+
+   <section class="features faq-section features">
+    <div class="Available-resources-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find quick answers to the most common ConcoHub questions.</p>
+    </div>
+
+    <div class="resources-grid">
+        <div class="resources-card">
+            <div class="icon-wrapper blue"><i class="fa-solid fa-gears"></i></div>
+            <h3><a href="faq.html">How do I reset my password?</a></h3>
+            <p>Learn how to securely reset your ConcoHub account password.</p>
+        </div>
+
+        <div class="resources-card">
+            <div class="icon-wrapper pink"><i class="fa-solid fa-book"></i></div>
+            <h3><a href="faq.html">How do I cancel or modify a booking?</a></h3>
+            <p>Understand the process for canceling or changing your existing bookings.</p>
+        </div>
+
+        <div class="resources-card">
+            <div class="icon-wrapper green"><i class="fa-solid fa-user-gear"></i></div>
+            <h3><a href="faq.html">How can I access the admin dashboard?</a></h3>
+            <p>Find out how to log in and manage admin-level features in ConcoHub.</p>
+        </div>
+
+        <div class="resources-card">
+            <div class="icon-wrapper orange"><i class="fa-solid fa-headset"></i></div>
+            <h3><a href="#contact-us-section">Who can I contact for technical issues?</a></h3>
+            <p>Get in touch with our support team for help with technical problems.</p>
+        </div>
+    </div>
+</section>
+
+
+
+    <section class="Available-resources" id ="contact-us-section">
+        <div class="features-header">
+            <h1>Contact Us</h1>
+            <p>Reach out to our support team through any of the following channels:</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="card">
+                <div class="icon-wrapper blue"><i class="fa-solid fa-envelope"></i></div>
+                <h3>Email Support</h3>
+                <p>support@concohub.ca</p>
+                <p>We typically respond within 24–48 hours.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-wrapper pink"><i class="fa-solid fa-phone"></i></div>
+                <h3>Phone Support</h3>
+                <p>+1 (514) 555-1234</p>
+                <p>Mon–Fri, 9:00 AM – 5:00 PM EST</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-wrapper green"><i class="fa-solid fa-location-dot"></i></div>
+                <h3>Visit Us</h3>
+                <p>Concordia University – Loyola Campus</p>
+                <p>7141 Sherbrooke St W, Montreal, QC H4B 1R6</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="form-section" style="margin-top: 40px;">
+        <h2>Submit a Support Request</h2>
+        <p>If you didn’t find your answer above, fill out the form below, and we’ll get back to you as soon as
+            possible.</p>
+
+        <form class="support-form">
+            <label for="name"></label>
+            <input type="text" class="Input" id="name" name="name" placeholder="Name" required>
+
+            <label for="email"></label>
+            <input type="email" class="Input" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="category"></label>
+            <select class="Input" id="category" name="category" required>
+                <option value="">Select an issue category</option>
+                <option value="account">Account & Login</option>
+                <option value="booking">Bookings</option>
+                <option value="technical">Technical Problem</option>
+                <option value="feedback">Feedback / Suggestions</option>
+            </select>
+
+            <label for="message"></label>
+            <textarea class="Input" id="message" name="message" placeholder="Please describe your issue in detail..."
+                rows="5" required></textarea>
+            <br>
+            <button type="submit" class="SignIn-btn">Submit Request</button>
+        </form>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="footer-links">
+            <div>
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="booking.html">Browse Resources</a></li>
+                    <li><a href="mybookings.html">My Bookings</a></li>
+                    <li><a href="settings.html">Account Settings</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>For Administrators</h4>
+                <ul>
+                    <li><a href="adminDashboard.html" class="admin-link">Admin Dashboard</a></li>
+                    <li><a href="adminDashboard.html" class="admin-link">Manage Resources</a></li>
+                    <li><a href="adminDashboard.html" class="admin-link">Set Availability</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html" class="active">Help Center</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/storage.users.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+
+</html>

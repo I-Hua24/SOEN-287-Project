@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,43 +12,44 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <title>My Bookings</title>
-<script src="../js/authentification.js"></script>
+    <script src="../js/authentification.js"></script>
 
 </head>
+
 <body class="mybookings-page">
     <header class="NavBarContainer">
         <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <div class="logo">ConcoHub</div>
 
         <div class="search-bar">
-        <input type="text" placeholder="Search bookings/resources…" id="global-search" />
+            <input type="text" placeholder="Search bookings/resources…" id="global-search" />
         </div>
 
         <nav class="NavButton">
-        <button class="SignIn-btn" id="sign-in">Sign In</button>
-        <button class="GetStarted-btn" id="sign-up">Get Started</button>
-        <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+            <button class="SignIn-btn" id="sign-in">Sign In</button>
+            <button class="GetStarted-btn" id="sign-up">Get Started</button>
+            <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
 
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle" />
-            <span class="slider">
-            <i class="fa-solid fa-moon"></i>
-            <i class="fa-solid fa-sun"></i>
-            </span>
-        </label>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+            </label>
         </nav>
-  </header>
+    </header>
 
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <button class="close-btn" id="close-btn">×</button>
-    <ul>
-      <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-      <li><a href="mybookings.html"><i class="fa-solid fa-book"></i> Bookings</a></li>
-      <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
-      <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
-    </ul>
-  </aside>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul>
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="mybookings.html"><i class="fa-solid fa-book"></i> Bookings</a></li>
+            <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+        </ul>
+    </aside>
 
     <main>
         <h2 class="top-h2">Student Bookings</h2>
@@ -84,7 +86,7 @@
         <div class="bottom">
             <p><a href="booking.html">Want to create another booking?</a></p>
         </div>
-        
+
     </main>
 
     <footer class="footer">
@@ -108,21 +110,22 @@
             <div>
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="../pages/support.html">Help Center</a></li>
+                    <li><a href="../pages/faq.html">FAQ</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-        © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+            © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
         </div>
     </footer>
-    
-     <script src="../js/script.js"></script>
-    <script src="../js/storage.users.js"></script>   
+
+    <script src="../js/script.js"></script>
+    <script src="../js/storage.users.js"></script>
     <script src="../js/localstorage.js"></script>
     <script src="../js/mybookings.js"></script>
 
 </body>
+
 </html>
