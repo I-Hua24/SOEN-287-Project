@@ -239,6 +239,12 @@
     border-color: #1f2937;
  }
 
+ body.darkmode .value {
+    color: #d1d5db;
+ }
+body.darkmode label {
+    color: #d1d5db;
+}
 
  #adminMessage {
     width: 100%;
