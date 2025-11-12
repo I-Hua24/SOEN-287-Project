@@ -30,8 +30,6 @@ if (signupForm) {
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem("users") || "[]");
-
         if (users.some(u => u.email === email)) {
             alert("Email already registered!");
             return;
