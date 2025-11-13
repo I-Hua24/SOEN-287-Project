@@ -1,7 +1,6 @@
 
 import {getAllUsers,getuserById,deleteUserById} from '../controller/usersController.js';
-import { isAdminMiddleware,verifyTokenMiddleware } from '../middleware/authMiddleware';
-
+import { isAdminMiddleware,verifyTokenMiddleware } from '../middleware/authMiddleware.js';
 import express from 'express';
 const router = express.Router();
 

@@ -1,6 +1,7 @@
 import UserModel from '../model/usersModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 
 export const signup = async (req, res) => {
     try {
@@ -62,11 +63,11 @@ export const signIn = async (req, res) => {
         const normalizedEmail = email.toLowerCase();
         const loggedInUser = await UserModel.findOne({ email: normalizedEmail });
         if (!loggedInUser) {
-            return res.status(400).json({ message: "Invalid email or password" });
+            return res.status(401).json({ message: "Invalid email or password" });
         }
         const isSamePassword = loggedInUser ? await bcrypt.compare(password, loggedInUser.password) : false;
         if (!isSamePassword) {
-            return res.status(400).json({ message: "Invalid email or password" });
+            return res.status(401).json({ message: "Invalid email or password" });
         }
 //JWT Token generation
 
@@ -80,9 +81,18 @@ const token=jwt.sign(
     {expiresIn:'1h'}
 );
 
+//create a cookie to store the token
+res.cookie('token',token,{
+    httpOnly:true,
+    secure:process.env.NODE_ENV==='production',//set secure flag in production
+    sameSite:'lax',
+    maxAge:3600000 //1 hour
+});
+
+
         res.status(200).json({
             message: "Login successful",
-            token,
+        
             user: {
                 id: loggedInUser._id,
                 email: loggedInUser.email,
@@ -122,4 +132,9 @@ export const resetPassword = async (req, res) => {
     catch (error) {
         res.status(500).json({ message: "Password reset failed", error: error.message });
     }
+};
+//method to veify that user is logged in
+export const me=(req,res)=>{
+const tokenValue=req.user;
+res.status(200).json({user:tokenValue});
 };

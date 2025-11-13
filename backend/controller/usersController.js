@@ -1,13 +1,8 @@
 import UserModel from '../model/usersModel.js';
-
-
-
 //Changes passwords from settings page for logged in users
 //export const changePassword = async (req, res) => {
 
-
-    
-//Admin users function
+    //Admin users function
 export const getAllUsers=async(req,res)=>{
     try{
         const users=await UserModel.find({},'-password');//Get all users excluding passwords
