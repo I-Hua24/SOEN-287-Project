@@ -1,4 +1,4 @@
-const path = window.location.pathname;
+/*const path = window.location.pathname;
 const loggedInUser = localStorage.getItem("loggedInUser");
 
 if (
@@ -26,4 +26,4 @@ const userRole = localStorage.getItem("userRole");
 
     window.location.replace("../pages/signin.html");
   }
-}
+}*/
