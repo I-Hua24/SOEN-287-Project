@@ -1,4 +1,4 @@
- export const verifyTokenMiddleware=(req,res,next)=>{
+ export const verifyTokenMiddleware = (req,res,next) => {
     
     try{
         const authHeader=req.headers['authorization'];

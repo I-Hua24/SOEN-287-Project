@@ -3,7 +3,7 @@ import {getAllUsers,getuserById,deleteUserById} from '../controller/usersControl
 import { isAdminMiddleware,verifyTokenMiddleware } from '../middleware/authMiddleware';
 
 import express from 'express';
-const router = express.Router();
+const router = new express.Router();
 
 
 //router.put('/change-password', changePassword);
