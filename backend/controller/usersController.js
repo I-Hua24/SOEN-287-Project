@@ -1,52 +1,53 @@
 import UserModel from '../model/usersModel.js';
-//Changes passwords from settings page for logged in users
-//export const changePassword = async (req, res) => {
 
-    //Admin users function
-export const getAllUsers=async(req,res)=>{
-    try{
-        const users=await UserModel.find({},'-password');//Get all users excluding passwords
-        res.status(200).json({users});
-    }catch(error){
-        res.status(500).json({message:"Failed to fetch users",error:error.message});
-    }   
-
+// GET ALL USERS
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await UserModel.find({}, '-password');
+        res.status(200).json({ users });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch users", error: error.message });
+    }
 };
 
-export const getuserById=async(req,res)=>{
-    try{
-const id=req.params.id;
-    const user=await UserModel.findById(id,'-password');
-    if(!user){
-        return res.status(404).json({message:"User not found"});
+// GET USER BY ID
+export const getuserById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await UserModel.findById(id, '-password');
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch user", error: error.message });
     }
-    res.status(200).json({user});
-
-    }catch(error){
-  res.status(500).json({ message: "Failed to fetch user", error: error.message });
-
-    }
-}
-
-export const deleteUserById=async(req,res)=>{
-    try{
-        const id=req.params.id;
-         const deleteUser=await UserModel.findByIdAndDelete(id);
-         if(!deleteUser){
-            return res.status(404).json({message:"User not found"});
-         }
-            res.status(200).json({message:"User deleted successfully"});
-
-    }catch(error){
-        res.status(500).json({ message: "Failed to delete user", error: error.message });   
-}
 };
+
+// DELETE USER
+export const deleteUserById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deletedUser = await UserModel.findByIdAndDelete(id);
+
+        if (!deletedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to delete user", error: error.message });
+    }
+};
+
+// CHANGE ROLE
 export const changeRoleByEmail = async (req, res) => {
-try {
+    try {
         const { email, newRole } = req.body;
         const normalizedEmail = email.toLowerCase();
-    
-        // Allowed roles
+
         const validRoles = ['student', 'admin'];
         if (!validRoles.includes(newRole)) {
             return res.status(400).json({ message: "Invalid role" });
@@ -66,9 +67,9 @@ try {
         });
 
     } catch (error) {
-        res.status(500).json({ 
-            message: "Failed to update user role", 
-            error: error.message 
+        res.status(500).json({
+            message: "Failed to update user role",
+            error: error.message
         });
     }
 };
