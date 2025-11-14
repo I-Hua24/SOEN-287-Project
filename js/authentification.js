@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // Call backend to verify authentication using cookies
-    const response = await fetch("http://localhost:8000/api/users/me", {
+    const response = await fetch("http://127.0.0.1:8000/api/auth/me", {
       method: "GET",
       credentials: "include" // Send cookies
     });
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       loggedInUser &&
       (path.endsWith("/pages/signin.html") || path.endsWith("/pages/signup.html"))
     ) {
-      window.location.replace("../pages/index.html");
+     // window.location.replace("../pages/index.html");
     }
 
   } catch (error) {
@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       "/pages/signup.html"
     ];
 
-    const isPublicPage = publicPages.some(page => path.endsWith(page));
+   // const isPublicPage = publicPages.some(page => path.endsWith(page));
 
-    if (!isPublicPage) {
-      alert("Server unavailable. Please sign in again.");
-      window.location.replace("../pages/signin.html");
-    }
+    //if (!isPublicPage) {
+     // alert("Server unavailable. Please sign in again.");
+      //window.location.replace("../pages/signin.html");
+    //}
   }
 });
 

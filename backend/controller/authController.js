@@ -101,7 +101,6 @@ res.cookie('token',token,{
                 role: loggedInUser.role
             }
         });
-
      
     } catch (error) {
         console.error("Sign-in error:", error);
@@ -134,8 +133,35 @@ export const resetPassword = async (req, res) => {
         res.status(500).json({ message: "Password reset failed", error: error.message });
     }
 };
-//method to veify that user is logged in
-export const me=(req,res)=>{
-const tokenValue=req.user;
-res.status(200).json({user:tokenValue});
+export const me = async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.user.id).select("-password");
+        
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch user", error: error.message });
+    }
 };
+
+
+export const signOut = (req, res) => {
+    
+    try{
+res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax'
+    });
+    res.status(200).json({ message: "Sign-out successful" });
+
+    }catch(error){
+        res.status(500).json({ message: "Sign-out failed", error: error.message });
+    }
+    
+}
+
+
