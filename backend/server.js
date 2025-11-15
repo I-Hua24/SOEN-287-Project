@@ -31,8 +31,14 @@ app.get('/', (req, res) => {
 app.use('/api', usersRoutes);
 app.use('/api/auth', authRoutes);
 
+// Booking Routes
+import bookingRoutes from "./routes/bookingRoutes.js";
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+app.use("/", bookingRoutes);
+
 // MongoDB connection
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, {dbName: 'ConcoHub_db'})
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
