@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- <link rel="stylesheet" href="/css/booking.css"> -->
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+        <title>Booking</title>
+    </head>
+    <body class="booking-page">
+
+    <style>
+        body 
+        {
+            font-family: 'Arial', sans-serif;
+        }
+
+        main
+        {
+            height: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 5px #0000004D;
+            border-radius: 0px;
+        }
+
+        .category-div
+        {
+            padding: 10px;
+        }
+        .category
+        {
+            margin: 20px auto;
+            padding: 10px;
+            color: black;
+        }
+
+        .rooms-div
+        {
+            color: #777;
+            background-color: transparent;
+            margin: 0 auto;
+            padding-top: 30px;
+            /* border: 1px solid #eee; */
+            border-radius: 10px; 
+            overflow: hidden; 
+            /*max-width: 440px;*/
+            max-width: 600px; /*think this ones nicer?*/
+            /* box-shadow: 0 2px 8px rgba(0,0,0,.05);  */
+        }
+        .time-list
+        {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .pill-btn 
+        {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #777;
+            margin-left: 2px; margin-right: 2px;
+            padding: 5px 15px;
+            text-align: center;
+            display: inline-block; /* or block */
+            border-radius: 50px; /* has to be atleast half its height*/
+        }
+        .pill-btn-active 
+        {
+            background: dodgerblue;
+            color: white;
+            font-weight: 700;
+        }
+        .pill-btn:hover 
+        {
+            background: dodgerblue;
+            color: white;
+        }
+
+        ul 
+        { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+
+
+        /*Calendar styling*/
+        .toolbar 
+        {
+            padding: 5px;
+            display: flex; 
+            justify-content: center;
+            gap: 10px; /* space between buttons */
+        }
+        .btn 
+        { 
+            background-color: white;
+            cursor: pointer; 
+            padding: 6px 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            user-select: none; 
+        }
+
+        .calendar 
+        {
+            margin: 0 auto;
+            border: 1px solid #eee;
+            border-radius: 10px; 
+            overflow: hidden; 
+            /*max-width: 440px;*/
+            max-width: 600px; /*think this ones nicer?*/
+            box-shadow: 1px 1px 5px #0000004D;
+        }
+        .month 
+        { 
+            padding: 10px 25px;
+            background: dodgerblue;
+            color: white;
+            text-align: center;
+        }
+        .title 
+        { 
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .subtitle 
+        { 
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .weekdays 
+        { 
+            padding: 10px 0;
+            background: #ddd;
+
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /*make 7 col's with 1 fraction of the width*/
+            text-align: center;
+            
+            color: #666;
+            font-weight: 600;
+        }
+        .days 
+        {
+            padding: 10px;
+            background: #eee;
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            gap: 6px;
+            min-height: 210px;
+        }
+        .days li 
+        { 
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .day 
+        { 
+            display: inline-block;
+            width: 100%;
+            padding: 8px 0;
+            border-radius: 6px;
+            user-select: none;
+        }
+        .day.in-range 
+        { 
+            outline: 2px solid #007bff;
+            outline-offset: -2px;
+        }
+        .day.in-range 
+        { 
+            cursor: pointer;
+        }
+        .day.in-range:hover 
+        { 
+            color: white;
+            background: dodgerblue;
+        }
+        .day.active 
+        { 
+            background: dodgerblue;
+            color: white;
+            font-weight: 700; 
+        }
+        .pad { 
+            /*this hides the spaces when creating the calendar
+            for example if the month begins on thursday sun-wed have
+            spaces before starting with a 1 number on thurs*/
+            visibility: hidden;
+        }
+        .output-date-text
+        {
+            font-weight: bold;
+            color: dodgerblue;
+        }
+
+        /* Confirmation form */
+        .form-div 
+        {
+            color: #777;
+            margin: 30px auto;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 10px; 
+            overflow: hidden; 
+            /*max-width: 440px;*/
+            max-width: 600px; /*think this ones nicer?*/
+            box-shadow: 0 2px 8px rgba(0,0,0,.05); 
+        }
+        /* Confirm booking button */
+        .confirm-booking 
+        {
+            padding: 10px;
+            display: flex; 
+            justify-content: center;
+        }
+        .confirm-booking button 
+        {
+            background: white;
+            color: dodgerblue;
+            border: 2px solid dodgerblue;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .confirm-booking button:hover,
+        .confirm-booking button:active
+        {
+            color: white;
+            background-color: dodgerblue;
+        }
+        .error
+        {
+            color: crimson;
+            font-weight: bold;
+        }
+
+
+        /* Footer stuff */
+
+        footer{
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        }
+        .footer {
+        background: #f9fafc;
+        color: #202124;
+        font-family: 'Inter', sans-serif;
+        margin-top: 60px;
+        }
+
+        .footer-top {
+        background: #111;
+        color: #fff;
+        text-align: center;
+        padding: 70px 20px;
+        }
+
+        .footer-top h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        }
+
+        .footer-top p {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-bottom: 25px;
+        }
+
+        .cta-btn {
+        padding: 14px 32px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(90deg, #007bff, #00d4ff);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .cta-btn:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(90deg, #0056b3, #009ac2);
+        }
+
+        .footer-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1100px;
+        margin: 60px auto;
+        text-align: left;
+        }
+
+        .footer-links h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        }
+
+        .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .footer-links ul li {
+        margin: 10px 0;
+        }
+
+        .footer-links ul li a {
+        text-decoration: none;
+        color: #5f6368;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+        }
+
+        .footer-links ul li a:hover {
+        color: #007bff;
+        }
+
+        .footer-bottom {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #888;
+        border-top: 1px solid #ddd;
+        padding: 20px 0;
+        }
+
+        body.booking-page.darkmode {
+        background-color: #121212;
+        color: #eaeaea;
+        }
+
+        body.booking-page.darkmode main {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+        border-color: #333;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        body.booking-page.darkmode label,
+        body.booking-page.darkmode select {
+        color: #e0e0e0;
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        }
+
+        body.booking-page.darkmode select:focus {
+        border-color: #3399ff;
+        }
+
+        body.booking-page.darkmode .calendar {
+        background-color: #222;
+        border-color: #333;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        body.booking-page.darkmode .month {
+        background: linear-gradient(90deg, #007bff, #00b7ff);
+        color: #fff;
+        border-bottom: 1px solid #005ecb;
+        text-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+        }
+
+        body.booking-page.darkmode .weekdays {
+        background: #2c2c2c;
+        color: #ccc;
+        }
+
+        body.booking-page.darkmode .days {
+        background: #1f1f1f;
+        }
+
+        body.booking-page.darkmode .days li {
+        color: #aaa;
+        }
+
+        body.booking-page.darkmode .day:hover,
+        body.booking-page.darkmode .day.active {
+        background: #007bff;
+        color: #fff;
+        }
+
+        body.booking-page.darkmode .rooms-div {
+        color: #ddd;
+        }
+
+        body.booking-page.darkmode .pill-btn {
+        border: 2px solid #3399ff;
+        color: #bbb;
+        }
+
+        body.booking-page.darkmode .pill-btn:hover,
+        body.booking-page.darkmode .pill-btn-active {
+        background-color: #3399ff;
+        color: #fff;
+        }
+
+        body.booking-page.darkmode .form-div {
+        background-color: #222;
+        border: 1px solid #333;
+        color: #eee;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        body.booking-page.darkmode input,
+        body.booking-page.darkmode select {
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+        border: 1px solid #444;
+        }
+
+        body.booking-page.darkmode input:focus,
+        body.booking-page.darkmode select:focus {
+        border-color: #3399ff;
+        }
+
+        body.booking-page.darkmode .confirm-booking button {
+        background: #1f1f1f;
+        border: 2px solid #3399ff;
+        color: #66b2ff;
+        }
+
+        body.booking-page.darkmode .confirm-booking button:hover,
+        body.booking-page.darkmode .confirm-booking button:active {
+        background: #3399ff;
+        color: #fff;
+        }
+
+        body.booking-page.darkmode #error {
+        color: #ff6b6b;
+        }
+
+        body.booking-page.darkmode a {
+        color: #66b2ff;
+        }
+
+        body.booking-page.darkmode a:hover {
+        color: #009dff;
+        }
+
+        body.booking-page.darkmode .footer {
+        background-color: #181818;
+        color: #eaeaea;
+        }
+
+        body.booking-page.darkmode .footer-links ul li a {
+        color: #bbb;
+        }
+
+        body.booking-page.darkmode .footer-links ul li a:hover {
+        color: #3399ff;
+        }
+
+        body.booking-page.darkmode .footer-bottom {
+        border-top: 1px solid #333;
+        color: #888;
+        }
+
+        /* prevBtn, todayBtn and nextBtn */
+        body.booking-page.darkmode .btn
+        {
+        background-color: #333;
+        border-color: dodgerblue;
+        color: white;
+        }
+        body.booking-page.darkmode .btn:disabled
+        {
+        background-color: #333;
+        border-color: #777;
+        color: #aaa;
+        opacity: 0.6;
+        }
+    </style>
+
+    <header class="NavBarContainer">
+        <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        <div class="logo">ConcoHub</div>
+
+        <div class="search-bar">
+        <input type="text" placeholder="Search bookings/resources…" id="global-search" />
+        </div>
+
+        <nav class="NavButton">
+        <button class="SignIn-btn" id="sign-in">Sign In</button>
+        <button class="GetStarted-btn" id="sign-up">Get Started</button>
+        <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+            </span>
+        </label>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul>
+            <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-book"></i> My Bookings</a></li>
+            <li><a href="#" class="admin-link"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+            <li><a href="#"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <!-- Choose date (Calendar) -->
+        <section>
+            <div class="category-div">
+                <label class="category" for="category">Category</label>
+                <select id="category" class="category" name="category">
+                    <option value="study">Study Room</option>
+                    <option value="sportsFacilities"> Sports Facilities</option>
+                    <option value="specializedEquipment">Specialized Equipment</option>
+                    <option value="softwareSeats">Software Seats</option>
+                </select>
+            </div>
+
+            <!--Calender month controls-->
+            <div class="toolbar">
+                <button class="btn" id="prevBtn">Prev month</button>
+                <button class="btn" id="todayBtn">Today</button>
+                <button class="btn" id="nextBtn">Next month</button>
+            </div>
+
+            <!--The actual calendar (data displayed from js)-->
+            <div class="calendar" id="calendar"></div>
+        </section>
+
+        <!--Choose time (Time table)-->
+        <div class="rooms-div">
+            <section>
+                <p><b>Showing times for:</b> <span class="output-date-text" id="selected-date-top">No date selected</span></p>
+                <div id="time-list"></div>
+            </section>
+        </div>
+
+        <!-- Booking form -->
+        <div class="form-div">
+        <form id="form" action="/booking" method="post">
+            <!-- purpose -->
+            <label for="purpose">Purpose</label>
+            <select id="purpose" name="purpose">
+                <option value="none-selected">None selected</option>
+                <option value="study">Study</option>
+                <option value="sports-activities">Sports Activities</option>
+                <option value="technology">Technology</option>
+                <option value="group-collaboration">Group Collaboration</option>
+            </select>
+
+            <br><br>
+
+            <!--Number of people-->
+            <label for="num-of-people">Number of people</label>
+            <select id="num-of-people" name="numOfPeople">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="5">5</option><option value="6">6</option>
+            </select>
+
+            <!--Confirm selected date, room and time-->
+            <p>Selected date: <span id="selected-date">None</span></p>
+            <p>Selected room: <span id="selected-room">None</span> <span id="selected-time"></span></p>
+
+            <!--Erorr div-->
+            <div id="error"></div>
+
+            <!-- Hidden inputs -->
+            <input type="hidden" name="category" id="hid-category" value="study">
+            <input type="hidden" name="date"     id="hid-date" value="">
+            <input type="hidden" name="room"     id="hid-room" value="">
+            <input type="hidden" name="time"     id="hid-time" value="">
+            <input type="hidden" name="bookedBy" id="hid-bookedBy" value="guest">
+
+            <!--Booking confirmation button-->
+            <div class="confirm-booking">
+                <button id="confirmation-button" type="submit">Confirm Booking</button>
+            </div>
+        </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <div>
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="/booking">Browse Resources</a></li>
+                    <li><a href="#">My Bookings</a></li>
+                    <li><a href="#">Account Settings</a></li>
+                </ul>
+            </div>
+        <div>
+            <h4>For Administrators</h4>
+            <ul>
+                <li><a href="#" class="admin-link">Admin Dashboard</a></li>
+                <li><a href="#" class="admin-link">Manage Resources</a></li>
+                <li><a href="#" class="admin-link">Set Availability</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="footer-bottom">
+        © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        </div>
+    </footer>
+
+    <script>
+        const maxBookingInFuture = 30;
+        let selectedCategory = "study";
+        let selectedDate = null;
+        let selectedRoom = null;
+        let selectedTime = null;
+
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const minDate = new Date(today);
+        const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + maxBookingInFuture);
+        let offsetMonths = 0;
+
+        // toolbar
+        const prevBtn = document.getElementById("prevBtn");
+        const todayBtn = document.getElementById("todayBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        function updateButtons(){
+                // prev button
+                if (offsetMonths > 0) prevBtn.disabled = false; // Dont let user move the month backwards if not in future
+                else prevBtn.disabled = true;
+
+                // next button
+                if (offsetMonths === 0 && (today.getDate() + maxBookingInFuture) > daysInMonth(today.getFullYear(), today.getMonth()))
+                    nextBtn.disabled = false;
+                else nextBtn.disabled = true;
+
+                // today button
+                if (offsetMonths === 0) todayBtn.disabled = true;
+                else todayBtn.disabled = false;
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (offsetMonths > 0) { // Dont let user move the month backwards if not in future
+                offsetMonths--; 
+                renderCalendar(); 
+                updateButtons(); 
+            }
+        });
+        nextBtn.addEventListener("click", () => { 
+            // Dont let user move to a month past the maxBookingInFuture
+            if (offsetMonths === 0 && (today.getDate() + maxBookingInFuture) > daysInMonth(today.getFullYear(), today.getMonth())) {
+                offsetMonths++;
+                renderCalendar();
+                updateButtons();
+            }
+        });
+        todayBtn.addEventListener("click", () => { 
+            // Jump to todays month
+            offsetMonths = 0;
+            renderCalendar();
+            updateButtons();
+        });
+        updateButtons();
+
+        // Get the category value (string)
+        const categorySelect = document.getElementById("category");
+        categorySelect.addEventListener("change", () => {
+            const v = categorySelect.value;
+            selectedCategory = (v === "sportsFacilities") ? "sportsFacility" : v;
+            renderCalendar();
+            renderTimes();
+            console.log("Selected category changed to:", selectedCategory);
+        });
+
+        // Display the calendar
+        renderCalendar();
+        function renderCalendar() {
+            const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const calEl = document.getElementById("calendar");
+            const outputDateTop = document.getElementById("selected-date-top");
+            const outputDate = document.getElementById("selected-date");
+
+            // Work out current month to show
+            const base = new Date(minDate.getFullYear(), minDate.getMonth() + offsetMonths, 1);
+            const year = base.getFullYear();
+            const month = base.getMonth();
+
+            // Header
+            calEl.innerHTML = "";
+            calEl.innerHTML += '<div class="month"><div class="title">' + base.toLocaleString(undefined, {month: 'long' }) + '</div><div class="subtitle">' + year + '</div></div>';
+            // Weekdays
+            calEl.innerHTML += '<div class="weekdays">'+ weekdays.map(d => '<div>' + d + '</div>').join("") + '</div>';
+
+            // Days
+            const days = document.createElement("ul");
+            days.className = "days";
+
+            // Empty pads before the 1st
+            const firstDow = new Date(year, month, 1).getDay();
+            for (let i = 0; i < firstDow; i++) {
+                days.innerHTML += '<li class="pad"></li>';
+            }
+                
+            // Actual days
+            const total = daysInMonth(year, month);
+            for (let d = 1; d <= total; d++) {
+                const date = new Date(year, month, d);
+                const inRange = date >= minDate && date <= maxDate;
+                const active = selectedDate && date.getTime() === selectedDate.getTime();
+                days.innerHTML += 
+                '<li><span class="day '+ (inRange ? 'in-range' : '') 
+                    + ' ' + (active ? 'active' : '') 
+                    + '" data-y="' + year 
+                    + '" data-m="'+ month 
+                    + '" data-d="' + d + '">' + d + '</span></li>';
+            }
+            calEl.appendChild(days);
+
+            // Add click listeners (only once)
+            calEl.querySelectorAll(".day.in-range").forEach(span => {
+                span.addEventListener("click", async () => {
+                    selectedDate = new Date(span.dataset.y, span.dataset.m, span.dataset.d);
+
+                    outputDateTop.textContent = selectedDate.toString().slice(0,10);
+                    outputDate.textContent = selectedDate.toString().slice(0,10);
+                    outputDate.style.color = "dodgerblue"; outputDate.style.fontWeight = "bold";
+
+                    document.getElementById("hid-date").value = toYMD(selectedDate);
+
+                    logSelection();
+                    renderCalendar();
+
+                    await renderTimes();
+                });
+            });
+        }
+
+        // Get the number of days in a specific month
+        function daysInMonth(y, m) {
+            return new Date(y, m+1, 0).getDate(); 
+        }
+
+        function toYMD(d) { 
+            const y = d.getFullYear();
+            const m = String(d.getMonth() +1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+
+            return y + '-' + m + '-' + dd; 
+        }
+
+        // render times for current selected date/category
+        async function renderTimes() {
+            const list = document.getElementById("time-list");
+            const outputRoom = document.getElementById("selected-room");
+            const outputTime = document.getElementById("selected-time");
+            list.replaceChildren();
+
+            if (!selectedDate) return;
+
+            const dateStr = toYMD(selectedDate);
+            const cat = selectedCategory;
+            document.getElementById("hid-category").value = cat;
+
+            // Send a get req to the server to get the booking data
+            const resp = await fetch (
+                '/booking/data?date=' + encodeURIComponent(dateStr) // add the date in url
+                + '&category=' + encodeURIComponent(cat) // add the category in url
+            );
+            const data = await resp.json(); // { rooms: [{room, slots:[{time,status}]}] }
+
+            data.rooms.forEach((r, idx) => {
+                const roomName = document.createElement("p");
+                roomName.textContent = r.room;
+                roomName.classList.add("time-list");
+                list.appendChild(roomName);
+
+                let any = false;
+
+                r.slots.forEach(slot => {
+                    if (slot.status === 'free') {
+                        const btn = document.createElement("button");
+                        btn.classList.add("pill-btn");
+                        btn.textContent = slot.time;
+                        
+                        btn.addEventListener("click", () => {
+                            selectedRoom = r.room;
+                            selectedTime = slot.time;
+
+                            outputRoom.textContent = selectedRoom + " at ";
+                            outputRoom.style.color = "dodgerblue"; outputRoom.style.fontWeight = "bold";
+                            outputTime.textContent = selectedTime;
+                            outputTime.style.color = "dodgerblue"; outputTime.style.fontWeight = "bold";
+
+                            document.getElementById("hid-room").value = selectedRoom;
+                            document.getElementById("hid-time").value = selectedTime;
+
+                            document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("pill-btn-active"));
+                            btn.classList.add("pill-btn-active");
+
+                            logSelection();
+                        });
+
+                        list.appendChild(btn);
+                        any = true;
+                    }
+                });
+
+                if (!any) roomName.textContent += " No times available for this room.";
+                list.appendChild(document.createElement("br"));
+            });
+        }
+
+        function logSelection() {
+            const d = selectedDate ? selectedDate.toISOString().slice(0,10) : 'None';
+            console.log('[selection]', {
+                category: selectedCategory,
+                date: d,
+                room: selectedRoom || 'None',
+                time: selectedTime || 'None'
+            });
+        }
+
+        // Error form handler
+        const form = document.getElementById("form");
+        const purpose = document.getElementById("purpose");
+        const errorElement = document.getElementById("error"); // where we are gonna display the errors (in the error div)
+
+        form.addEventListener("submit", (e) => {
+            const messages = []; // Store the error messages
+
+            if (!selectedDate) 
+                messages.push("No date selected!");
+
+            if (!document.getElementById("hid-room").value || !document.getElementById("hid-time").value) 
+                messages.push("No time selected!");
+
+            if (purpose.value === "none-selected") 
+                messages.push("A purpose for the booking is required!");
+
+            if (messages.length) { 
+                e.preventDefault(); // Prevents form from submitting
+                errorElement.innerHTML = messages.join("<br>"); // line break
+                errorElement.classList.add("error"); // add styling
+            }
+        });
+    </script>
+</body>
+</html>
