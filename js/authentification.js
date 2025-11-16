@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const path = window.location.pathname;
+  console.log("Current path:", path);
 
   try {
-    // Call backend to verify authentication using cookies
     const response = await fetch("http://127.0.0.1:8000/api/auth/me", {
       method: "GET",
-      credentials: "include" // Send cookies
+      credentials: "include"
     });
 
-    // If token invalid or missing → user is NOT logged in
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
       console.warn("User not authenticated");
 
-      // Pages that DO NOT require login
       const publicPages = [
         "/pages/index.html",
         "/pages/signin.html",
@@ -26,47 +26,55 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.replace("../pages/signin.html");
       }
 
-      return; // Stop execution
+      return;
     }
 
-    // If authenticated → extract user
     const data = await response.json();
-    const loggedInUser = data.user;
+    console.log("Data from backend:", data);
+    
+    // Handle both possible structures: {user: {...}} or directly {...}
+    const loggedInUser = data.user || data;
+    console.log("Logged in user:", loggedInUser);
+    console.log("User role value:", loggedInUser.role);
+    console.log("Role type:", typeof loggedInUser.role);
 
     // ADMIN PAGE CHECK
     if (path.endsWith("/pages/adminDashboard.html")) {
+      console.log("Checking admin access...");
+      console.log("Is user object present?", !!loggedInUser);
+      console.log("Role comparison:", loggedInUser.role, "!==", "admin", "→", loggedInUser.role !== "admin");
+      
       if (!loggedInUser || loggedInUser.role !== "admin") {
+        console.log("❌ Access denied");
         alert("Access denied. Admins only.");
         window.location.replace("../pages/signin.html");
         return;
       }
+      
+      console.log("✅ Admin access granted!");
     }
 
-    // AUTHENTICATED USERS SHOULD NOT ACCESS SIGN-IN / SIGN-UP
     if (
       loggedInUser &&
       (path.endsWith("/pages/signin.html") || path.endsWith("/pages/signup.html"))
     ) {
-     // window.location.replace("../pages/index.html");
+      window.location.replace("../pages/index.html");
     }
 
   } catch (error) {
     console.error("Error verifying user:", error);
 
-    // If fetch itself failed (server down) → treat as logged out
     const publicPages = [
       "/pages/index.html",
       "/pages/signin.html",
       "/pages/signup.html"
     ];
 
-   // const isPublicPage = publicPages.some(page => path.endsWith(page));
+    const isPublicPage = publicPages.some(page => path.endsWith(page));
 
-    //if (!isPublicPage) {
-     // alert("Server unavailable. Please sign in again.");
-      //window.location.replace("../pages/signin.html");
-    //}
+    if (!isPublicPage) {
+      alert("Server unavailable. Please sign in again.");
+      window.location.replace("../pages/signin.html");
+    }
   }
 });
-
-

@@ -73,3 +73,69 @@ export const changeRoleByEmail = async (req, res) => {
         });
     }
 };
+
+import bcrypt from "bcrypt";
+
+export const updateUserInfo = async (req, res) => {
+    try {
+        const { username, language, notifications, currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
+
+        const currentUser = await UserModel.findById(userId);
+        if (!currentUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // ---- UPDATE USERNAME ----
+        if (username) {
+            currentUser.username = username;
+        }
+
+        // ---- UPDATE LANGUAGE ----
+        if (language) {
+            currentUser.language = language;
+        }
+
+        // ---- UPDATE NOTIFICATIONS ----
+        if (notifications !== undefined) {
+            currentUser.notifications = notifications;
+        }
+
+        // ---- UPDATE PASSWORD ----
+        if (newPassword) {
+            if (!currentPassword) {
+                return res.status(400).json({ message: "Current password is required" });
+            }
+
+            const isCorrect = await bcrypt.compare(currentPassword, currentUser.password);
+            if (!isCorrect) {
+                return res.status(401).json({ message: "Current password is incorrect" });
+            }
+
+            if (newPassword.length < 6 || newPassword.length > 12) {
+                return res.status(400).json({ message: "New password must be 6–12 characters." });
+            }
+
+            currentUser.password = await bcrypt.hash(newPassword, 10);
+        }
+
+        await currentUser.save();
+
+        return res.status(200).json({
+            message: "User updated successfully",
+            user: {
+                username: currentUser.username,
+                email: currentUser.email,
+                language: currentUser.language,
+                notifications: currentUser.notifications
+            }
+        });
+
+    } catch (error) {
+        console.error("Update user info error:", error);
+        return res.status(500).json({
+            message: "Failed to update user info",
+            error: error.message
+        });
+    }
+};

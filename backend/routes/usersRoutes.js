@@ -1,5 +1,5 @@
 
-import {getAllUsers,getuserById,deleteUserById} from '../controller/usersController.js';
+import {getAllUsers,getuserById,deleteUserById,updateUserInfo} from '../controller/usersController.js';
 import { isAdminMiddleware,verifyTokenMiddleware } from '../middleware/authMiddleware.js';
 
 import express from 'express';
@@ -18,6 +18,8 @@ router.get('/admin/users/:id',verifyTokenMiddleware,isAdminMiddleware, getuserBy
 
 // Admin route to delete user by ID
 router.delete('/admin/users/:id',verifyTokenMiddleware,isAdminMiddleware, deleteUserById);
+
+router.put('/user/updateInfo',verifyTokenMiddleware,updateUserInfo)
 
 
 export default router;

@@ -66,13 +66,19 @@
             </div>
 
             <div class="setting-item">
+                <label for="currentPassword"><i class="fa-solid fa-key"></i> Current Password</label>
+                <input type="password" id="currentPassword" placeholder="Enter your current password">
+            </div>
+
+
+            <div class="setting-item">
                 <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
-                <input type="password" id="password" placeholder="Enter new password">
+                <input type="password" id="newPassword" placeholder="Enter new password">
             </div>
 
             <div class="setting-item">
                 <label for="confirmationPassword"><i class="fa-solid fa-lock"></i> Password</label>
-                <input type="password" id="confirmationPassword" placeholder="Re-enter the new password">
+                <input type="password" id="confirmNewPassword" placeholder="Re-enter the new password">
             </div>
 
             <div class="setting-item">
@@ -94,8 +100,9 @@
         </form>
     </main>
 
+    <script src="../js/settings.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/storage.users.js"></script>
+
 </body>
 
 </html>

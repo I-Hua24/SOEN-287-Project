@@ -133,7 +133,10 @@ export const resetPassword = async (req, res) => {
         res.status(500).json({ message: "Password reset failed", error: error.message });
     }
 };
+
 export const me = async (req, res) => {
+
+    console.log("ME ENDPOINT USER=>",req.user)
     try {
         const user = await UserModel.findById(req.user.id).select("-password");
         
@@ -161,7 +164,7 @@ res.clearCookie('token', {
     }catch(error){
         res.status(500).json({ message: "Sign-out failed", error: error.message });
     }
-    
+
 }
 
 
