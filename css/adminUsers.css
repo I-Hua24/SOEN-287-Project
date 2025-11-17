@@ -1,0 +1,170 @@
+/* ===============================
+   GENERAL PAGE
+   =============================== */
+.adminUsers-page {
+    font-family: Inter, sans-serif;
+    background: #f5f6fa;
+    padding: 40px 60px;
+}
+
+
+/* ===============================
+   HEADER
+   =============================== */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.page-header i {
+    font-size: 42px;
+    color: #4b49ac;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* ===============================
+   FILTERS
+   =============================== */
+.filter-container {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.filter-input,
+.filter-select {
+    padding: 12px 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    width: 240px;
+    transition: 0.2s;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: #4b49ac;
+    box-shadow: 0 0 6px rgba(75,73,172,0.2);
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+}
+
+.btn-primary {
+    background: #4b49ac;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3c3a8f;
+}
+
+.btn-secondary {
+    background: #bbbbbb;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #a5a5a5;
+}
+
+
+/* ===============================
+   TABLE CARD
+   =============================== */
+.table-card {
+    background: white;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+
+/* ===============================
+   TABLE
+   =============================== */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th {
+    text-align: left;
+    padding: 18px 22px;
+    background: #fafafa;
+    color: #444;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.users-table td {
+    padding: 20px 22px;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.users-table tbody tr:hover {
+    background: #f9f9ff;
+}
+
+
+/* ===============================
+   ACTION BUTTONS
+   =============================== */
+.action-col {
+    width: 260px;
+}
+
+/* Base button style */
+.action-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 12px;
+    transition: 0.2s ease-in-out;
+}
+
+/* Change Role */
+.change-role {
+    background: #4b49ac;
+    color: white;
+}
+.change-role:hover {
+    background: #3a398f;
+}
+
+/* Delete */
+.delete {
+    background: #e63946;
+    color: white;
+}
+.delete:hover {
+    background: #c72d38;
+}

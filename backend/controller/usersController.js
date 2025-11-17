@@ -139,3 +139,68 @@ export const updateUserInfo = async (req, res) => {
         });
     }
 };
+
+export const updateUserRole = async (req, res) => {
+    try {
+        const { id, role } = req.body; // id = target user, role = new role
+        const requesterId = req.user.id; // the logged-in user
+
+        const requester = await UserModel.findById(requesterId);
+
+        if (!requester || requester.role !== "admin") {
+            return res.status(401).json({
+                message: "Must be an admin to change user role"
+            });
+        }
+
+        const targetUser = await UserModel.findById(id);
+
+        if (!targetUser) {
+            return res.status(404).json({
+                message: "Target user not found"
+            });
+        }
+
+        targetUser.role = role;
+        await targetUser.save();
+
+        return res.status(200).json({
+            message: "User role updated successfully",
+            user: {
+                id: targetUser._id,
+                email: targetUser.email,
+                newRole: targetUser.role
+            }
+        });
+
+    } catch (error) {
+        console.error("Failed to update user role", error);
+        return res.status(500).json({
+            message: "Failed to update user role",
+            error: error.message
+        });
+    }
+};
+
+export const getUserByInfo = async (req, res)=>{
+    try{
+       const { email, username, role } = req.query;
+
+        let filter = {};
+
+        if (email) filter.email = { $regex: email, $options: "i" };
+        if (username) filter.username = { $regex: username, $options: "i" };
+        if (role && role !== "") filter.role = role;
+
+        const users = await UserModel.find(filter);
+
+        res.json(users);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    } 
+    
+
+}
+ 

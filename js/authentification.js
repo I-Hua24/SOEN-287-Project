@@ -39,19 +39,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Role type:", typeof loggedInUser.role);
 
     // ADMIN PAGE CHECK
-    if (path.endsWith("/pages/adminDashboard.html")) {
+    if (path.endsWith("/pages/adminDashboard.html")||path.endsWith("/pages/adminUsers.html")) {
       console.log("Checking admin access...");
       console.log("Is user object present?", !!loggedInUser);
       console.log("Role comparison:", loggedInUser.role, "!==", "admin", "→", loggedInUser.role !== "admin");
       
       if (!loggedInUser || loggedInUser.role !== "admin") {
-        console.log("❌ Access denied");
+        console.log(" Access denied");
         alert("Access denied. Admins only.");
         window.location.replace("../pages/signin.html");
         return;
       }
       
-      console.log("✅ Admin access granted!");
+      console.log("Admin access granted!");
     }
 
     if (

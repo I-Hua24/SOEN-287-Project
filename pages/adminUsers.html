@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/adminUsers.css">
+    <script src="../js/authentification.js"></script>
+
+</head>
+
+<body class="adminUsers-page">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="page-icon">
+            <i class="fa-solid fa-users-gear"></i>
+        </div>
+        <div>
+            <h1>User Management</h1>
+            <p>View, promote, demote, or remove platform users.</p>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <section class="filter-container">
+
+        <input
+            type="text"
+            id="user-search"
+            placeholder="Search by email, username…"
+            class="filter-input"
+        />
+
+        <select id="role-filter" class="filter-select">
+            <option value="">All Roles</option>
+            <option value="regular">Regular</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <button id="filter-btn" class="btn-primary">Apply</button>
+        <button id="reset-btn" class="btn-secondary">Reset</button>
+    </section>
+
+    <!-- USER TABLE -->
+    <section class="table-card">
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th class="action-col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="users-table-body">
+                <!-- Filled by JS -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="../js/adminUsers.js"></script>
+
+
+</body>
+</html>

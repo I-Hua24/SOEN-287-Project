@@ -1,5 +1,5 @@
 
-import {getAllUsers,getuserById,deleteUserById,updateUserInfo} from '../controller/usersController.js';
+import {getAllUsers,getuserById,deleteUserById,updateUserInfo,updateUserRole,getUserByInfo} from '../controller/usersController.js';
 import { isAdminMiddleware,verifyTokenMiddleware } from '../middleware/authMiddleware.js';
 
 import express from 'express';
@@ -20,6 +20,10 @@ router.get('/admin/users/:id',verifyTokenMiddleware,isAdminMiddleware, getuserBy
 router.delete('/admin/users/:id',verifyTokenMiddleware,isAdminMiddleware, deleteUserById);
 
 router.put('/user/updateInfo',verifyTokenMiddleware,updateUserInfo)
+
+router.put('/admin/updateUserRole',verifyTokenMiddleware,isAdminMiddleware,updateUserRole)
+router.get("/admin/usersByInfo", getUserByInfo);
+
 
 
 export default router;
