@@ -20,7 +20,20 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'SOEN-287-PROJECT')));
+// Serve the css/js folder at the /css or /js URL path
+app.use("/pages", express.static(path.join(__dirname, "..", "pages")));
+app.use("/css", express.static(path.join(__dirname, "..", "css")));
+app.use("/js", express.static(path.join(__dirname, "..", "js")));
 
+// Root route FIRST
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
+});
 
 // Root route FIRST
 app.get('/', (req, res) => {
