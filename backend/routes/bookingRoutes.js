@@ -4,6 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import RoomModel from "../model/roomModel.js";
 
+import { verifyTokenMiddleware } from "../middleware/authMiddleware.js";
+
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,9 +23,10 @@ router.get("/booking", (req, res) => {
 });
 
 // Post booking page (form) and asign user to a room
-router.post("/booking", async (req, res) => {
+router.post("/booking", verifyTokenMiddleware, async (req, res) => {
     
-    const username = "Username"; // CHANGE THIS TO THE ACTUAL USERNAME
+    //const username = "Username"; // CHANGE THIS TO THE ACTUAL USERNAME
+    const username = req.user.username;
     
     try {
         // Assign the fields from the post method
@@ -607,5 +610,6 @@ function generateSlots(minTime = "08:00", maxTime = "16:00", spaceBetweenTimesIn
 async function resetAllRooms() {
     return RoomModel.updateMany({}, { $set: { "slots.$[].status": "free", "slots.$[].bookedBy": null } });
 }
+
 
 export default router;
