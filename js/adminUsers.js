@@ -252,15 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
         resetBtn.addEventListener("click", resetFilters);
     }
     
-    // Optional: filter as user types
-    if (searchInput) {
+   /* if (searchInput) {
         searchInput.addEventListener("keyup", (e) => {
             if (e.key === "Enter") {
                 filterUsers();
             }
-        });
+       });
     }
-    
+    */
     // Initial load
     DisplayAllUser();
 });

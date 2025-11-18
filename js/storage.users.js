@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     window.location.href = "../pages/signin.html";
                     return;
                 }
-                window.location.href = "../pages/booking.html";
+                window.location.href = "/booking";
             })
         }
 
