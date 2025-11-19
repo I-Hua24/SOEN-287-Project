@@ -94,11 +94,29 @@ router.get("/booking/data", async (req, res) => {
     }
 });
 
+// Used to redirect users to their personal mybooking dashboard.
+router.get("/mybooking", verifyTokenMiddleware, (req, res) => {
+    const username = req.user.username;
+
+    if (!req.user.username) {
+        return res.redirect("login");
+    }
+
+    return res.redirect(`/mybooking/${username}`);
+});
+
 // Get the page were users can see their bookings
 router.get("/mybooking/:id", async (req, res) => {
     
     const username = req.params.id;
-
+    const paramId = req.params.id; // Get the :id in the url
+    
+    // if user is trying to access mybooking/NotTheirUsername redirect them to their dashboard
+    if (username !== paramId) {
+        res.redirect(`/mybooking/${username}`);
+        return;
+    }
+    
     let css = `
         body
         {
@@ -613,3 +631,4 @@ async function resetAllRooms() {
 
 
 export default router;
+
