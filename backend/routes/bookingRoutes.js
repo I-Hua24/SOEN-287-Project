@@ -473,7 +473,7 @@ router.get("/mybooking/:id", verifyLogin, async (req, res) => {
                 });
             });
         </script>
-    
+        <script type="text/javascript" src="/js/script.js"></script>
     </body>
     </html>
     `
@@ -645,3 +645,4 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
