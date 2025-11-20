@@ -3,9 +3,6 @@ body
     font-family: 'Arial', sans-serif;
 }
 
-
-
-
 main
 {
     height: 100%;
@@ -42,17 +39,33 @@ main
     max-width: 600px; /*think this ones nicer?*/
     /* box-shadow: 0 2px 8px rgba(0,0,0,.05);  */
 }
-.time-list
+/* .time-list
 {
     display: inline-block;
     margin-right: 10px;
+} */
+.room-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* space between rooms */
+}
+
+.room-name {
+    flex: 0 0 70px; /* fixed-ish width column for room name */
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.room-times {
+    display: flex;
+    flex-wrap: wrap; /* this makes the times wrap under themselves */
+    gap: 4px; /* space between buttons */
 }
 .pill-btn 
 {
     background-color: transparent;
     border: 2px solid #007bff;
     color: #777;
-    margin-left: 2px; margin-right: 2px;
     padding: 5px 15px;
     text-align: center;
     display: inline-block; /* or block */
@@ -233,248 +246,243 @@ ul
 }
 
 
-
-
-
-
-
 /* Footer stuff */
 
 footer{
-  justify-content: center;
-  text-align: center;
-  margin: auto;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
 }
 .footer {
-  background: #f9fafc;
-  color: #202124;
-  font-family: 'Inter', sans-serif;
-  margin-top: 60px;
+    background: #f9fafc;
+    color: #202124;
+    font-family: 'Inter', sans-serif;
+    margin-top: 60px;
 }
 
 .footer-top {
-  background: #111;
-  color: #fff;
-  text-align: center;
-  padding: 70px 20px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 70px 20px;
 }
 
 .footer-top h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
 .footer-top p {
-  font-size: 1.1rem;
-  color: #ccc;
-  margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 25px;
 }
 
 .cta-btn {
-  padding: 14px 32px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  background: linear-gradient(90deg, #007bff, #00d4ff);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  transition: transform 0.2s ease, background 0.3s ease;
+    padding: 14px 32px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 .cta-btn:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(90deg, #0056b3, #009ac2);
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #0056b3, #009ac2);
 }
 
 .footer-links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  max-width: 1100px;
-  margin: 60px auto;
-  text-align: left;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 60px auto;
+    text-align: left;
 }
 
 .footer-links h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
 }
 
 .footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links ul li {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .footer-links ul li a {
-  text-decoration: none;
-  color: #5f6368;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+    text-decoration: none;
+    color: #5f6368;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
 .footer-links ul li a:hover {
-  color: #007bff;
+    color: #007bff;
 }
 
 .footer-bottom {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #888;
-  border-top: 1px solid #ddd;
-  padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid #ddd;
+    padding: 20px 0;
 }
 
 body.booking-page.darkmode {
-  background-color: #121212;
-  color: #eaeaea;
+    background-color: #121212;
+    color: #eaeaea;
 }
 
 body.booking-page.darkmode main {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-  border-color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border-color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 body.booking-page.darkmode label,
 body.booking-page.darkmode select {
-  color: #e0e0e0;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
+    color: #e0e0e0;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
 }
 
 body.booking-page.darkmode select:focus {
-  border-color: #3399ff;
+    border-color: #3399ff;
 }
 
 body.booking-page.darkmode .calendar {
-  background-color: #222;
-  border-color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background-color: #222;
+    border-color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 body.booking-page.darkmode .month {
-  background: linear-gradient(90deg, #007bff, #00b7ff);
-  color: #fff;
-  border-bottom: 1px solid #005ecb;
-  text-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+    background: linear-gradient(90deg, #007bff, #00b7ff);
+    color: #fff;
+    border-bottom: 1px solid #005ecb;
+    text-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 
 body.booking-page.darkmode .weekdays {
-  background: #2c2c2c;
-  color: #ccc;
+    background: #2c2c2c;
+    color: #ccc;
 }
 
 body.booking-page.darkmode .days {
-  background: #1f1f1f;
+    background: #1f1f1f;
 }
 
 body.booking-page.darkmode .days li {
-  color: #aaa;
+    color: #aaa;
 }
 
 body.booking-page.darkmode .day:hover,
 body.booking-page.darkmode .day.active {
-  background: #007bff;
-  color: #fff;
+    background: #007bff;
+    color: #fff;
 }
 
 body.booking-page.darkmode .rooms-div {
-  color: #ddd;
+    color: #ddd;
 }
 
 body.booking-page.darkmode .pill-btn {
-  border: 2px solid #3399ff;
-  color: #bbb;
+    border: 2px solid #3399ff;
+    color: #bbb;
 }
 
 body.booking-page.darkmode .pill-btn:hover,
 body.booking-page.darkmode .pill-btn-active {
-  background-color: #3399ff;
-  color: #fff;
+    background-color: #3399ff;
+    color: #fff;
 }
 
 body.booking-page.darkmode .form-div {
-  background-color: #222;
-  border: 1px solid #333;
-  color: #eee;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background-color: #222;
+    border: 1px solid #333;
+    color: #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 body.booking-page.darkmode input,
 body.booking-page.darkmode select {
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-  border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border: 1px solid #444;
 }
 
 body.booking-page.darkmode input:focus,
 body.booking-page.darkmode select:focus {
-  border-color: #3399ff;
+    border-color: #3399ff;
 }
 
 body.booking-page.darkmode .confirm-booking button {
-  background: #1f1f1f;
-  border: 2px solid #3399ff;
-  color: #66b2ff;
+    background: #1f1f1f;
+    border: 2px solid #3399ff;
+    color: #66b2ff;
 }
 
 body.booking-page.darkmode .confirm-booking button:hover,
 body.booking-page.darkmode .confirm-booking button:active {
-  background: #3399ff;
-  color: #fff;
+    background: #3399ff;
+    color: #fff;
 }
 
 body.booking-page.darkmode #error {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 body.booking-page.darkmode a {
-  color: #66b2ff;
+    color: #66b2ff;
 }
 
 body.booking-page.darkmode a:hover {
-  color: #009dff;
+    color: #009dff;
 }
 
 body.booking-page.darkmode .footer {
-  background-color: #181818;
-  color: #eaeaea;
+    background-color: #181818;
+    color: #eaeaea;
 }
 
 body.booking-page.darkmode .footer-links ul li a {
-  color: #bbb;
+    color: #bbb;
 }
 
 body.booking-page.darkmode .footer-links ul li a:hover {
-  color: #3399ff;
+    color: #3399ff;
 }
 
 body.booking-page.darkmode .footer-bottom {
-  border-top: 1px solid #333;
-  color: #888;
+    border-top: 1px solid #333;
+    color: #888;
 }
 
 /* prevBtn, todayBtn and nextBtn */
 body.booking-page.darkmode .btn
 {
-  background-color: #333;
-  border-color: dodgerblue;
-  color: white;
+    background-color: #333;
+    border-color: dodgerblue;
+    color: white;
 }
 body.booking-page.darkmode .btn:disabled
 {
-  background-color: #333;
-  border-color: #777;
-  color: #aaa;
-  opacity: 0.6;
+    background-color: #333;
+    border-color: #777;
+    color: #aaa;
+    opacity: 0.6;
 }
