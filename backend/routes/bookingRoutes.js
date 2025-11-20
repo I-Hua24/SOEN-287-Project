@@ -375,8 +375,8 @@ router.get("/mybooking/:id", verifyLogin, async (req, res) => {
         <aside class="sidebar" id="sidebar">
             <button class="close-btn" id="close-btn">×</button>
             <ul>
-                <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="../pages/booking.html"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
+                <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="/booking"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
                 <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
                 <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
             </ul>
@@ -645,4 +645,5 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
