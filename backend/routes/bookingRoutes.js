@@ -199,7 +199,7 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-        <title>${username} Bookings</title>
+        <title>${username}'s Bookings</title>
     </head>
     <body>
         <header class="NavBarContainer">
@@ -237,7 +237,7 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
         </aside>
 
         <main>
-            <h2 class="top-h2">Student Bookings</h2>
+            <h2 class="top-h2">{username}'s bookings</h2>
             <section>
                 <h3>Current</h3>
                 <!--
@@ -499,6 +499,7 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
 
 
