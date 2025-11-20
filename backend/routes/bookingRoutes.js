@@ -1,10 +1,9 @@
 
 import express from "express";
 import path from "path";
+import jwt from "jsonwebtoken";
 import { fileURLToPath } from "url";
 import RoomModel from "../model/roomModel.js";
-
-import { verifyTokenMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -14,16 +13,16 @@ const __dirname = path.dirname(__filename);
 // Booking Routes:
 
 // Get the booking page
-router.get("/booking", (req, res) => {
+router.get("/booking", verifyLogin, (req, res) => {
 
     const day = atMidnight();
     /* await */ ensureSeedFor(day, "study", 10);
 
-    res.sendFile(path.join(__dirname, "../../pages/bookingJSIncluded.html"));
+    res.sendFile(path.join(__dirname, "../../pages/booking.html"));
 });
 
 // Post booking page (form) and asign user to a room
-router.post("/booking", verifyTokenMiddleware, async (req, res) => {
+router.post("/booking", verifyLogin, async (req, res) => {
     
     //const username = "Username"; // CHANGE THIS TO THE ACTUAL USERNAME
     const username = req.user.username;
@@ -60,7 +59,7 @@ router.post("/booking", verifyTokenMiddleware, async (req, res) => {
             return res.send('Error: Slot no longer available');
 
         // Redirect back to the page; you can show a toast via querystring if you want
-        res.redirect(`/mybooking/${username}`);
+        res.redirect(`/mybookings/${username}`);
 
     } catch (e) {
         res.send('Error: Booking failed, ' + e);
@@ -94,172 +93,29 @@ router.get("/booking/data", async (req, res) => {
     }
 });
 
-// Used to redirect users to their personal mybooking dashboard.
-router.get("/mybooking", verifyTokenMiddleware, (req, res) => {
+// Used to redirect users to their personal mybookings dashboard.
+router.get("/mybookings", verifyLogin, (req, res) => {
     const username = req.user.username;
 
     if (!req.user.username) {
         return res.redirect("login");
     }
 
-    return res.redirect(`/mybooking/${username}`);
+    return res.redirect(`/mybookings/${username}`);
 });
 
 // Get the page were users can see their bookings
-router.get("/mybooking/:id", async (req, res) => {
+router.get("/mybookings/:id", verifyLogin, async (req, res) => {
     
-    const username = req.params.id;
+    const username = req.user.username;
     const paramId = req.params.id; // Get the :id in the url
     
-    // if user is trying to access mybooking/NotTheirUsername redirect them to their dashboard
+    // if user is trying to access mybookings/NotTheirUsername redirect them to their dashboard
     if (username !== paramId) {
-        res.redirect(`/mybooking/${username}`);
+        res.redirect(`/mybookings/${username}`);
         return;
     }
     
-    let css = `
-        body
-        {
-            font-family: 'Arial', sans-serif;
-        }
-        .top-h2
-        {
-            padding-left: 20px;
-        }
-
-
-        .hide
-        {
-            display: none;
-        }
-
-
-        main a
-        {
-            color: dodgerblue;
-        }
-
-        main
-        {
-            max-width: 1500px;
-            margin: 0 auto;
-            flex: 1;
-        }
-        section
-        {
-            padding: 5px 10px;
-            height: 100%;
-            min-height: 150px;
-            width: 100% - 20px;
-            margin: 20px;
-            background-color: #F9FAFC;
-            border: 1px solid #ccc;
-            /* box-shadow: 1px 1px 5px #0000004D; */
-            border-radius: 5px;
-        }
-
-        .sec
-        {
-            display: block;
-            justify-content: space-between;
-            align-items: center;
-
-            /* display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px; */
-        }
-        .right
-        {
-            margin-left: auto;
-            display: flex;
-            gap: 10px;
-            
-        }
-
-        .category
-        {
-            margin: 20px;
-            color: black;
-        }
-
-        .modify-pill-btn {
-            background-color: transparent;
-            border: 2px solid orange;
-            color: orange;
-            padding: 5px 15px;
-            text-align: center;
-            border-radius: 50px; /* has to be atleast half its height*/
-        }
-        .modify-pill-btn:hover {
-            background: orange;
-            color: white;
-        }
-
-        .hide {
-            display: none;
-        }
-
-        .cancel-pill-btn {
-            background-color: transparent;
-            border: 2px solid red;
-            color: red;
-            padding: 5px 15px;
-            text-align: center;
-            border-radius: 50px; /* has to be atleast half its height*/
-        }
-        .cancel-pill-btn:hover {
-            background: red;
-            color: white;
-        }
-
-        .bottom
-        {
-            padding-left: 20px
-        }
-        body.mybookings-page.darkmode {
-            background-color: #121212;
-            color: #eaeaea;
-        }
-
-        body.mybookings-page.darkmode main {
-            background-color: #1f1f1f;
-            color: #f0f0f0;
-            border-color: #333;
-        }
-
-        body.mybookings-page.darkmode section {
-            background-color: #242424;
-            border: 1px solid #333;
-            color: #ddd;
-        }
-
-        body.mybookings-page.darkmode .modify-pill-btn {
-            border-color: #ffa726;
-            color: #ffa726;
-        }
-        body.mybookings-page.darkmode .modify-pill-btn:hover {
-            background: #ffa726;
-            color: white;
-        }
-
-        body.mybookings-page.darkmode .cancel-pill-btn {
-            border-color: #ef5350;
-            color: #ef5350;
-        }
-        body.mybookings-page.darkmode .cancel-pill-btn:hover {
-            background: #ef5350;
-            color: white;
-        }
-
-        body.mybookings-page.darkmode a {
-            color: #66b2ff;
-        }
-        body.mybookings-page.darkmode a:hover {
-            color: #009dff;
-        }
-    `
-
     // Get all slots that contain the username
     const docs = await RoomModel.find({"slots.bookedBy": username}).select({category: 1, room: 1, day: 1, slots: 1}).lean();
 
@@ -337,8 +193,9 @@ router.get("/mybooking/:id", async (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/booking.css">
+        <link rel="stylesheet" href="../css/mybookings.css">
         <link rel="stylesheet" href="../css/style.css">
-
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -376,8 +233,8 @@ router.get("/mybooking/:id", async (req, res) => {
         <aside class="sidebar" id="sidebar">
             <button class="close-btn" id="close-btn">×</button>
             <ul>
-                <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="../pages/booking.html"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
+                <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="/booking"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
                 <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
                 <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
             </ul>
@@ -419,8 +276,8 @@ router.get("/mybooking/:id", async (req, res) => {
                 <div>
                     <h4>For Students</h4>
                     <ul>
-                        <li><a href="booking.html">Browse Resources</a></li>
-                        <li><a href="mybookings.html">My Bookings</a></li>
+                        <li><a href="/booking">Browse Resources</a></li>
+                        <li><a href="/mybookings">My Bookings</a></li>
                         <li><a href="settings.html">Account Settings</a></li>
                     </ul>
                 </div>
@@ -474,7 +331,7 @@ router.get("/mybooking/:id", async (req, res) => {
                 });
             });
         </script>
-    
+        <script type="text/javascript" src="/js/script.js"></script>
     </body>
     </html>
     `
@@ -629,6 +486,25 @@ async function resetAllRooms() {
     return RoomModel.updateMany({}, { $set: { "slots.$[].status": "free", "slots.$[].bookedBy": null } });
 }
 
+function verifyLogin (req,res,next) {
+    try{
+        const token = req.cookies.token;//get token from cookies
+    
+        if(!token){
+            return res.redirect("/login");
+    }   
+        const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);//verify token
+        req.user=verifiedToken;//attach user info to request object
+        next();//proceed to next middleware or route handler
+    } catch(error) {
+        return res.status(403).json({message:"Invalid or expired token", error:error.message});
+    }
+};
+
 
 export default router;
+
+
+
+
 

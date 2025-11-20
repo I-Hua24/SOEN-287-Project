@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/booking.css">
+        <!-- <link rel="stylesheet" href="/css/booking.css"> -->
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/booking.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-    <title>Booking</title>
-    <script src="../js/authentification.js"></script>
-
-</head>
-
-<body class="booking-page">
+        <title>Booking</title>
+    </head>
+    <body class="booking-page">
 
     <header class="NavneeBarContainer">
         <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <div class="logo">ConcoHub</div>
 
         <div class="search-bar">
-            <input type="text" placeholder="Search bookings/resources…" id="global-search" />
+        <input type="text" placeholder="Search bookings/resources…" id="global-search" />
         </div>
 
         <nav class="NavButton">
-            <button class="SignIn-btn" id="sign-in">Sign In</button>
-            <button class="GetStarted-btn" id="sign-up">Get Started</button>
-            <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+        <button class="SignIn-btn" id="sign-in">Sign In</button>
+        <button class="GetStarted-btn" id="sign-up">Get Started</button>
+        <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
 
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle" />
-                <span class="slider">
-                    <i class="fa-solid fa-moon"></i>
-                    <i class="fa-solid fa-sun"></i>
-                </span>
-            </label>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+            </span>
+        </label>
         </nav>
     </header>
 
@@ -44,19 +41,16 @@
     <aside class="sidebar" id="sidebar">
         <button class="close-btn" id="close-btn">×</button>
         <ul>
-            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="../pages/mybookings.html"><i class="fa-solid fa-book"></i> My Bookings</a></li>
-            <li><a href="adminDashboard.html" class="admin-link"><i class="fa-solid fa-gears"></i> Admin Dashboard</a>
-            </li>
-            <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+            <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-book"></i> My Bookings</a></li>
+            <li><a href="#" class="admin-link"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+            <li><a href="#"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
         </ul>
     </aside>
 
     <main>
-
-        <!--Choose date (Calendar)-->
+        <!-- Choose date (Calendar) -->
         <section>
-            <!--Type of room-->
             <div class="category-div">
                 <label class="category" for="category">Category</label>
                 <select id="category" class="category" name="category">
@@ -81,51 +75,53 @@
         <!--Choose time (Time table)-->
         <div class="rooms-div">
             <section>
-                <p><b>Showing times for:</b> <span class="output-date-text" id="selected-date-top">No date
-                        selected</span></p>
+                <p><b>Showing times for:</b> <span class="output-date-text" id="selected-date-top">No date selected</span></p>
                 <div id="time-list"></div>
             </section>
         </div>
 
-        <!--Booking form-->
+        <!-- Booking form -->
         <div class="form-div">
-            <form id="form" action="mybookings.html">
-                <!--Purpose-->
-                <label for="purpose">Purpose</label>
-                <select id="purpose" name="purpose">
-                    <option value="none-selected">None selected</option>
-                    <option value="study">Study</option>
-                    <option value="sports-activities">Sports Activities</option>
-                    <option value="technology">Technology</option>
-                    <option value="group-collaboration">Group Collaboration</option>
-                </select>
+        <form id="form" action="/booking" method="post">
+            <!-- purpose -->
+            <label for="purpose">Purpose</label>
+            <select id="purpose" name="purpose">
+                <option value="none-selected">None selected</option>
+                <option value="study">Study</option>
+                <option value="sports-activities">Sports Activities</option>
+                <option value="technology">Technology</option>
+                <option value="group-collaboration">Group Collaboration</option>
+            </select>
 
-                <br /><br />
+            <br><br>
 
-                <!--Number of people-->
-                <label for="num-of-people">Number of people</label>
-                <select id="num-of-people" name="num-of-people">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
+            <!--Number of people-->
+            <label for="num-of-people">Number of people</label>
+            <select id="num-of-people" name="numOfPeople">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="5">5</option><option value="6">6</option>
+            </select>
 
-                <!--Confirm selected date, room and time-->
-                <p>Selected date: <span id="selected-date">None</span></p>
-                <p>Selected room: <span id="selected-room">None</span> <span id="selected-time"></span></p>
+            <!--Confirm selected date, room and time-->
+            <p>Selected date: <span id="selected-date">None</span></p>
+            <p>Selected room: <span id="selected-room">None</span> <span id="selected-time"></span></p>
 
-                <!--Erorr div-->
-                <div id="error"></div>
+            <!--Erorr div-->
+            <div id="error"></div>
 
-                <!--Booking confirmation button-->
-                <div class="confirm-booking">
-                    <button id="confirmation-button" type="submit">Confirm Booking</button>
-                </div>
-            </form>
+            <!-- Hidden inputs -->
+            <input type="hidden" name="category" id="hid-category" value="study">
+            <input type="hidden" name="date"     id="hid-date" value="">
+            <input type="hidden" name="room"     id="hid-room" value="">
+            <input type="hidden" name="time"     id="hid-time" value="">
+            <input type="hidden" name="bookedBy" id="hid-bookedBy" value="guest">
+
+            <!--Booking confirmation button-->
+            <div class="confirm-booking">
+                <button id="confirmation-button" type="submit">Confirm Booking</button>
+            </div>
+        </form>
         </div>
-
     </main>
 
     <footer class="footer">
@@ -133,37 +129,36 @@
             <div>
                 <h4>For Students</h4>
                 <ul>
-                    <li><a href="booking.html">Browse Resources</a></li>
-                    <li><a href="mybookings.html">My Bookings</a></li>
-                    <li><a href="settings.html">Account Settings</a></li>
+                    <li><a href="/booking">Browse Resources</a></li>
+                    <li><a href="/mybookings">My Bookings</a></li>
+                    <li><a href="#">Account Settings</a></li>
                 </ul>
             </div>
-            <div>
-                <h4>For Administrators</h4>
-                <ul>
-                    <li><a href="adminDashboard.html" class="admin-link">Admin Dashboard</a></li>
-                    <li><a href="adminDashboard.html" class="admin-link">Manage Resources</a></li>
-                    <li><a href="adminDashboard.html" class="admin-link">Set Availability</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="../pages/support.html">Help Center</a></li>
-                    <li><a href="../pages/faq.html">FAQ</a></li>
-                </ul>
-            </div>
+        <div>
+            <h4>For Administrators</h4>
+            <ul>
+                <li><a href="#" class="admin-link">Admin Dashboard</a></li>
+                <li><a href="#" class="admin-link">Manage Resources</a></li>
+                <li><a href="#" class="admin-link">Set Availability</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
         </div>
 
         <div class="footer-bottom">
-            © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
+        © 2025 Concordia University. All rights reserved. | SOEN 287 Web Programming Project
         </div>
     </footer>
 
-
-    <script src="../js/script.js"></script>
-    <script src="../js/localstorage.js"></script>
-    <script src="../js/booking.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script type="text/javascript" src="/js/booking.js"></script>
 </body>
-
 </html>
+
+
