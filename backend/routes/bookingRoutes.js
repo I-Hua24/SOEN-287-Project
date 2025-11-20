@@ -106,9 +106,9 @@ router.get("/mybooking", verifyTokenMiddleware, (req, res) => {
 });
 
 // Get the page were users can see their bookings
-router.get("/mybooking/:id", async (req, res) => {
+router.get("/mybooking/:id", verifyTokenMiddleware, async (req, res) => {
     
-    const username = req.params.id;
+    const username = req.user.username;
     const paramId = req.params.id; // Get the :id in the url
     
     // if user is trying to access mybooking/NotTheirUsername redirect them to their dashboard
@@ -631,4 +631,5 @@ async function resetAllRooms() {
 
 
 export default router;
+
 
