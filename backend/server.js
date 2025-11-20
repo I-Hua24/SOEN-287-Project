@@ -37,9 +37,6 @@ app.get('/', (req, res) => {
 });
 
 // Root route FIRST
-app.get('/', (req, res) => {
-  res.send('ConcoHub Backend Server is running');
-});
 
 // Then API routes
 app.use('/api', usersRoutes);
