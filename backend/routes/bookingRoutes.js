@@ -18,7 +18,7 @@ router.get("/booking", verifyLogin, (req, res) => {
     const day = atMidnight();
     /* await */ ensureSeedFor(day, "study", 10);
 
-    res.sendFile(path.join(__dirname, "../../pages/bookingJSIncluded.html"));
+    res.sendFile(path.join(__dirname, "../../pages/booking.html"));
 });
 
 // Post booking page (form) and asign user to a room
@@ -642,5 +642,6 @@ function verifyLogin (req,res,next) {
         return res.status(403).json({message:"Invalid or expired token", error:error.message});
     }
 };
+
 
 export default router;
