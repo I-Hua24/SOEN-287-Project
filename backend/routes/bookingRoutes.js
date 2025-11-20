@@ -1,10 +1,9 @@
 
 import express from "express";
 import path from "path";
+import jwt from "jsonwebtoken";
 import { fileURLToPath } from "url";
 import RoomModel from "../model/roomModel.js";
-
-import { verifyTokenMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -14,7 +13,7 @@ const __dirname = path.dirname(__filename);
 // Booking Routes:
 
 // Get the booking page
-router.get("/booking", (req, res) => {
+router.get("/booking", verifyLogin, (req, res) => {
 
     const day = atMidnight();
     /* await */ ensureSeedFor(day, "study", 10);
@@ -23,7 +22,7 @@ router.get("/booking", (req, res) => {
 });
 
 // Post booking page (form) and asign user to a room
-router.post("/booking", verifyTokenMiddleware, async (req, res) => {
+router.post("/booking", verifyLogin, async (req, res) => {
     
     //const username = "Username"; // CHANGE THIS TO THE ACTUAL USERNAME
     const username = req.user.username;
@@ -95,7 +94,7 @@ router.get("/booking/data", async (req, res) => {
 });
 
 // Used to redirect users to their personal mybooking dashboard.
-router.get("/mybooking", verifyTokenMiddleware, (req, res) => {
+router.get("/mybooking", verifyLogin, (req, res) => {
     const username = req.user.username;
 
     if (!req.user.username) {
@@ -106,7 +105,7 @@ router.get("/mybooking", verifyTokenMiddleware, (req, res) => {
 });
 
 // Get the page were users can see their bookings
-router.get("/mybooking/:id", verifyTokenMiddleware, async (req, res) => {
+router.get("/mybooking/:id", verifyLogin, async (req, res) => {
     
     const username = req.user.username;
     const paramId = req.params.id; // Get the :id in the url
@@ -629,7 +628,19 @@ async function resetAllRooms() {
     return RoomModel.updateMany({}, { $set: { "slots.$[].status": "free", "slots.$[].bookedBy": null } });
 }
 
+function verifyLogin (req,res,next) {
+    try{
+        const token = req.cookies.token;//get token from cookies
+    
+        if(!token){
+            return res.redirect("/login");
+    }   
+        const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);//verify token
+        req.user=verifiedToken;//attach user info to request object
+        next();//proceed to next middleware or route handler
+    } catch(error) {
+        return res.status(403).json({message:"Invalid or expired token", error:error.message});
+    }
+};
 
 export default router;
-
-
