@@ -59,7 +59,7 @@ router.post("/booking", verifyLogin, async (req, res) => {
             return res.send('Error: Slot no longer available');
 
         // Redirect back to the page; you can show a toast via querystring if you want
-        res.redirect(`/mybooking/${username}`);
+        res.redirect(`/mybookings/${username}`);
 
     } catch (e) {
         res.send('Error: Booking failed, ' + e);
@@ -502,6 +502,7 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
 
 
