@@ -43,7 +43,11 @@ app.get('/', (req, res) => {
 // Then API routes
 app.use('/api', usersRoutes);
 app.use('/api/auth', authRoutes);
-
+// Admin routes
+import adminDashboardRoutes from "./routes/adminDashboardRoutes.js";
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+app.use("/", adminDashboardRoutes);
 // Booking Routes
 import bookingRoutes from "./routes/bookingRoutes.js";
 app.use(express.json()); 

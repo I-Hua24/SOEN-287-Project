@@ -19,4 +19,4 @@ router.get("/adminDashboard", (req, res) => {
     res.sendFile(path.join(__dirname, "../../pages/adminDashboard.html"));
 });
 
-
+export default router;
