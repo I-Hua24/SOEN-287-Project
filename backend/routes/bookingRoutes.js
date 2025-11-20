@@ -202,10 +202,6 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
         <title>${username} Bookings</title>
     </head>
     <body>
-        <style>
-            ${css}
-        </style>
-
         <header class="NavBarContainer">
             <div class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></div>
             <div class="logo">ConcoHub</div>
@@ -503,6 +499,7 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
 
 
