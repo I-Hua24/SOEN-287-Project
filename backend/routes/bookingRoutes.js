@@ -93,172 +93,29 @@ router.get("/booking/data", async (req, res) => {
     }
 });
 
-// Used to redirect users to their personal mybooking dashboard.
-router.get("/mybooking", verifyLogin, (req, res) => {
+// Used to redirect users to their personal mybookings dashboard.
+router.get("/mybookings", verifyLogin, (req, res) => {
     const username = req.user.username;
 
     if (!req.user.username) {
         return res.redirect("login");
     }
 
-    return res.redirect(`/mybooking/${username}`);
+    return res.redirect(`/mybookings/${username}`);
 });
 
 // Get the page were users can see their bookings
-router.get("/mybooking/:id", verifyLogin, async (req, res) => {
+router.get("/mybookings/:id", verifyLogin, async (req, res) => {
     
     const username = req.user.username;
     const paramId = req.params.id; // Get the :id in the url
     
-    // if user is trying to access mybooking/NotTheirUsername redirect them to their dashboard
+    // if user is trying to access mybookings/NotTheirUsername redirect them to their dashboard
     if (username !== paramId) {
-        res.redirect(`/mybooking/${username}`);
+        res.redirect(`/mybookings/${username}`);
         return;
     }
     
-    let css = `
-        body
-        {
-            font-family: 'Arial', sans-serif;
-        }
-        .top-h2
-        {
-            padding-left: 20px;
-        }
-
-
-        .hide
-        {
-            display: none;
-        }
-
-
-        main a
-        {
-            color: dodgerblue;
-        }
-
-        main
-        {
-            max-width: 1500px;
-            margin: 0 auto;
-            flex: 1;
-        }
-        section
-        {
-            padding: 5px 10px;
-            height: 100%;
-            min-height: 150px;
-            width: 100% - 20px;
-            margin: 20px;
-            background-color: #F9FAFC;
-            border: 1px solid #ccc;
-            /* box-shadow: 1px 1px 5px #0000004D; */
-            border-radius: 5px;
-        }
-
-        .sec
-        {
-            display: block;
-            justify-content: space-between;
-            align-items: center;
-
-            /* display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px; */
-        }
-        .right
-        {
-            margin-left: auto;
-            display: flex;
-            gap: 10px;
-            
-        }
-
-        .category
-        {
-            margin: 20px;
-            color: black;
-        }
-
-        .modify-pill-btn {
-            background-color: transparent;
-            border: 2px solid orange;
-            color: orange;
-            padding: 5px 15px;
-            text-align: center;
-            border-radius: 50px; /* has to be atleast half its height*/
-        }
-        .modify-pill-btn:hover {
-            background: orange;
-            color: white;
-        }
-
-        .hide {
-            display: none;
-        }
-
-        .cancel-pill-btn {
-            background-color: transparent;
-            border: 2px solid red;
-            color: red;
-            padding: 5px 15px;
-            text-align: center;
-            border-radius: 50px; /* has to be atleast half its height*/
-        }
-        .cancel-pill-btn:hover {
-            background: red;
-            color: white;
-        }
-
-        .bottom
-        {
-            padding-left: 20px
-        }
-        body.mybookings-page.darkmode {
-            background-color: #121212;
-            color: #eaeaea;
-        }
-
-        body.mybookings-page.darkmode main {
-            background-color: #1f1f1f;
-            color: #f0f0f0;
-            border-color: #333;
-        }
-
-        body.mybookings-page.darkmode section {
-            background-color: #242424;
-            border: 1px solid #333;
-            color: #ddd;
-        }
-
-        body.mybookings-page.darkmode .modify-pill-btn {
-            border-color: #ffa726;
-            color: #ffa726;
-        }
-        body.mybookings-page.darkmode .modify-pill-btn:hover {
-            background: #ffa726;
-            color: white;
-        }
-
-        body.mybookings-page.darkmode .cancel-pill-btn {
-            border-color: #ef5350;
-            color: #ef5350;
-        }
-        body.mybookings-page.darkmode .cancel-pill-btn:hover {
-            background: #ef5350;
-            color: white;
-        }
-
-        body.mybookings-page.darkmode a {
-            color: #66b2ff;
-        }
-        body.mybookings-page.darkmode a:hover {
-            color: #009dff;
-        }
-    `
-
     // Get all slots that contain the username
     const docs = await RoomModel.find({"slots.bookedBy": username}).select({category: 1, room: 1, day: 1, slots: 1}).lean();
 
@@ -337,7 +194,7 @@ router.get("/mybooking/:id", verifyLogin, async (req, res) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/style.css">
-
+        <link rel="stylesheet" href="../css/mybookings.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -418,8 +275,8 @@ router.get("/mybooking/:id", verifyLogin, async (req, res) => {
                 <div>
                     <h4>For Students</h4>
                     <ul>
-                        <li><a href="booking.html">Browse Resources</a></li>
-                        <li><a href="mybookings.html">My Bookings</a></li>
+                        <li><a href="/booking">Browse Resources</a></li>
+                        <li><a href="/mybookings">My Bookings</a></li>
                         <li><a href="settings.html">Account Settings</a></li>
                     </ul>
                 </div>
@@ -645,5 +502,6 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
 
