@@ -237,7 +237,7 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
         </aside>
 
         <main>
-            <h2 class="top-h2">{username}'s bookings</h2>
+            <h2 class="top-h2">${username}'s bookings</h2>
             <section>
                 <h3>Current</h3>
                 <!--
@@ -499,6 +499,7 @@ function verifyLogin (req,res,next) {
 
 
 export default router;
+
 
 
 
