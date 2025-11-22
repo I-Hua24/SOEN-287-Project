@@ -12,11 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI;
 //app.use(cors({
-//  origin: "http://127.0.0.1:8000",
-//  methods: ["GET", "POST", "PUT", "DELETE"],
-//  credentials: true
+  //origin: "http://127.0.0.1:5501",
+  //methods: ["GET", "POST", "PUT", "DELETE"],
+  //credentials: true
 //}));
-app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
@@ -41,11 +40,7 @@ app.get('/', (req, res) => {
 // Then API routes
 app.use('/api', usersRoutes);
 app.use('/api/auth', authRoutes);
-// Admin routes
-import adminDashboardRoutes from "./routes/adminDashboardRoutes.js";
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true }));
-app.use("/", adminDashboardRoutes);
+
 // Booking Routes
 import bookingRoutes from "./routes/bookingRoutes.js";
 app.use(express.json()); 
