@@ -1,9 +1,9 @@
 
 // Force page reload when using back/forward buttons
-window.addEventListener('pageshow', function(event) {
-    if (event.persisted || performance.getEntriesByType("navigation")[0].type === 'back_forward') {
-        window.location.reload();
-    }
+window.addEventListener('pageshow', function (event) {
+  if (event.persisted || performance.getEntriesByType("navigation")[0].type === 'back_forward') {
+    window.location.reload();
+  }
 });
 
 const menuToggle = document.getElementById("menu-toggle");
@@ -59,8 +59,5 @@ if (signUpBtn) {
   });
 }
 
-  
-
 
 //Search bar logic(doing that during the week)
-
