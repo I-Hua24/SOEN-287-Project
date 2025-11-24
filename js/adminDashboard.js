@@ -1,20 +1,14 @@
-/*document.addEventListener("DOMContentLoaded", () => {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  const userRole = localStorage.getItem("userRole");
-
-  if (!loggedInUser || userRole !== "admin") {
-    alert("Access denied. Admins only.");
-    window.location.href = "signin.html"; 
-}});*/
-
-
     // replace with real data later
-    document.addEventListener("DOMContentLoaded", () => {
-      // Fake stats
-      document.getElementById("stat-total-bookings").textContent = "1,284";
-      document.getElementById("stat-pending").textContent = "7";
-      document.getElementById("stat-resources").textContent = "86";
-      document.getElementById("stat-utilization").textContent = "62%";
+    document.addEventListener("DOMContentLoaded", async () => {
+    
+      const res = await fetch("/api/admin/dashboard/stats", {
+          credentials: "include"
+      });
+      const stats = await res.json();
+      document.getElementById("stat-total-bookings").textContent = stats.totalBookings;
+      document.getElementById("stat-pending").textContent = stats.pendingBookings;
+      document.getElementById("stat-resources").textContent = stats.resources;
+      document.getElementById("stat-utilization").textContent = stats.utilization;
 
       // Modal
       const addBtn = document.getElementById("add-resource");

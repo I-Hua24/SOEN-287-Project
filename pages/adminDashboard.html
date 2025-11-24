@@ -1,4 +1,7 @@
+<!DOCTYPE html>
+<html>
 <!-- Fonts & Icons -->
+<head>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
@@ -157,6 +160,9 @@
       </div>
     </section>
 
+
+
+
        <section class="card" style="margin-top:1rem;">
       <div class="section-header">
         <h2 style="margin:0;">Bookings</h2>
@@ -164,6 +170,21 @@
           <button class="btn ghost" id="export-bookings"><i class="fa-solid fa-file-arrow-down"></i> Export</button>
         </div>
       </div>
+      <!-- Filter bar -->
+      <div class="bookings-controls">
+          <label for="booking-status-filter">Filter by status:</label>
+          <select id="booking-status-filter">
+              <option value="">All</option>
+              <option value="pending">Pending</option>
+              <option value="booked">Approved</option>
+          </select>
+          <button id="refresh-bookings-btn">Refresh</button>
+      </div>
+
+      <!-- Status messages -->
+      <p id="bookings-message" class="info-message"></p>
+
+
       <div class="table-wrap">
         <table class="table" id="bookings-table">
           <thead>
@@ -213,6 +234,8 @@
       </div>
     </section>
 
+
+  <p id="resources-message" class="info-message"></p>
     <!-- Resource Management -->
     <section class="card" style="margin-top:1rem;">
       <div class="section-header">
@@ -221,11 +244,20 @@
           <button class="btn primary" id="add-resource"><i class="fa-solid fa-plus"></i> Add Resource</button>
         </div>
       </div>
+      <!-- Top bar: search + add -->
+      <div class="resources-controls">
+          <input
+                  type="text"
+                  id="resource-search"
+                  placeholder="Search by name, type, location..."
+                  />
+          <button id="refresh-resources-btn">Refresh</button>
+      </div>
       <div class="table-wrap">
         <table class="table" id="resources-table">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Room</th>
               <th>Type</th>
               <th>Location</th>
               <th>Capacity</th>
@@ -344,6 +376,8 @@
 
   <script src="../js/script.js"></script>
   <script src="../js/adminDashboard.js"></script>
+  <script src="../js/adminBookings.js"></script>
+  <script src="../js/adminResources.js"></script>
   <script src="../js/notifications.js"></script>
 
 </body>
