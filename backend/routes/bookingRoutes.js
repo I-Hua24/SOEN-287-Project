@@ -211,9 +211,7 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
             </div>
 
             <nav class="NavButton">
-                <button class="SignIn-btn" id="sign-in">Sign In</button>
-                <button class="GetStarted-btn" id="sign-up">Get Started</button>
-                <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+               
 
                 <label class="switch">
                     <input type="checkbox" id="theme-toggle" />
