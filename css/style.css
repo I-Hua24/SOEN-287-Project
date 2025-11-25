@@ -3,6 +3,26 @@ body {
   padding: 0;
   font-family: 'Arial', sans-serif;
 }
+.notif-panel  {
+  position: fixed;  /* Change from absolute to fixed */
+  top: 70px;        /* Position below header */
+  right: 20px;      /* Position from right edge */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  z-index: 2000;
+  width: 250px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.notif-panel:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .NavBarContainer {
   position: fixed;
@@ -223,27 +243,8 @@ input:checked+.slider::before {
   margin-left: 6px;
 }
 
-.notif-panel {
-  position: absolute;
-  left: 0px;
-  top: 300px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  padding: 10px;
-  z-index: 2000;
-  width: 250px;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
 
-}
 
-.notif-panel:not(.hidden) {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 .notif-panel h3 {
   margin: 0 0 8px 0;
@@ -270,6 +271,38 @@ input:checked+.slider::before {
 #notif-list li:last-child {
   border-bottom: none;
 }
+
+
+
+.notification-item {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border-left: 4px solid #ccc;
+}
+
+.notification-item.announcement {
+    background: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+.notification-item.booking {
+    background: #e8f5e8;
+    border-left-color: #4caf50;
+}
+
+.notification-item.system {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+
+
+
+
+
+
+
 
 .hidden {
   display: none;

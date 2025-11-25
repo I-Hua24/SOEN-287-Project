@@ -21,6 +21,7 @@
     </div>
 
     <nav class="NavButton">
+      <a href="#" id="notif-icon"> <i class="fa-solid fa-bell"></i> <span id="notif-count">0</span></a>
 
       <label class="switch">
         <input type="checkbox" id="theme-toggle" />
@@ -36,12 +37,12 @@
   <aside class="sidebar" id="sidebar">
     <button class="close-btn" id="close-btn">×</button>
     <ul>
-    <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/booking"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
-            <li><a href="/mybookings"><i class="fa-solid fa-book"></i> My Bookings</a></li>
-            <li><a href="../pages/adminDashboard.html" class="admin-link"><i class="fa-solid fa-gears"></i> Admin
-                    Dashboard</a></li>
-                <li><a href="../pages/settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+      <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="/booking"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
+      <li><a href="/mybookings"><i class="fa-solid fa-book"></i> My Bookings</a></li>
+      <li><a href="../pages/adminDashboard.html" class="admin-link"><i class="fa-solid fa-gears"></i> Admin
+          Dashboard</a></li>
+      <li><a href="../pages/settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
       <li><a href="adminUsers.html"><i class="fa-solid fa-users-gear"></i> User Management
         </a>
       </li>
@@ -164,6 +165,10 @@
           </div>
           </section>
 
+    <section class="card" style="margin-top:1rem;">
+      <div class="section-header">
+        <h2 style="margin:0;">Bookings</h2>
+        <div class="actions">
 
       -->
 
@@ -333,6 +338,8 @@
     </section>
   </div>
 
+
+
   <!-- Add Resource -->
   <div class="modal" id="modal-add-resource" role="dialog" aria-modal="true" aria-labelledby="modal-add-title">
     <div class="modal-content">
@@ -383,6 +390,15 @@
     </div>
   </div>
 
+
+
+
+
+
+
+  <!-- Global Confirm Modal -->
+  <div class="modal" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+    <div class="modal-content">
   <!--
       <div class="modal" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
       <div class="modal-content">
@@ -401,6 +417,12 @@
   -->
 
 
+
+  <!-- Notification Panel -->
+  <div id="notif-panel" class="notif-panel hidden">
+    <h3>Notifications</h3>
+    <ul id="notif-list"></ul>
+  </div>
 
   <script src="../js/script.js"></script>
   <script src="../js/adminDashboard.js"></script>

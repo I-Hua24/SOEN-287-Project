@@ -5,6 +5,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import usersRoutes from './routes/usersRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import bookingRoutes from "./routes/bookingRoutes.js";
+import notificationRoutes from './routes/notificationRoutes.js'; // ADD THIS
 import adminDashboardRoutes from "./routes/adminDashboardRoutes.js";
 
 dotenv.config();
@@ -12,6 +14,20 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI;
+
+// ENABLE CORS - UNCOMMENT THIS
+app.use(cors({
+  origin: "http://127.0.0.1:5501",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+// Add this right after the CORS middleware for testing
+app.get('/api/test-simple', (req, res) => {
+  console.log('SIMPLE TEST ROUTE HIT!');
+  res.json({ message: 'Simple test route works!' });
+});
+
 //app.use(cors({
   //origin: "http://127.0.0.1:5501",
   //methods: ["GET", "POST", "PUT", "DELETE"],
@@ -25,8 +41,9 @@ app.use(cookieParser());
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'SOEN-287-PROJECT')));
+
 // Serve the css/js folder at the /css or /js URL path
 app.use("/pages", express.static(path.join(__dirname, "..", "pages")));
 app.use("/css", express.static(path.join(__dirname, "..", "css")));
@@ -39,13 +56,12 @@ app.get('/', (req, res) => {
 
 // Root route FIRST
 
-// Then API routes
+// API routes - ADD NOTIFICATION ROUTES HERE
 app.use('/api', usersRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/notifications', notificationRoutes); // ADD THIS LINE
 
 // Booking Routes
-import bookingRoutes from "./routes/bookingRoutes.js";
-app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use("/", bookingRoutes);
 
@@ -53,12 +69,12 @@ app.use("/", bookingRoutes);
 app.use("/", adminDashboardRoutes);
 
 // Page doesn't exist (404) (Must be placed last)
-app.use((req, res) => {    
-    res.sendFile(path.join(__dirname, "../pages/page404.html"));
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../pages/page404.html"));
 });
 
 // MongoDB connection
-mongoose.connect(MONGO_URI, {dbName: 'ConcoHub_db'})
+mongoose.connect(MONGO_URI, { dbName: 'ConcoHub_db' })
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
