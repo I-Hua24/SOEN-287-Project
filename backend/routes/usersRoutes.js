@@ -25,5 +25,4 @@ router.put('/admin/updateUserRole',verifyTokenMiddleware,isAdminMiddleware,updat
 router.get("/admin/usersByInfo", getUserByInfo);
 
 
-
 export default router;

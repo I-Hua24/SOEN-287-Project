@@ -10,15 +10,23 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+let maintenance = false;
+
 // Booking Routes:
 
 // Get the booking page
 router.get("/booking", verifyLogin, (req, res) => {
 
-    const day = atMidnight();
-    /* await */ ensureSeedFor(day, "study", 10);
+    if (maintenance) {
+        res.sendFile(path.join(__dirname, "../../pages/maintenance.html"));
+    }
+    else {
+            const day = atMidnight();
+        /* await */ ensureSeedFor(day, "study", 10);
 
-    res.sendFile(path.join(__dirname, "../../pages/booking.html"));
+        res.sendFile(path.join(__dirname, "../../pages/booking.html"));
+    }
+
 });
 
 // Post booking page (form) and asign user to a room
@@ -211,9 +219,7 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
             </div>
 
             <nav class="NavButton">
-                <button class="SignIn-btn" id="sign-in">Sign In</button>
-                <button class="GetStarted-btn" id="sign-up">Get Started</button>
-                <button class="SignOut-btn" id="sign-out-btn">Sign Out</button>
+               
 
                 <label class="switch">
                     <input type="checkbox" id="theme-toggle" />
@@ -231,8 +237,8 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
             <ul>
                 <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="/booking"><i class="fa-solid fa-calendar-check"></i> Browse Resources</a></li>
-                <li><a href="adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
-                <li><a href="settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+                <li><a href="../pages/adminDashboard.html" class="active"><i class="fa-solid fa-gears"></i> Admin Dashboard</a></li>
+                <li><a href="../pages/settings.html"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
             </ul>
         </aside>
 
@@ -487,7 +493,7 @@ function verifyLogin (req,res,next) {
         const token = req.cookies.token;//get token from cookies
     
         if(!token){
-            return res.redirect("/login");
+            return res.sendFile(path.join(__dirname, "../../pages/signin.html"));
     }   
         const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);//verify token
         req.user=verifiedToken;//attach user info to request object

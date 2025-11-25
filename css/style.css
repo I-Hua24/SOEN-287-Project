@@ -806,3 +806,93 @@ body.darkmode .features{
 body.darkmode .Available-resources{
   background-color: #121212;
 }
+
+.darkmode.mybookings-page {
+  background-color: #121212;
+}
+
+.darkmode h2.top-h2,
+.darkmode h3 {
+  color: #eaeaea;
+}
+
+.darkmode section {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #ddd;
+}
+
+.darkmode .right button {
+  background-color: #333;
+  color: #ddd;
+  border: 1px solid #555;
+}
+
+.darkmode .right button:hover {
+  background-color: #444;
+}
+
+.darkmode .bottom a {
+  color: #66b2ff;
+}
+
+.darkmode input,
+.darkmode textarea,
+.darkmode select {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+.darkmode p,
+.darkmode span {
+  color: #ccc;
+}
+
+body.mybookings-page.darkmode,
+body.darkmode.mybookings-page {
+  background-color: #121212 !important;
+  color: #eaeaea;
+}
+
+.darkmode main {
+  background-color: #121212 !important;
+}
+
+.darkmode .bottom a {
+  color: #66b2ff;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.search-bar {
+    position: relative;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.suggestion-item:hover {
+    background: #f0f0f0;
+}
+
