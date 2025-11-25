@@ -31,26 +31,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await response.json();
     console.log("Data from backend:", data);
-    
+
     // Handle both possible structures: {user: {...}} or directly {...}
     const loggedInUser = data.user || data;
     console.log("Logged in user:", loggedInUser);
     console.log("User role value:", loggedInUser.role);
     console.log("Role type:", typeof loggedInUser.role);
 
+    // Store User in localStorage: (to stop overriding with notification.js)
+    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    localStorage.setItem('userRole', loggedInUser.role);
+
+    console.log("DEBUG: Stored user in localStorage:", loggedInUser);
+
     // ADMIN PAGE CHECK
-    if (path.endsWith("/pages/adminDashboard.html")||path.endsWith("/pages/adminUsers.html")) {
+    if (path.endsWith("/pages/adminDashboard.html") || path.endsWith("/pages/adminUsers.html")) {
       console.log("Checking admin access...");
       console.log("Is user object present?", !!loggedInUser);
       console.log("Role comparison:", loggedInUser.role, "!==", "admin", "→", loggedInUser.role !== "admin");
-      
+
       if (!loggedInUser || loggedInUser.role !== "admin") {
         console.log(" Access denied");
         alert("Access denied. Admins only.");
         window.location.replace("../pages/signin.html");
         return;
       }
-      
+
       console.log("Admin access granted!");
     }
 
