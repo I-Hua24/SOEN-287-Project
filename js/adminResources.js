@@ -8,9 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function formatDate(dateString) {
     if (!dateString) return "-";
+
     const d = new Date(dateString);
+
     if (Number.isNaN(d.getTime())) return "-";
-    // e.g. 2025-10-15
     return d.toISOString().slice(0, 10);
   }
 
@@ -66,15 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
           >
             ${r.isBlocked ? "Unblock" : "Block"}
           </button>
-          <button class="btn-small btn-edit" data-id="${r._id}">
-            Edit
-          </button>
           <button class="btn-small btn-delete" data-id="${r._id}">
             Delete
           </button>
         </td>
       `;
 
+        // <button class="btn-small btn-edit" data-id="${r._id}">
+        //     Edit
+        //     </button>
       tableBody.appendChild(tr);
     });
   }
@@ -146,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Event listeners
   searchInput.addEventListener("input", () => {
     renderResources();
   });
@@ -168,11 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (target.classList.contains("btn-delete")) {
       deleteResource(id);
     } else if (target.classList.contains("btn-edit")) {
-      // here you could open a modal, or navigate to /admin/resources/:id/edit
       alert("Edit UI not implemented yet (you can add a form/modal for this).");
     }
   });
 
-  // Initial load
   loadResources();
 });

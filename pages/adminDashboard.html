@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- Fonts & Icons -->
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
@@ -98,78 +97,87 @@
     </section>
 
     <!-- Filters -->
-    <section class="card" style="margin-top:1rem;">
-      <div class="section-header">
+    <!-- 
+
+        <section class="card" style="margin-top:1rem;">
+        <div class="section-header">
         <h2 style="margin:0;">Filters</h2>
         <div class="actions">
-          <button class="btn ghost" id="reset-filters"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-          <button class="btn primary" id="apply-filters"><i class="fa-solid fa-filter"></i> Apply</button>
+        <button class="btn ghost" id="reset-filters"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        <button class="btn primary" id="apply-filters"><i class="fa-solid fa-filter"></i> Apply</button>
         </div>
-      </div>
-      <div class="toolbar">
-        <div class="field">
-          <label for="filter-from">From</label>
-          <input type="date" id="filter-from" />
         </div>
+        <div class="toolbar">
         <div class="field">
-          <label for="filter-to">To</label>
-          <input type="date" id="filter-to" />
+        <label for="filter-from">From</label>
+        <input type="date" id="filter-from" />
         </div>
         <div class="field">
-          <label for="filter-type">Resource Type</label>
-          <select id="filter-type">
-            <option value="">All</option>
-            <option>Study Room</option>
-            <option>Lab</option>
-            <option>Equipment</option>
-            <option>Sport Facility</option>
-          </select>
+        <label for="filter-to">To</label>
+        <input type="date" id="filter-to" />
         </div>
         <div class="field">
-          <label for="filter-status">Status</label>
-          <select id="filter-status">
-            <option value="">Any</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
+        <label for="filter-type">Resource Type</label>
+        <select id="filter-type">
+        <option value="">All</option>
+        <option>Study Room</option>
+        <option>Lab</option>
+        <option>Equipment</option>
+        <option>Sport Facility</option>
+        </select>
+        </div>
+        <div class="field">
+        <label for="filter-status">Status</label>
+        <select id="filter-status">
+        <option value="">Any</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+        <option value="cancelled">Cancelled</option>
+        </select>
         </div>
         <div class="field" style="flex:1;">
-          <label for="filter-search">Search</label>
-          <input type="text" id="filter-search" placeholder="Search by user, resource, purpose…" />
+        <label for="filter-search">Search</label>
+        <input type="text" id="filter-search" placeholder="Search by user, resource, purpose…" />
         </div>
-      </div>
-    </section>
+        </div>
+        </section>
+    -->
 
     <!-- Charts Placeholders -->
-    <section class="grid cols-2" style="margin-top:1rem;">
-      <div class="card">
-        <h3>Bookings Over Time</h3>
-        <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
+
+
+      <!--
+          <section class="grid cols-2" style="margin-top:1rem;">
+          <div class="card">
+          <h3>Bookings Over Time</h3>
+          <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
           <canvas id="chart-bookings" width="520" height="240" aria-label="Bookings over time"></canvas>
-        </div>
-        <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart later.</p>
-      </div>
-      <div class="card">
-        <h3>Resource Utilization</h3>
-        <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
+          </div>
+          <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart later.</p>
+          </div>
+          <div class="card">
+          <h3>Resource Utilization</h3>
+          <div style="height:280px; display:grid; place-items:center; border:1px dashed #e5e7eb; border-radius:12px;">
           <canvas id="chart-utilization" width="520" height="240" aria-label="Resource utilization"></canvas>
-        </div>
-        <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart.>
-      </div>
-    </section>
+          </div>
+          <p class="muted" style="margin-top:.5rem;">TODO: Render with a chart.>
+          </div>
+          </section>
 
 
+      -->
 
 
-       <section class="card" style="margin-top:1rem;">
-      <div class="section-header">
-        <h2 style="margin:0;">Bookings</h2>
-        <div class="actions">
+          <section class="card" style="margin-top:1rem;">
+          <div class="section-header">
+          <h2 style="margin:0;">Bookings</h2>
+          <div class="actions">
           <button class="btn ghost" id="export-bookings"><i class="fa-solid fa-file-arrow-down"></i> Export</button>
-        </div>
-      </div>
+          </div>
+          </div>
+
+
       <!-- Filter bar -->
       <div class="bookings-controls">
           <label for="booking-status-filter">Filter by status:</label>
@@ -201,34 +209,39 @@
           </thead>
           <tbody>
             <!-- Example rows (replace with JS-rendered rows) -->
-            <tr>
-              <td>1024</td>
-              <td>jane.doe@concordia.ca</td>
-              <td>Study Room A-204</td>
-              <td>2025-10-22</td>
-              <td>13:00-15:00</td>
-              <td>Group study</td>
-              <td><span class="badge pending">Pending</span></td>
-              <td class="actions">
+
+
+            <!--
+
+                <tr>
+                <td>1024</td>
+                <td>jane.doe@concordia.ca</td>
+                <td>Study Room A-204</td>
+                <td>2025-10-22</td>
+                <td>13:00-15:00</td>
+                <td>Group study</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td class="actions">
                 <button class="btn ghost" data-action="approve"><i class="fa-solid fa-check"></i> Approve</button>
                 <button class="btn ghost" data-action="reject"><i class="fa-solid fa-xmark"></i> Reject</button>
                 <button class="btn ghost" data-action="cancel"><i class="fa-solid fa-ban"></i> Cancel</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1025</td>
-              <td>jhon.doe@concordia.ca</td>
-              <td>Lab E-112</td>
-              <td>2025-10-23</td>
-              <td>09:00–12:00</td>
-              <td>Chem project</td>
-              <td><span class="badge approved">Approved</span></td>
-              <td class="actions">
+                </td>
+                </tr>
+                <tr>
+                <td>1025</td>
+                <td>jhon.doe@concordia.ca</td>
+                <td>Lab E-112</td>
+                <td>2025-10-23</td>
+                <td>09:00–12:00</td>
+                <td>Chem project</td>
+                <td><span class="badge approved">Approved</span></td>
+                <td class="actions">
                 <button class="btn ghost" data-action="details"><i class="fa-solid fa-eye"></i> Details</button>
                 <button class="btn ghost" data-action="cancel"><i class="fa-solid fa-ban"></i> Cancel</button>
-              </td>
-            </tr>
-            <!-- /Example rows -->
+                </td>
+                </tr>
+            -->
+            
           </tbody>
         </table>
       </div>
@@ -267,30 +280,34 @@
           </thead>
           <tbody>
             <!-- Example rows  -->
-            <tr>
-              <td>Study Room A-204</td>
-              <td>Study Room</td>
-              <td>Library, 2nd Floor</td>
-              <td>6</td>
-              <td>Mon–Fri 08:00–20:00</td>
-              <td class="actions">
+
+            <!--
+                <tr>
+                <td>Study Room A-204</td>
+                <td>Study Room</td>
+                <td>Library, 2nd Floor</td>
+                <td>6</td>
+                <td>Mon–Fri 08:00–20:00</td>
+                <td class="actions">
                 <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
                 <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
                 <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Gym Court 1</td>
-              <td>Sport Facility</td>
-              <td>Complexe Sportif</td>
-              <td>—</td>
-              <td>Daily 07:00–22:00</td>
-              <td class="actions">
+                </td>
+                </tr>
+                <tr>
+                <td>Gym Court 1</td>
+                <td>Sport Facility</td>
+                <td>Complexe Sportif</td>
+                <td>—</td>
+                <td>Daily 07:00–22:00</td>
+                <td class="actions">
                 <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
                 <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
                 <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
-              </td>
-            </tr>
+                </td>
+                </tr>
+
+            -->
             <!-- /Example rows -->
           </tbody>
         </table>
@@ -317,7 +334,7 @@
     </section>
   </div>
 
-  <!-- `Add Resource` Modal -->
+  <!-- Add Resource -->
   <div class="modal" id="modal-add-resource" role="dialog" aria-modal="true" aria-labelledby="modal-add-title">
     <div class="modal-content">
       <div class="modal-header">
@@ -348,7 +365,6 @@
         </div>
         <div class="field" style="grid-column: 1 / -1;">
           <label for="res-availability">Availability</label>
-          <!--  <input id="res-availability" type="text" placeholder="e.g., Mon–Fri 08:00–20:00" /> --> 
           <div class="field">
               <label for="add-resource-from">From</label>
               <input type="date" id="add-resource-from" />
@@ -368,20 +384,23 @@
     </div>
   </div>
 
-  <!-- Global Confirm Modal -->
-  <div class="modal" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
-    <div class="modal-content">
+  <!--
+      <div class="modal" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+      <div class="modal-content">
       <div class="modal-header">
-        <h3 id="modal-confirm-title">Confirm Action</h3>
-        <button class="btn ghost" id="close-confirm-modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="modal-confirm-title">Confirm Action</h3>
+      <button class="btn ghost" id="close-confirm-modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <p id="confirm-message">Are you sure?</p>
       <div class="modal-actions">
-        <button class="btn ghost" id="confirm-cancel">Cancel</button>
-        <button class="btn primary" id="confirm-ok">Yes, proceed</button>
+      <button class="btn ghost" id="confirm-cancel">Cancel</button>
+      <button class="btn primary" id="confirm-ok">Yes, proceed</button>
       </div>
-    </div>
-  </div>
+      </div>
+      </div>
+
+  -->
+
 
 
   <script src="../js/script.js"></script>

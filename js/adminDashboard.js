@@ -1,4 +1,3 @@
-    // replace with real data later
     document.addEventListener("DOMContentLoaded", async () => {
     
       const res = await fetch("/api/admin/dashboard/stats", {
@@ -10,18 +9,17 @@
       document.getElementById("stat-resources").textContent = stats.resources;
       document.getElementById("stat-utilization").textContent = stats.utilization;
 
-      // Modal
       const addBtn = document.getElementById("add-resource");
       const addModal = document.getElementById("modal-add-resource");
       const closeAdd = document.getElementById("close-add-modal");
       const cancelAdd = document.getElementById("cancel-add");
       const saveAdd = document.getElementById("save-add");
 
-      const confirmModal = document.getElementById("modal-confirm");
-      const confirmMsg = document.getElementById("confirm-message");
-      const confirmOk = document.getElementById("confirm-ok");
-      const confirmCancel = document.getElementById("confirm-cancel");
-      const closeConfirm = document.getElementById("close-confirm-modal");
+      // const confirmModal = document.getElementById("modal-confirm");
+      // const confirmMsg = document.getElementById("confirm-message");
+      // const confirmOk = document.getElementById("confirm-ok");
+      // const confirmCancel = document.getElementById("confirm-cancel");
+      // const closeConfirm = document.getElementById("close-confirm-modal");
 
       function open(el){ el.classList.add("active"); }
       function close(el){ el.classList.remove("active"); }
@@ -37,7 +35,6 @@
               msgEl.style.color = "";
           }
 
-          // 1. Read values from the modal inputs
           const name = document.getElementById("res-name").value.trim();
           const type = document.getElementById("res-type").value.trim();
           const location = document.getElementById("res-location").value.trim();
@@ -47,7 +44,6 @@
 
           const capacity = Number(capacityValue);
 
-          // 2. Basic front-end validation
           if (!name || !type || !location || !availabilityFrom|| !availabilityTo) {
               alert("Please fill in all required fields.");
               return;
@@ -67,7 +63,6 @@
           };
 
           try {
-              // 4. Call your backend API
               const res = await fetch("/api/admin/resources", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -89,11 +84,9 @@
               const resource = data.resource;
               console.log("Resource created:", data.resource);
 
-              // 5. Optionally update the table immediately
               const tbody = document.querySelector("#resources-table tbody");
               if (tbody) {
                   const tr = document.createElement("tr");
-                  // format dates
                   const fromText = resource.availabilityFrom ? new Date(resource.availabilityFrom).toISOString().slice(0, 10) : availablityFrom
                   const toText = resource.availabilityTo ? new Date(resource.availabilityTo).toISOString().slice(0, 10) : availablityTo
 
@@ -104,31 +97,28 @@
         <td>${resource.capacity}</td>
         <td>${fromText} -> ${toText}</td>
         <td class="actions">
-          <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
           <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
           <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
         </td>
       `;
+          // edit button        <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
                   tbody.appendChild(tr);
               }
 
-              // 6. Clear inputs + close modal
               document.getElementById("res-name").value = "";
               document.getElementById("res-location").value = "";
               document.getElementById("res-capacity").value = "";
               document.getElementById("res-availability").value = "";
-              // optional: reset type to first option
               document.getElementById("res-type").selectedIndex = 0;
 
               close(addModal);
           } catch (err) {
               console.error(err);
-              alert("Network error while creating resource. Please try again.");
+              // alert("Network error while creating resource. Please try again.");
           }
       });
     });
 
-      // Actions on bookings/resources (approve/reject/etc.)
         document.body.addEventListener("click", (e) => {
         const btn = e.target.closest("[data-action]");
         if(!btn) return;
@@ -154,7 +144,6 @@
         closeConfirm.addEventListener("click", onCancel);
       });
 
-      // Filters 
       document.getElementById("apply-filters")?.addEventListener("click", ()=> {
         alert("Filters applied (demo).");
       });

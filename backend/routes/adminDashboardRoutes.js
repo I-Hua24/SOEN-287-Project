@@ -13,10 +13,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 router.get("/adminDashboard", (req, res) => {
-
-    //   const day = atMidnight();
-    //    /* await */ ensureSeedFor(day, "study", 10);
-
     res.sendFile(path.join(__dirname, "../../pages/adminDashboard.html"));
 });
 
@@ -60,11 +56,8 @@ router.get(
   }
 );
 
-/**
- * GET /api/admin/bookings
- * Returns all non-free time slots across all rooms
- * Optional query: ?status=pending or ?status=booked
- */
+ // GET /api/admin/bookings
+ // Returns all non-free time slots across all rooms
 router.get(
   "/api/admin/bookings",
   verifyTokenMiddleware,
@@ -157,10 +150,8 @@ router.patch(
     }
 );
 
-/**
- * GET /api/admin/resources
- * List all resources
- */
+ // GET /api/admin/resources
+ // List all resources
 router.get(
   "/api/admin/resources",
   verifyTokenMiddleware,
@@ -180,10 +171,8 @@ router.get(
 
 
 
-/**
- * POST /api/admin/resources
- * Create a new resource
- */
+ // POST /api/admin/resources
+ // Create a new resource
 router.post(
   "/api/admin/resources",
   verifyTokenMiddleware,
@@ -214,10 +203,8 @@ router.post(
   }
 );
 
-/**
- * PUT /api/admin/resources/:id
- * Update an existing resource
- */
+ // PUT /api/admin/resources/:id
+ // Update an existing resource
 router.put(
   "/api/admin/resources/:id",
   verifyTokenMiddleware,
@@ -248,10 +235,8 @@ router.put(
   }
 );
 
-/**
- * DELETE /api/admin/resources/:id
- * Delete a resource
- */
+ // DELETE /api/admin/resources/:id
+ // Delete a resource
 router.delete(
   "/api/admin/resources/:id",
   verifyTokenMiddleware,
@@ -275,10 +260,7 @@ router.delete(
   }
 );
 
-/**
- * PATCH /api/admin/resources/:id/block
- * Body: { isBlocked: true/false }
- */
+ // PATCH /api/admin/resources/:id/block
 router.patch(
   "/api/admin/resources/:id/block",
   verifyTokenMiddleware,

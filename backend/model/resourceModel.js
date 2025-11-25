@@ -8,7 +8,6 @@ const resourceSchema = new mongoose.Schema(
       trim: true,
     },
     type: {
-      // e.g. "Study Room", "Lab", "Sports Facility", "Equipment"
       type: String,
       required: true,
       trim: true,
@@ -31,11 +30,6 @@ const resourceSchema = new mongoose.Schema(
         type: Date,
         required: true
     },
-    // availability: {
-      // Simple human-readable string for now ("Mon–Fri 08:00–20:00")
-      //type: String,
-      // required: true,
-    //},
     description: {
       type: String,
       default: "",

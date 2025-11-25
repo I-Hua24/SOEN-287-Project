@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (status) params.append("status", status);
 
       const res = await fetch(`/api/admin/bookings?${params.toString()}`, {
-        credentials: "include", // send cookies/JWT
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -55,20 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
         `;
 
-        // Disable actions based on status
         const approveBtn = tr.querySelector(".btn-approve");
         const rejectBtn = tr.querySelector(".btn-reject");
         const cancelBtn = tr.querySelector(".btn-cancel");
 
         if (b.status === "pending") {
-          // can approve or reject
           cancelBtn.disabled = true;
         } else if (b.status === "booked") {
-          // can cancel but not approve/reject
           approveBtn.disabled = true;
           rejectBtn.disabled = true;
         } else {
-          // free or other
           approveBtn.disabled = true;
           rejectBtn.disabled = true;
           cancelBtn.disabled = true;
@@ -103,22 +99,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Option 1: reload everything
       await loadBookings();
 
-      // Option 2: update status in-place (if you want to optimize)
     } catch (err) {
       console.error(err);
       alert(`Error when trying to ${action} booking.`);
     }
   }
 
-  // Event listeners
 
   statusFilter.addEventListener("change", loadBookings);
   refreshBtn.addEventListener("click", loadBookings);
 
-  // Use event delegation for buttons inside the table
   tableBody.addEventListener("click", (e) => {
     const target = e.target;
     if (!(target instanceof HTMLElement)) return;
@@ -135,6 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial load
   loadBookings();
 });
