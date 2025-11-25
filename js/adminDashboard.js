@@ -1,12 +1,3 @@
-/*document.addEventListener("DOMContentLoaded", () => {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  const userRole = localStorage.getItem("userRole");
-
-  if (!loggedInUser || userRole !== "admin") {
-    alert("Access denied. Admins only.");
-    window.location.href = "signin.html"; 
-}});*/
-
 
     // replace with real data later
     document.addEventListener("DOMContentLoaded", () => {
