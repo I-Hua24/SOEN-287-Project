@@ -7,6 +7,7 @@ import usersRoutes from './routes/usersRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import bookingRoutes from "./routes/bookingRoutes.js";
 import notificationRoutes from './routes/notificationRoutes.js'; // ADD THIS
+import adminDashboardRoutes from "./routes/adminDashboardRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,12 @@ app.get('/api/test-simple', (req, res) => {
   res.json({ message: 'Simple test route works!' });
 });
 
+//app.use(cors({
+  //origin: "http://127.0.0.1:5501",
+  //methods: ["GET", "POST", "PUT", "DELETE"],
+  //credentials: true
+//}));
+app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
@@ -57,6 +64,9 @@ app.use('/api/notifications', notificationRoutes); // ADD THIS LINE
 // Booking Routes
 app.use(express.urlencoded({ extended: true }));
 app.use("/", bookingRoutes);
+
+// admin routes
+app.use("/", adminDashboardRoutes);
 
 // Page doesn't exist (404) (Must be placed last)
 app.use((req, res) => {

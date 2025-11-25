@@ -280,15 +280,15 @@ router.get("/mybookings/:id", verifyLogin, async (req, res) => {
                     <ul>
                         <li><a href="/booking">Browse Resources</a></li>
                         <li><a href="/mybookings">My Bookings</a></li>
-                        <li><a href="settings.html">Account Settings</a></li>
+                        <li><a href="../pages/settings.html">Account Settings</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>For Administrators</h4>
                     <ul>
-                        <li><a href="adminDashboard.html" class="admin-link">Admin Dashboard</a></li>
-                        <li><a href="adminDashboard.html" class="admin-link">Manage Resources</a></li>
-                        <li><a href="adminDashboard.html" class="admin-link">Set Availability</a></li>
+                        <li><a href="../pages/adminDashboard.html" class="admin-link">Admin Dashboard</a></li>
+                        <li><a href="/booking" class="admin-link">Manage Resources</a></li>
+                        <li><a href="../pages/adminDashboard.html" class="admin-link">Set Availability</a></li>
                     </ul>
                 </div>
                 <div>
