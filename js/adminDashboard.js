@@ -29,14 +29,107 @@
       addBtn?.addEventListener("click", ()=> open(addModal));
       closeAdd?.addEventListener("click", ()=> close(addModal));
       cancelAdd?.addEventListener("click", ()=> close(addModal));
-      saveAdd?.addEventListener("click", ()=> {
-        // TODO: validate + push to storage
-        alert("Resource saved (demo).");
-        close(addModal);
+      saveAdd?.addEventListener("click", async ()=> {
+
+          const msgEl = document.getElementById("create-resource-message"); // optional if you add one
+          if (msgEl) {
+              msgEl.textContent = "";
+              msgEl.style.color = "";
+          }
+
+          // 1. Read values from the modal inputs
+          const name = document.getElementById("res-name").value.trim();
+          const type = document.getElementById("res-type").value.trim();
+          const location = document.getElementById("res-location").value.trim();
+          const capacityValue = document.getElementById("res-capacity").value;
+          const availabilityFrom = new Date(document.getElementById("add-resource-from").value);
+          const availabilityTo = new Date(document.getElementById("add-resource-to").value);
+
+          const capacity = Number(capacityValue);
+
+          // 2. Basic front-end validation
+          if (!name || !type || !location || !availabilityFrom|| !availabilityTo) {
+              alert("Please fill in all required fields.");
+              return;
+          }
+          if (!capacity || capacity < 1) {
+              alert("Capacity must be at least 1.");
+              return;
+          }
+
+          const payload = {
+              name,
+              type,
+              location,
+              capacity,
+              availabilityFrom, // new Date() in backend
+              availabilityTo, // new Date() in backend
+          };
+
+          try {
+              // 4. Call your backend API
+              const res = await fetch("/api/admin/resources", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  credentials: "include",
+                  body: JSON.stringify(payload),
+              });
+
+              if (!res.ok) {
+                  let errorMsg = `Error: ${res.status}`;
+                  try {
+                      const data = await res.json();
+                      if (data.message) errorMsg = data.message;
+                  } catch (_) {}
+                  alert(errorMsg);
+                  return;
+              }
+
+              const data = await res.json();
+              const resource = data.resource;
+              console.log("Resource created:", data.resource);
+
+              // 5. Optionally update the table immediately
+              const tbody = document.querySelector("#resources-table tbody");
+              if (tbody) {
+                  const tr = document.createElement("tr");
+                  // format dates
+                  const fromText = resource.availabilityFrom ? new Date(resource.availabilityFrom).toISOString().slice(0, 10) : availablityFrom
+                  const toText = resource.availabilityTo ? new Date(resource.availabilityTo).toISOString().slice(0, 10) : availablityTo
+
+                  tr.innerHTML = `
+        <td>${resource.name}</td>
+        <td>${resource.type}</td>
+        <td>${resource.location}</td>
+        <td>${resource.capacity}</td>
+        <td>${fromText} -> ${toText}</td>
+        <td class="actions">
+          <button class="btn ghost" data-action="edit"><i class="fa-solid fa-pen"></i> Edit</button>
+          <button class="btn ghost" data-action="block"><i class="fa-solid fa-lock"></i> Block</button>
+          <button class="btn ghost" data-action="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+        </td>
+      `;
+                  tbody.appendChild(tr);
+              }
+
+              // 6. Clear inputs + close modal
+              document.getElementById("res-name").value = "";
+              document.getElementById("res-location").value = "";
+              document.getElementById("res-capacity").value = "";
+              document.getElementById("res-availability").value = "";
+              // optional: reset type to first option
+              document.getElementById("res-type").selectedIndex = 0;
+
+              close(addModal);
+          } catch (err) {
+              console.error(err);
+              alert("Network error while creating resource. Please try again.");
+          }
       });
+    });
 
       // Actions on bookings/resources (approve/reject/etc.)
-      document.body.addEventListener("click", (e) => {
+        document.body.addEventListener("click", (e) => {
         const btn = e.target.closest("[data-action]");
         if(!btn) return;
         const action = btn.dataset.action;
@@ -72,4 +165,3 @@
           if (el.tagName === "SELECT" || el.type === "text" || el.type === "date") el.value = "";
         });
       });
-    });

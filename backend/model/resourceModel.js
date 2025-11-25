@@ -23,11 +23,19 @@ const resourceSchema = new mongoose.Schema(
       required: true,
       min: 1,
     },
-    availability: {
-      // Simple human-readable string for now ("Mon–Fri 08:00–20:00")
-      type: String,
-      required: true,
+    availabilityFrom: {
+        type: Date,
+        required: true
     },
+    availabilityTo: {
+        type: Date,
+        required: true
+    },
+    // availability: {
+      // Simple human-readable string for now ("Mon–Fri 08:00–20:00")
+      //type: String,
+      // required: true,
+    //},
     description: {
       type: String,
       default: "",

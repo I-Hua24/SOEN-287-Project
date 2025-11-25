@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import RoomModel from "../model/roomModel.js";
 
 import { verifyTokenMiddleware, isAdminMiddleware} from "../middleware/authMiddleware.js";
+import ResourceModel from "../model/resourceModel.js";
 
 const router = express.Router();
 
@@ -158,7 +159,7 @@ router.patch(
 
 /**
  * GET /api/admin/resources
- * List all rooms
+ * List all resources
  */
 router.get(
   "/api/admin/resources",
@@ -166,8 +167,8 @@ router.get(
   isAdminMiddleware,
   async (req, res) => {
     try {
-      const rooms = await RoomModel.find().lean();
-      res.json({ rooms });
+      const resources = await ResourceModel.find().lean();
+      res.json({ resources });
     } catch (err) {
       res.status(500).json({
         message: "Error fetching resources",
@@ -189,7 +190,7 @@ router.post(
   isAdminMiddleware,
   async (req, res) => {
     try {
-      const { name, type, location, capacity, availability, description, imageUrl } =
+      const { name, type, location, capacity, availabilityFrom, availabilityTo, description } =
         req.body;
 
       const resource = new ResourceModel({
@@ -197,9 +198,9 @@ router.post(
         type,
         location,
         capacity,
-        availability,
+        availabilityFrom,
+        availabilityTo,
         description,
-        imageUrl,
       });
 
       await resource.save();
@@ -212,4 +213,99 @@ router.post(
     }
   }
 );
+
+/**
+ * PUT /api/admin/resources/:id
+ * Update an existing resource
+ */
+router.put(
+  "/api/admin/resources/:id",
+  verifyTokenMiddleware,
+  isAdminMiddleware,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, type, location, capacity, availabilityFrom, availabilityTo, description, imageUrl, isBlocked } =
+        req.body;
+
+      const updated = await ResourceModel.findByIdAndUpdate(
+        id,
+        { name, type, location, capacity, availabilityFrom, availabilityTo, description, imageUrl, isBlocked },
+        { new: true, runValidators: true }
+      );
+
+      if (!updated) {
+        return res.status(404).json({ message: "Resource not found" });
+      }
+
+      res.json({ message: "Resource updated", resource: updated });
+    } catch (err) {
+      res.status(500).json({
+        message: "Error updating resource",
+        error: err.message,
+      });
+    }
+  }
+);
+
+/**
+ * DELETE /api/admin/resources/:id
+ * Delete a resource
+ */
+router.delete(
+  "/api/admin/resources/:id",
+  verifyTokenMiddleware,
+  isAdminMiddleware,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const deleted = await ResourceModel.findByIdAndDelete(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Resource not found" });
+      }
+
+      res.json({ message: "Resource deleted" });
+    } catch (err) {
+      res.status(500).json({
+        message: "Error deleting resource",
+        error: err.message,
+      });
+    }
+  }
+);
+
+/**
+ * PATCH /api/admin/resources/:id/block
+ * Body: { isBlocked: true/false }
+ */
+router.patch(
+  "/api/admin/resources/:id/block",
+  verifyTokenMiddleware,
+  isAdminMiddleware,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { isBlocked } = req.body;
+
+      const updated = await ResourceModel.findByIdAndUpdate(
+        id,
+        { isBlocked: !!isBlocked },
+        { new: true }
+      );
+
+      if (!updated) {
+        return res.status(404).json({ message: "Resource not found" });
+      }
+
+      res.json({ message: "Resource block status updated", resource: updated });
+    } catch (err) {
+      res.status(500).json({
+        message: "Error updating resource block status",
+        error: err.message,
+      });
+    }
+  }
+);
+
 export default router;

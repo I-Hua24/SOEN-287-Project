@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tableBody = document.querySelector("#resources-table tbody");
   const messageEl = document.getElementById("resources-message");
-//  const searchInput = document.getElementById("resource-search");
+  const searchInput = document.getElementById("resource-search");
   const refreshBtn = document.getElementById("refresh-resources-btn");
 
   let allResources = [];
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderResources() {
-    // const query = (searchInput.value || "").toLowerCase().trim();
+    const query = (searchInput.value || "").toLowerCase().trim();
     tableBody.innerHTML = "";
 
     const filtered = allResources.filter((r) => {
@@ -147,9 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Event listeners
-  // searchInput.addEventListener("input", () => {
-    // renderResources();
-  // });
+  searchInput.addEventListener("input", () => {
+    renderResources();
+  });
 
   refreshBtn.addEventListener("click", () => {
     loadResources();

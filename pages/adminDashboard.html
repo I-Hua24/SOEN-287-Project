@@ -348,8 +348,18 @@
         </div>
         <div class="field" style="grid-column: 1 / -1;">
           <label for="res-availability">Availability</label>
-          <input id="res-availability" type="text" placeholder="e.g., Mon–Fri 08:00–20:00" />
+          <!--  <input id="res-availability" type="text" placeholder="e.g., Mon–Fri 08:00–20:00" /> --> 
+          <div class="field">
+              <label for="add-resource-from">From</label>
+              <input type="date" id="add-resource-from" />
+          </div>
+          <div class="field">
+              <label for="add-resource-to">To</label>
+              <input type="date" id="add-resource-to" />
+          </div>
         </div>
+
+
       </div>
       <div class="modal-actions">
         <button class="btn ghost" id="cancel-add">Cancel</button>
