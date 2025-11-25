@@ -100,6 +100,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const appTitle = document.querySelector(".logo");
     const signInBtn = document.getElementById("sign-in");
     const signUpBtn = document.getElementById("sign-up");
+    const ctaBtn = document.getElementById("cta-btn");
+
 
     console.log("Found logo:", appTitle);
 
@@ -130,6 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (signInBtn) signInBtn.style.display = "none";
             if (signUpBtn) signUpBtn.style.display = "none";
+            if(ctaBtn) ctaBtn.style.display="none"
         }
 
         if (loggedInUser && signOutBtn) {
@@ -166,11 +169,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert("You have been logged out successfully!");
-            
+
             // Replace current history entry to prevent back button
             window.history.replaceState(null, null, window.location.href);
             window.location.replace("../pages/signin.html");
-            
+
         } catch (error) {
             console.error("Error during sign-out:", error);
             alert("Sign-out failed. Please try again.");
@@ -179,16 +182,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Prevent browser from showing cached page after logout
-window.addEventListener('pageshow', function(event) {
+window.addEventListener('pageshow', function (event) {
     if (event.persisted) {
         window.location.reload();
     }
 });
 
 // Disable back button after logout
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     window.history.pushState(null, null, window.location.href);
-    window.addEventListener('popstate', function() {
+    window.addEventListener('popstate', function () {
         window.history.pushState(null, null, window.location.href);
     });
 });
@@ -197,6 +200,8 @@ window.addEventListener('load', function() {
 document.addEventListener("DOMContentLoaded", async () => {
     const browseBtn = document.getElementById("Browse-Btn");
     const adminBtn = document.getElementById("admin-btn");
+    const ctaBtn = document.getElementById("cta-btn");
+
 
     try {
         const response = await fetch("http://127.0.0.1:8000/api/auth/me", {
@@ -223,9 +228,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 //if (!loggedInUser || loggedInUser.role !== "admin") {
                 //    alert("Access denied. Admins only.");
-                    //window.location.href = "../pages/signin.html";
-               //     return;
-               // }
+                //window.location.href = "../pages/signin.html";
+                //     return;
+                // }
                 window.location.href = "../pages/adminDashboard.html";
 
 

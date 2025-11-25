@@ -44,7 +44,7 @@ const signInBtn = document.getElementById("sign-in");
 const signUpBtn = document.getElementById("sign-up");
 const browseBtn = document.getElementById("Browse-Btn");
 const adminBtn = document.getElementById("admin-btn");
-const ctaBtn = document.getElementById("cta-btn");
+const ctaBtn = document.getElementById("ctaBtn");
 
 if (signInBtn) {
   signInBtn.addEventListener("click", () => {
@@ -54,6 +54,12 @@ if (signInBtn) {
 
 if (signUpBtn) {
   signUpBtn.addEventListener("click", () => {
+    window.location.href = "../pages/signup.html";
+  });
+}
+
+if (ctaBtn) {
+  ctaBtn.addEventListener("click", () => {
     window.location.href = "../pages/signup.html";
   });
 }
@@ -75,13 +81,11 @@ const pageRoutes = {
     help: "/pages/support.html"
 };
 
-// 🔥 Live suggestions while typing
 searchInput.addEventListener("input", function () {
     const query = searchInput.value.trim().toLowerCase();
     showSuggestions(query);
 });
 
-// 🔥 Press Enter = pick first suggestion
 searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         const firstSuggestion = suggestionsBox.querySelector(".suggestion-item");
