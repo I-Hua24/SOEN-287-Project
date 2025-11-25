@@ -5,17 +5,28 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import usersRoutes from './routes/usersRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import bookingRoutes from "./routes/bookingRoutes.js";
+import notificationRoutes from './routes/notificationRoutes.js'; // ADD THIS
 
 dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI;
-//app.use(cors({
-//origin: "http://127.0.0.1:5501",
-//methods: ["GET", "POST", "PUT", "DELETE"],
-//credentials: true
-//}));
+
+// ENABLE CORS - UNCOMMENT THIS
+app.use(cors({
+  origin: "http://127.0.0.1:5501",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+// Add this right after the CORS middleware for testing
+app.get('/api/test-simple', (req, res) => {
+  console.log('SIMPLE TEST ROUTE HIT!');
+  res.json({ message: 'Simple test route works!' });
+});
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -38,12 +49,12 @@ app.get('/', (req, res) => {
 
 // Root route FIRST
 
-// Then API routes
+// API routes - ADD NOTIFICATION ROUTES HERE
 app.use('/api', usersRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/notifications', notificationRoutes); // ADD THIS LINE
 
 // Booking Routes
-import bookingRoutes from "./routes/bookingRoutes.js";
 app.use(express.urlencoded({ extended: true }));
 app.use("/", bookingRoutes);
 
