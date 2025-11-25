@@ -10,15 +10,23 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+let maintenance = false;
+
 // Booking Routes:
 
 // Get the booking page
 router.get("/booking", verifyLogin, (req, res) => {
 
-    const day = atMidnight();
-    /* await */ ensureSeedFor(day, "study", 10);
+    if (maintenance) {
+        res.sendFile(path.join(__dirname, "../../pages/maintenance.html"));
+    }
+    else {
+            const day = atMidnight();
+        /* await */ ensureSeedFor(day, "study", 10);
 
-    res.sendFile(path.join(__dirname, "../../pages/booking.html"));
+        res.sendFile(path.join(__dirname, "../../pages/booking.html"));
+    }
+
 });
 
 // Post booking page (form) and asign user to a room
@@ -485,7 +493,7 @@ function verifyLogin (req,res,next) {
         const token = req.cookies.token;//get token from cookies
     
         if(!token){
-            return res.redirect("/login");
+            return res.sendFile(path.join(__dirname, "../../pages/signin.html"));
     }   
         const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);//verify token
         req.user=verifiedToken;//attach user info to request object
