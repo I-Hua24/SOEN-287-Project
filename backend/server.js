@@ -47,6 +47,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", bookingRoutes);
 
+// Page doesn't exist (404) (Must be placed last)
+app.use((req, res) => {    
+    res.sendFile(path.join(__dirname, "../pages/page404.html"));
+});
+
 // MongoDB connection
 mongoose.connect(MONGO_URI, {dbName: 'ConcoHub_db'})
   .then(() => console.log('Connected to MongoDB'))
